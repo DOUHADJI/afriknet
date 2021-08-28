@@ -30,7 +30,7 @@ Route::group(['prefix'=>'clients'], function(){
     Route::post("/", [clientsController::class, "store"])->name("clients.store");
     Route::delete("/{client}", [clientsController::class, "destroy"])->name("clients.destroy");
 
-    Route::get("/", [clientsController::class, "edit"])->name("clients.edit");
+    Route::get("/{client}", [clientsController::class, "edit"])->name("clients.edit");
 
     Route::get("/{client}", [clientsController::class, "show"])->name("clients.show");
 
