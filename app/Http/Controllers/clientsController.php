@@ -139,6 +139,78 @@ class clientsController extends Controller
 
     }
 
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function statuts_index()
+    {
+        $clients = clients::get();
+
+    return view ('clients.statuts', compact('clients'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showForchangeStatut (clients $client)
+    {
+
+    return view ('clients.changeStatut', compact('client'));
+
+    }
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function changeStatut( Request $request, clients $client)
+    {
+       
+
+        $request->validate ([
+
+            "statut" => ["required"],
+
+    ]);
+
+
+    $client->update([
+        
+        "statut_activite" => $request->statut,
+    ]);
+
+    return redirect() -> route('clients.statuts') -> with('success', 'statut updated successfully');
+
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showForDeletion(clients $client)
+    {
+        $statut_value = $client->statut_activite;
+
+        return view ('clients.delete', compact('client', "statut_value"));
+            
+    }
+
     /**
      * Remove the specified resource from storage.
      *

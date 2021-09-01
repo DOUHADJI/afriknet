@@ -31,8 +31,8 @@
                             <th>Email</th>
                             <th>Contact</th>
                             <th>Type</th>
-                            <th>Client's statut</th>
-                            <th>Action</th>
+                            <th>Change client's statut</th>
+                           
                         </tr>
                     </thead>
                     <tfoot>
@@ -43,51 +43,63 @@
                     <tbody>
 
                         @foreach ($clients as $client )
+                            @if ($client->statut_activite===1)
 
-                            <tr>
+                            <tr class="text-success">
                                 <td> <b>{{$client->name}}</b>  {{$client->prenom}}</td>
                                 <td>{{$client->email}}</td>
                                 <td>{{$client->contact}}</td>
                                 <td>{{$client->type}}</td>
                                 <td>
                                         @if($client->statut_activite == 1)
-                                            <span class="badge badge-success py-2 px-4 ">Active</span>
+                                        <a href="{{route("clients.showForchangeStatut", $client)}}">
+                                            <span class="badge badge-danger py-2 px-4 col ">
+                                                Inactivate
+                                            </span>
+                                        </a>
+
                                             @else
-                                            <span class="badge badge-danger  py-2 px-4">Inactive</span>
+                                        <a href="{{route("clients.showForchangeStatut", $client)}}">
+                                            <span class="badge badge-success  py-2 px-4 col ">
+                                                Activate
+                                            </span>
+                                         </a>
 
                                         @endif
                                 </td>
 
-                                <td>
+                               
 
-                                    <small class="container-fluid">
-                                        <div class="row">
-
-                                          <div class="col-4">
-                          
-                                          <a class="btn btn-secondary" href="{{route("clients.edit", $client )}}"><span class="fas fa-edit"></span></a>
-                          
-                                          </div>
-
-                                          <div class="col-4">
-                          
-                                            <a class="btn btn-success" href="{{route("clients.show", $client )}}"><span class="fas fa-eye"></span></a>
-                            
-                                            </div>
-                          
-                          
-                                          <div class="col-4">
-                                            <a   href="{{route("clients.showForDeletion", $client)}}" type="button" class="btn btn-danger" {{-- data-bs-toggle="modal" data-bs-target="#staticBackdrop" --}}>
-                                                <span class="fas fa-trash"></span>
-                                            </a>
-                                            
-                                          </div>
-                                        </div>
-                                           
-                                      </small>
-
-                                </td>
                             </tr>
+
+                            @else
+                            <tr class="text-danger">
+                                <td> <b>{{$client->name}}</b>  {{$client->prenom}}</td>
+                                <td>{{$client->email}}</td>
+                                <td>{{$client->contact}}</td>
+                                <td>{{$client->type}}</td>
+                                <td>
+                                        @if($client->statut_activite == 1)
+                                        <a href="{{route("clients.showForchangeStatut", $client)}}">
+                                            <span class="badge badge-danger py-3 px-4 col ">
+                                                Inactivate
+                                            </span>
+                                        </a>
+
+                                            @else
+                                        <a href="{{route("clients.showForchangeStatut", $client)}}" >
+                                            <span class="badge badge-success  py-2 px-4 col">
+                                                Activate
+                                            </span>
+                                         </a>
+
+                                        @endif
+                                </td>
+
+                        
+
+                            </tr>
+                            @endif
 
                         @endforeach
                         

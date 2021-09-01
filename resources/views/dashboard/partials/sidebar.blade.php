@@ -84,24 +84,20 @@
                 <h6 class="collapse-header">Actions sur clients</h6>
                 <a class="collapse-item" href="{{route('clients.index')}}">Liste des clients</a>
                 <a class="collapse-item" href="{{route('clients.create')}}">+ nouveau client</a>
-                <a class="collapse-item" href="utilities-animation.html">Change client's statut</a>
+                <a class="collapse-item" href="{{route('clients.statuts')}}">Change client's statut</a>
             </div>
         </div>
     </li>
 
     <!-- Nav Item - Charts -->
-    <li class="nav-item">
+  {{--   <li class="nav-item">
         <a class="nav-link" href="charts.html">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Abonnements</span></a>
-    </li>
+    </li> --}}
 
     <!-- Nav Item - Tables -->
-    <li class="nav-item">
-        <a class="nav-link" href="{{route('clients.index')}}">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Gestion des clients</span></a>
-    </li>
+    
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

@@ -26,6 +26,8 @@ Route::get('dashboard', [dashboardController::class, 'index']) ->name('dashboard
 Route::group(['prefix'=>'clients'], function(){
 
     Route::get("/", [clientsController::class, "index"])->name("clients.index");
+
+    Route::get("/client's_statuts", [clientsController::class, "statuts_index"])->name("clients.statuts");
     
     Route::get("/create", [clientsController::class, "create"])->name("clients.create");
     
@@ -33,9 +35,16 @@ Route::group(['prefix'=>'clients'], function(){
 
     Route::get("/show/{client}", [clientsController::class, "show"])->name("clients.show");
 
+    Route::get("/delete/{client}", [clientsController::class, "showForDeletion"])->name("clients.showForDeletion");
+
     Route::get("/edit/{client}", [clientsController::class, "edit"])->name("clients.edit");
+    
+    Route::get("/show_statut/{client}", [clientsController::class, "showForchangeStatut"])->name("clients.showForchangeStatut");
+
+    Route::patch("/change_statut/{client}", [clientsController::class, "changeStatut"])->name("clients.changeStatut");
 
     Route::patch("/update/{client}", [clientsController::class, "update"])->name("clients.update");
+
 
     Route::delete("/{client}", [clientsController::class, "destroy"])->name("clients.destroy");
 
