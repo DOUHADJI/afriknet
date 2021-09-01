@@ -27,7 +27,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Clients</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Abonnements</h1>
                     <p class="mb-4"></p>
 
                     <!-- Create a new client -->
@@ -42,7 +42,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021 </span>
+                        <span>Copyright &copy; Your Website 2021</span>
                     </div>
                 </div>
             </footer>

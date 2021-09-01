@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\clientsController;
+use App\Http\Controllers\abonnementsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,5 +51,22 @@ Route::group(['prefix'=>'clients'], function(){
 
 
 
+
+});
+
+Route::group(['prefix'=>'abonnements'], function(){
+
+    Route::get("/", [abonnementsController::class, "index"])->name("abonnements.index");
+
+    Route::get("/create", [abonnementsController::class, "create"])->name("abonnements.create");
+
+    Route::post("/", [abonnementsController::class, "store"])->name("abonnements.store");
+
+});
+
+
+Route::group(['prefix'=>'forfaits'], function(){
+
+    Route::get("/", [clientsController::class, "index"])->name("clients.index");
 
 });

@@ -1,4 +1,4 @@
-    
+     
     
     <!-- Bootstrap core JavaScript-->
     <script src="{{URL::asset("/template_resources/vendor/jquery/jquery.min.js")}}"></script>
