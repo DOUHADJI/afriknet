@@ -7,11 +7,13 @@
 
     @if ($message = Session::get('success'))
 
-    <div class="alert alert-success">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
 
-        <p>{{ $message }}</p>
+        <p> <span class="bi-check-circle-fill mr-1 fa-2x"></span>{{ $message }}</p>
+        
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 
-    </div>
+    </div>    
 
     @endif
 
@@ -75,11 +77,10 @@
                           
                           
                                           <div class="col-4">
-                                             <form action="{{ route("clients.destroy", $client) }}" method="post">
-                                              @csrf
-                                              @method("DELETE")
-                                              <button type="submit" class="btn btn-danger"><span class="fas fa-recycle"></span></button>
-                                            </form>
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                <span class="fas fa-trash"></span>
+                                            </button>
+                                            
                                           </div>
                                         </div>
                                            
@@ -92,6 +93,40 @@
                         
                                             </tbody>
                 </table>
+
+                
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <p class="text-danger">You are about to delete the client  </p>
+          <p>
+            <span>{{$client->name}}</span> -  <span>{{$client->prenom}}</span> - <span>{{-- {{$client->contact}} --}}</span>
+ 
+
+          </p>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+          <form action="{{ route("clients.destroy", $client) }}" method="post">
+            @csrf
+            @method("DELETE")
+            <button type="submit" class="btn btn-danger" >delete</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+</div>
+
             </div>
         </div>
     </div>

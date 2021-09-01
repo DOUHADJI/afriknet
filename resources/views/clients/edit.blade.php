@@ -9,14 +9,22 @@
      <!-- Basic Card Example -->
      <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Edit client</h6>
+
+            <h6 class="m-0 font-weight-bold text-primary">Edit client  
+                
+                <span class="fas fa-user fa-3x ml-2 @if($client->statut_activite === 1) text-success @else text-danger @endif "> </span>
+        
+        </h6>
+
+
         </div>
 
             
        
-            <form action="{{route('clients.store')}}" method="POST">
-                @method("POST")
+            <form action="{{route('clients.update', $client )}}"  method="POST">
                 @csrf
+                @method("PATCH")
+
                 <div class="card-body">
 
                         <div class="form-group">
@@ -48,7 +56,7 @@
                                 <div class="col">
                                     <label for="contact">Contact</label>
                                     <input type="text" class="form-control form-control-user @error("contact") is-invalid @enderror "
-                                     id="prenom"  name="contact" value="{{old("contact")}}">
+                                     id="contact"  name="contact" value="{{$client->contact}}">
 
                                     @error("contact")
                                         <div class="invalid-feedback">{{$message}}</div>
@@ -67,7 +75,7 @@
                                 <div class="col">
                                     <label for="pays">Country</label>
                                     <input type="text" class="form-control form-control-user @error("pays") is-invalid @enderror "
-                                    id="pays"  name="pays" value="{{old("pays")}}">
+                                    id="pays"  name="pays" value="{{$client->pays}}">
 
                                     @error("pays")
                                         <div class="invalid-feedback">{{$message}}</div>
@@ -78,7 +86,7 @@
                                 <div class="col">
                                     <label for="ville">City</label>
                                     <input type="text" class="form-control form-control-user @error("ville") is-invalid @enderror "
-                                     id="ville"  name="ville" value="{{old("ville")}}">
+                                     id="ville"  name="ville" value="{{$client->ville}}">
 
                                     @error("ville")
                                     <div class="invalid-feedback">{{$message}}</div>
@@ -91,8 +99,12 @@
                                     <select name="type" id="type" class="form-control form-control-user @error("type") is-invalid @enderror " >
 
                                         <option value="0">--choix--</option>
-                                        <option value="Individu">Individu</option>
-                                        <option value="Entreprise">Entreprise</option>
+                                        <option value="Individu" @if($client->type =="Individu")
+                                            selected
+                                        @endif>Individu</option>
+                                        <option value="Entreprise" @if($client->type == "Entreprise")
+                                            selected
+                                        @endif>Entreprise</option>
 
                                     </select>
 
@@ -102,16 +114,7 @@
 
                                 </div>
 
-                                <div class="col" hidden>
-                                    <label for="statut">Statut</label>
-                                    <input type="checkbox" class="form-control form-control-user  @error("statut") is-invalid @enderror" 
-                                    id="statut"  name="statut" >
-
-                                    @error("statut")
-                                    <div class="invalid-feedback">{{$message}}</div>
-                                 @enderror
-
-                                </div>
+                        
 
 
                             </div>
@@ -124,7 +127,7 @@
                                 <div class="col">
                                     <label for="email">Email</label>
                                     <input type="email" class="form-control form-control-user @error("email") is-invalid @enderror " 
-                                    id="email"  name="email" value="{{old("email")}}">
+                                    id="email"  name="email" value="{{$client->email}}">
 
                                     @error("email")
                                     <div class="invalid-feedback">{{$message}}</div>
@@ -137,11 +140,43 @@
                                 <div class="col">
                                     <label for="password">Password</label>
                                     <input type="password" class="form-control form-control-user  @error("password") is-invalid @enderror" 
-                                    id="password"  name="password">
+                                    id="password"  name="password" value="{{$client->password}}">
 
                                     @error("password")
                                     <div class="invalid-feedback">{{$message}}</div>
                                  @enderror
+
+                                </div>
+
+                                <div class="col-3">
+
+                                    <label for="statut">Statut</label>
+
+                                    <div class="form-check">
+
+                                        <input disabled class="form-check-input" type="radio" name="statut" id="statut1" value="1" @if($client->statut_activite===1)
+                                            checked
+                                        @endif>
+                                        <label class="form-check-label" for="statut1">
+                                          Active
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input disabled class="form-check-input" type="radio" name="statut" id="statut2" value="0" @if($client->statut_activite !==1)
+                                        checked
+                                    @endif>
+                                        <label class="form-check-label" for="statut2">
+                                          Inactive
+                                        </label>
+                                      </div>
+
+
+                                    <input type="statut" class="form-control form-control-user " 
+                                    id="statut"  name="statut" value="{{$statut_value}}" hidden>
+
+                                    @error("statut")
+                                    <div class="invalid-feedback">{{$message}}</div>
+                                     @enderror
 
                                 </div>
 

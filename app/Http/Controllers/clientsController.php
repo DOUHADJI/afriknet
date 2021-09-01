@@ -44,6 +44,7 @@ class clientsController extends Controller
         
         
         $request->validate ([
+            
                 "firstname" =>["required"],
                 "prenom" => ["required"],
                 "contact" => ["required"],
@@ -90,8 +91,9 @@ class clientsController extends Controller
      */
     public function edit(clients $client)
     {
-        
-        return view("clients.edit", compact("client"));
+        $statut = "";
+        $statut_value = $client->statut_activite;
+        return view("clients.edit", compact("client", "statut", "statut_value"));
     }
 
     /**
@@ -103,7 +105,38 @@ class clientsController extends Controller
      */
     public function update(Request $request, clients $client)
     {
-        //
+        $request->validate ([
+
+            "firstname" =>["required"],
+            "prenom" => ["required"],
+            "contact" => ["required"],
+            "pays" => ["required"],
+            "ville" => ["required"],
+            "email" => ["required"],
+            "password" => ["required"],
+            "type" => ["required"],
+            
+            
+    ]);
+
+    $client->update([
+        
+        "name" =>$request->firstname,
+        "prenom" => $request->prenom,
+        "email" => $request->email,
+        "password" => $request->password,
+        "pays" => $request->pays,
+        "ville" => $request->ville,
+        "contact" =>$request->contact,
+        "type" => $request->type,
+    ]);
+
+
+
+
+
+    return redirect() -> route('clients.index') -> with('success', 'client updated successfully');
+
     }
 
     /**
@@ -112,8 +145,11 @@ class clientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(clients $clients)
+    public function destroy(clients $client)
     {
-        //
+        $client->delete();
+
+        return redirect()->route('clients.index')
+            ->with('success', 'Client deleted successfully');
     }
 }

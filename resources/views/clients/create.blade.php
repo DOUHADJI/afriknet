@@ -16,6 +16,7 @@
        
             <form action="{{route('clients.store')}}" method="POST">
                 @csrf
+                @method("POST")
                 <div class="card-body">
 
                         <div class="form-group">
@@ -103,7 +104,7 @@
 
                                 <div class="col" hidden>
                                     <label for="statut">Statut</label>
-                                    <input type="checkbox" class="form-control form-control-user  @error("statut") is-invalid @enderror" 
+                                    <input  class="form-control form-control-user  @error("statut") is-invalid @enderror" 
                                     id="statut"  name="statut" value="{{1}}">
 
                                     @error("statut")

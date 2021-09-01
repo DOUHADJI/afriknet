@@ -84,8 +84,7 @@
                 <h6 class="collapse-header">Actions sur clients</h6>
                 <a class="collapse-item" href="{{route('clients.index')}}">Liste des clients</a>
                 <a class="collapse-item" href="{{route('clients.create')}}">+ nouveau client</a>
-                <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                <a class="collapse-item" href="utilities-other.html">Other</a>
+                <a class="collapse-item" href="utilities-animation.html">Change client's statut</a>
             </div>
         </div>
     </li>

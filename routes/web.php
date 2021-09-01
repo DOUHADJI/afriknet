@@ -26,13 +26,19 @@ Route::get('dashboard', [dashboardController::class, 'index']) ->name('dashboard
 Route::group(['prefix'=>'clients'], function(){
 
     Route::get("/", [clientsController::class, "index"])->name("clients.index");
+    
     Route::get("/create", [clientsController::class, "create"])->name("clients.create");
+    
     Route::post("/", [clientsController::class, "store"])->name("clients.store");
+
+    Route::get("/show/{client}", [clientsController::class, "show"])->name("clients.show");
+
+    Route::get("/edit/{client}", [clientsController::class, "edit"])->name("clients.edit");
+
+    Route::patch("/update/{client}", [clientsController::class, "update"])->name("clients.update");
+
     Route::delete("/{client}", [clientsController::class, "destroy"])->name("clients.destroy");
 
-    Route::get("/{client}", [clientsController::class, "edit"])->name("clients.edit");
-
-    Route::get("/{client}", [clientsController::class, "show"])->name("clients.show");
 
 
 
