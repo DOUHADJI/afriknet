@@ -3,6 +3,7 @@
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\clientsController;
 use App\Http\Controllers\abonnementsController;
+use App\Http\Controllers\forfaitsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,11 +63,24 @@ Route::group(['prefix'=>'abonnements'], function(){
 
     Route::post("/", [abonnementsController::class, "store"])->name("abonnements.store");
 
+    Route::get("/delete_abonnement", [abonnementsController::class, "showForDelete"])->name("abonnements.showForDelete");
+
+    Route::delete("/{abonnement}", [abonnementsController::class, "destroy"])->name("abonnements.destroy");
+
+
 });
 
 
 Route::group(['prefix'=>'forfaits'], function(){
 
-    Route::get("/", [clientsController::class, "index"])->name("clients.index");
+    Route::get("/", [forfaitsController::class, "index"])->name("forfaits.index");
+
+    Route::get("/create", [forfaitsController::class, "create"])->name("forfaits.create");
+
+    Route::post("/", [forfaitsController::class, "store"])->name("forfaits.store");
+
+    Route::get("/delete_forfait", [forfaitsController::class, "showForDelete"])->name("forfaits.showForDelete");
+
+    Route::delete("/delete/{forfait}", [forfaitsController::class, "destroy"])->name("forfaits.destroy");
 
 });

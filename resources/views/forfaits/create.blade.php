@@ -1,4 +1,4 @@
-@extends('abonnements.layout');
+@extends('forfaits.layout');
 
 
 @section("content")
@@ -6,12 +6,12 @@
 <div class="container">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Add new abonnement</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Add new forfait</h6>
         </div>
     
             
        
-            <form action="{{route('abonnements.store')}}" method="POST">
+            <form action="{{route('forfaits.store')}}" method="POST">
                 @csrf
                 @method("POST")
                 <div class="card-body">

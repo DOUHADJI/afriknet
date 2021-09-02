@@ -39,7 +39,22 @@
         @foreach ($abonnements as $abonnement )
         
             <div class="col">
-                <div class="card border-left-success  shadow  py-2 mt-3 mb-3 ">
+
+                <div class="card border-left-success  shadow  py-2 mt-3 mb-3  position-relative ">
+
+                    
+                        <button type="submit" form="myform"  class="position-absolute top-0 start-100 translate-middle badge rounded-pill  border border-primary bg-primary">
+                            <span class="bg-primary">
+                                <span class="fas fa-minus fa-1x  ml-1 mr-1 "></span>
+                                <span >
+                                    <form action="{{route ("abonnements.destroy", $abonnement )}}" method="POST"  id="myform" class="visually-hidden">
+                                        @csrf
+                                        @method("DELETE")
+                                    </form>
+
+                                </span>
+                              </span>
+                            </button>
 
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">

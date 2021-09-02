@@ -25,7 +25,7 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Interface
+        Espace marketing
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
@@ -40,7 +40,7 @@
                 <h6 class="collapse-header">Actions sur  abonnements</h6>
                 <a class="collapse-item" href="{{route ('abonnements.index') }}">Nos abonnements</a>
                 <a class="collapse-item" href="{{route ("abonnements.create") }}">+ nouvel abonnement</a>
-                <a class="collapse-item" href="cards.html">- retirer un abonnement</a>
+                <a class="collapse-item" href="{{route ("abonnements.showForDelete")}}">- retirer un abonnement</a>
             </div>
         </div>
     </li>
@@ -55,14 +55,33 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Utilities:</h6>
-                <a class="collapse-item" href="utilities-color.html">Colors</a>
-                <a class="collapse-item" href="utilities-border.html">Borders</a>
-                <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                <a class="collapse-item" href="utilities-other.html">Other</a>
+                <h6 class="collapse-header">Actions sur  forfaits</h6>
+                <a class="collapse-item" href="{{route ('forfaits.index') }}">Nos forfaits</a>
+                <a class="collapse-item" href="{{route ("forfaits.create") }}">+ nouveau forfait</a>
+                <a class="collapse-item" href="{{route ("forfaits.showForDelete")}}">- retirer un forfait</a>
             </div>
         </div>
     </li>
+
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities2"
+            aria-expanded="true" aria-controls="collapseUtilities2">
+            <i class="fas fa-chart-area"></i>
+            <span>Bilans</span>
+        </a>
+        <div id="collapseUtilities2" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Bilan marketing</h6>
+                <a class="collapse-item" href="{{route ('forfaits.index') }}">Nos forfaits</a>
+                <a class="collapse-item" href="{{route ("forfaits.create") }}">+ nouveau forfait</a>
+                <a class="collapse-item" href="{{route ("forfaits.showForDelete")}}">- retirer un forfait</a>
+            </div>
+        </div>
+    </li>
+
+    
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -91,6 +110,41 @@
     </li>
 
     <!-- Nav Item - Charts -->
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3"
+            aria-expanded="true" aria-controls="collapse3">
+            <i class="fas fa-clipboard-list"></i>
+            <span>Plaintes</span>
+        </a>
+        <div id="collapse3" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Actions sur plaintes</h6>
+                <a class="collapse-item" href="{{route('clients.index')}}">Non traitées</a>
+                <a class="collapse-item" href="{{route('clients.create')}}">Urgentes</a>
+                <a class="collapse-item" href="{{route('clients.statuts')}}">Archives</a>
+            </div>
+        </div>
+    </li>
+
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse4"
+            aria-expanded="true" aria-controls="collapse4">
+            <i class="fas fa-comments"></i>
+            <span>Requêtes</span>
+        </a>
+        <div id="collapse4" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Actions sur requêtes</h6>
+                <a class="collapse-item" href="{{route('clients.index')}}">Non traitées</a>
+                <a class="collapse-item" href="{{route('clients.create')}}">Urgentes</a>
+                <a class="collapse-item" href="{{route('clients.statuts')}}">Archives</a>
+            </div>
+        </div>
+    </li>
   {{--   <li class="nav-item">
         <a class="nav-link" href="charts.html">
             <i class="fas fa-fw fa-chart-area"></i>

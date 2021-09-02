@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\abonnements;
+use App\Models\forfaits;
 use Illuminate\Http\Request;
 
-class abonnementsController extends Controller
+
+class forfaitsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,9 @@ class abonnementsController extends Controller
      */
     public function index()
     {
-        $abonnements = abonnements::get();
+        $forfaits = forfaits::get();
 
-        return view("abonnements.index", compact('abonnements'));
+        return view("forfaits.index", compact('forfaits'));
     }
 
     /**
@@ -26,7 +27,7 @@ class abonnementsController extends Controller
      */
     public function create()
     {
-        return view ("abonnements.create");
+        return view ("forfaits.create");
     }
 
     /**
@@ -46,7 +47,7 @@ class abonnementsController extends Controller
 
         /* dd($request); */
 
-        abonnements::create([
+        forfaits::create([
 
                 "nom" => $request->name,
                 "volume" => $request->volume,
@@ -54,7 +55,7 @@ class abonnementsController extends Controller
 
         ]);
 
-        return redirect() -> route('abonnements.index') -> with('success', 'Abonnements created successfully');
+        return redirect() -> route('forfaits.index') -> with('success', 'forfaits created successfully');
     }
 
     /**
@@ -76,9 +77,9 @@ class abonnementsController extends Controller
      */
     public function showForDelete()
     {
-        $abonnements = abonnements::get();
+        $forfaits = forfaits::get();
         
-        return view("abonnements.delete", compact("abonnements"));
+        return view("forfaits.delete", compact("forfaits"));
     }
 
     /**
@@ -110,13 +111,14 @@ class abonnementsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(abonnements $abonnement)
+    public function destroy(forfaits $forfait)
     {
        
 
-        $abonnement -> delete();
+        $forfait -> delete();
 
-        return redirect() -> route('abonnements.showForDelete') -> with('success', 'Abonnements deleted successfully');
+        return redirect() -> route('forfaits.showForDelete') -> with('success', 'forfaits deleted successfully');
 
     }
 }
+
