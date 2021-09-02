@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\abonnements;
 use Illuminate\Http\Request;
 
@@ -113,6 +112,7 @@ class abonnementsController extends Controller
     public function destroy(abonnements $abonnement)
     {
        
+       /*  dd($abonnement); */
 
         $abonnement -> delete();
 

@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\forfaits;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class forfaitsController extends Controller
@@ -113,7 +113,7 @@ class forfaitsController extends Controller
      */
     public function destroy(forfaits $forfait)
     {
-       
+        
 
         $forfait -> delete();
 

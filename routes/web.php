@@ -79,8 +79,8 @@ Route::group(['prefix'=>'forfaits'], function(){
 
     Route::post("/", [forfaitsController::class, "store"])->name("forfaits.store");
 
-    Route::get("/delete_forfait", [forfaitsController::class, "showForDelete"])->name("forfaits.showForDelete");
+    Route::get("/delete_a_forfait", [forfaitsController::class, "showForDelete"])->name("forfaits.showForDelete");
 
-    Route::delete("/delete/{forfait}", [forfaitsController::class, "destroy"])->name("forfaits.destroy");
+    Route::delete("/{forfait}", [forfaitsController::class, "destroy"])->name("forfaits.destroy");
 
 });

@@ -1,4 +1,4 @@
-@extends('abonnements.layout');
+@extends('abonnements.layout')
 
 
 @section("content")

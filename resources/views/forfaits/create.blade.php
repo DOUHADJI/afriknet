@@ -1,4 +1,4 @@
-@extends('forfaits.layout');
+@extends('forfaits.layout')
 
 
 @section("content")
