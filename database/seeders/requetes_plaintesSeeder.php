@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\requetes_plaintes;
 use Illuminate\Database\Seeder;
 
 class requetes_plaintesSeeder extends Seeder
@@ -13,6 +14,6 @@ class requetes_plaintesSeeder extends Seeder
      */
     public function run()
     {
-        //
+        requetes_plaintes::factory(35)->create();
     }
 }

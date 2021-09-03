@@ -123,7 +123,7 @@
                 <h6 class="collapse-header">Actions sur plaintes</h6>
                 <a class="collapse-item" href="{{route('clients.index')}}">Non traitées</a>
                 <a class="collapse-item" href="{{route('clients.create')}}">Urgentes</a>
-                <a class="collapse-item" href="{{route('clients.statuts')}}">Archives</a>
+                <a class="collapse-item" href="{{route('plaintes.archives')}}">Archives</a>
             </div>
         </div>
     </li>

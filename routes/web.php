@@ -4,6 +4,7 @@ use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\clientsController;
 use App\Http\Controllers\abonnementsController;
 use App\Http\Controllers\forfaitsController;
+use App\Http\Controllers\plaintesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,14 @@ Route::get('/', function () {
 
 
 Route::get('dashboard', [dashboardController::class, 'index']) ->name('dashboard');
+
+
+/* 
+Routes des clients
+Routes des clients
+Routes des clients
+
+DEBUT */
 
 Route::group(['prefix'=>'clients'], function(){
 
@@ -55,6 +64,21 @@ Route::group(['prefix'=>'clients'], function(){
 
 });
 
+/* 
+Routes des clients
+Routes des clients
+Routes des clients
+
+FIN */
+
+
+
+/* Route des abonnements
+Route des abonnements
+Route des abonnements
+
+DEBUT */
+
 Route::group(['prefix'=>'abonnements'], function(){
 
     Route::get("/", [abonnementsController::class, "index"])->name("abonnements.index");
@@ -71,6 +95,21 @@ Route::group(['prefix'=>'abonnements'], function(){
 });
 
 
+/* Route des abonnements
+Route des abonnements
+Route des abonnements
+
+FIN */
+
+
+
+
+/* Routes des forfaits
+Routes des forfaits
+Routes des forfaits
+
+DEBUT */
+
 Route::group(['prefix'=>'forfaits'], function(){
 
     Route::get("/", [forfaitsController::class, "index"])->name("forfaits.index");
@@ -84,3 +123,38 @@ Route::group(['prefix'=>'forfaits'], function(){
     Route::delete("/{forfait}", [forfaitsController::class, "destroy"])->name("forfaits.destroy");
 
 });
+
+/* Routes des forfaits
+Routes des forfaits
+Routes des forfaits
+
+FIN */
+
+
+
+
+/* Routes des plaintes */
+/* Routes des plaintes */
+/* Routes des plaintes */
+
+/* DEBUT */
+
+Route::group(['prefix'=>'plaintes'], function(){
+
+    Route::get("/archives", [plaintesController::class, "archives"])->name("plaintes.archives");
+
+   /*  Route::get("/create", [plaintesController::class, "create"])->name("forfaits.create");
+
+    Route::post("/", [plaintesController::class, "store"])->name("forfaits.store");
+
+    Route::get("/delete_a_forfait", [plaintesController::class, "showForDelete"])->name("forfaits.showForDelete");
+
+    Route::delete("/{forfait}", [plaintesController::class, "destroy"])->name("forfaits.destroy"); */
+
+});
+
+/* Routes des plaintes */
+/* Routes des plaintes */
+/* Routes des plaintes */
+
+/* FIN*/

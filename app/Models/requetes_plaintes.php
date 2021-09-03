@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class requetes_plaintes extends Model
 {
     use HasFactory;
+
+
+    public function client()
+    {
+        return $this->belongsTo(clients::class);
+    }
 }

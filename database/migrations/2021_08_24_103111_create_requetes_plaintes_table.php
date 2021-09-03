@@ -19,7 +19,7 @@ class CreateRequetesPlaintesTable extends Migration
             $table->string('type')->nullable(false);
             $table->string('motif')->nullable(false);
             $table->mediumText('message')->nullable(false);
-            $table->boolean('statut');
+            $table->string('statut');
 
             $table->unsignedBigInteger('client_id');
             $table->foreign('client_id')->references('id')->on('clients');

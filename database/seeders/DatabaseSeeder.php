@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             forfaitsSeeder::class,
            type_clientSeeder::class,
            clientsSeeder::class,
+           requetes_plaintesSeeder::class,
 
         ]);
     }
