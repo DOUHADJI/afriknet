@@ -9,6 +9,10 @@ class requetes_plaintes extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        
+        "statut"
+    ];
 
     public function client()
     {

@@ -6,9 +6,9 @@ use App\Models\requetes_plaintes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class plaintesController extends Controller
+class requetesController extends Controller
 {
-    
+        
     /**
      * Display a listing of the resource.
      *
@@ -18,12 +18,12 @@ class plaintesController extends Controller
     {
     
 
-        $plaintes = DB::table("requetes_plaintes")
-        ->where("type", "=", "plainte")
+        $requetes = DB::table("requetes_plaintes")
+        ->where("type", "=", "requete")
         ->orderBy('id', 'asc')
         ->get();
 
-        return view ("plaintes.index", compact("plaintes"));
+        return view ("requetes.index", compact("requetes"));
     }
 
 
@@ -34,27 +34,27 @@ class plaintesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function filter_plaintes_statut(Request $request)
+    public function filter_requetes_statut(Request $request)
     {
        
 
-        $statut_plainte = request()->input('statut');
+        $statut_requete = request()->input('statut');
 
-      /*   dd($statut_plainte); */
+      /*   dd($statut_requete); */
 
-        $plaintes = DB::table("requetes_plaintes")
-        ->where("type", "=", "plainte")
-        ->where("statut" ,"=", $statut_plainte)
+        $requetes = DB::table("requetes_plaintes")
+        ->where("type", "=", "requete")
+        ->where("statut" ,"=", $statut_requete)
         ->orderBy('id', 'asc')
         ->get();
 
 
-      /*   $plaintes = requetes_plaintes::when($statut_plainte, function($query) use ($statut_plainte) {
-                $query->where("statut", $statut_plainte);
+      /*   $requetes = requetes_requetes::when($statut_requete, function($query) use ($statut_requete) {
+                $query->where("statut", $statut_requete);
         } )->get(); */
 
 
-          return view ("plaintes.add_filter", compact("plaintes"));
+          return view ("requetes.add_filter", compact("requetes"));
     }
 
     /**
@@ -116,9 +116,9 @@ class plaintesController extends Controller
             "statut" =>"required",
         ]);
 
-        $plainte = requetes_plaintes::where("id", '=', $id)->first();
+        $requete = requetes_plaintes::where("id", '=', $id)->first();
 
-        $plainte -> update([
+        $requete -> update([
             "statut" => $request->statut,
         ]);
 

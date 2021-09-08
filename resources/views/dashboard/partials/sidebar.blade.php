@@ -111,7 +111,7 @@
 
     <!-- Nav Item - Charts -->
 
-    <li class="nav-item">
+{{--     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3"
             aria-expanded="true" aria-controls="collapse3">
             <i class="fas fa-clipboard-list"></i>
@@ -126,10 +126,22 @@
                 <a class="collapse-item" href="{{route('plaintes.archives')}}">Archives</a>
             </div>
         </div>
+    </li> --}}
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('plaintes.index')}}">
+            <i class="fas fa-clipboard-list"></i>
+            <span>Plaintes</span></a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('requetes.index')}}">
+            <i class="fas fa-comments"></i>
+            <span>Plaintes</span></a>
     </li>
 
 
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse4"
             aria-expanded="true" aria-controls="collapse4">
             <i class="fas fa-comments"></i>
@@ -144,7 +156,7 @@
                 <a class="collapse-item" href="{{route('clients.statuts')}}">Archives</a>
             </div>
         </div>
-    </li>
+    </li> --}}
   {{--   <li class="nav-item">
         <a class="nav-link" href="charts.html">
             <i class="fas fa-fw fa-chart-area"></i>

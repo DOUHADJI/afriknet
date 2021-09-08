@@ -5,6 +5,7 @@ use App\Http\Controllers\clientsController;
 use App\Http\Controllers\abonnementsController;
 use App\Http\Controllers\forfaitsController;
 use App\Http\Controllers\plaintesController;
+use App\Http\Controllers\requetesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -141,20 +142,40 @@ FIN */
 
 Route::group(['prefix'=>'plaintes'], function(){
 
-    Route::get("/archives", [plaintesController::class, "archives"])->name("plaintes.archives");
+    Route::get("/", [plaintesController::class, "index"])->name("plaintes.index");
 
-   /*  Route::get("/create", [plaintesController::class, "create"])->name("forfaits.create");
+    Route::get("/add filter/", [plaintesController::class, "filter_plaintes_statut"])->name("plaintes.filter_statut");
 
-    Route::post("/", [plaintesController::class, "store"])->name("forfaits.store");
-
-    Route::get("/delete_a_forfait", [plaintesController::class, "showForDelete"])->name("forfaits.showForDelete");
-
-    Route::delete("/{forfait}", [plaintesController::class, "destroy"])->name("forfaits.destroy"); */
+    Route::patch("/update/{id}", [plaintesController::class, "update"])->name("plaintes.update");
 
 });
 
 /* Routes des plaintes */
 /* Routes des plaintes */
 /* Routes des plaintes */
+
+/* FIN*/
+
+
+
+/* Routes des requetes */
+/* Routes des requetes */
+/* Routes des requetes */
+
+/* DEBUT */
+
+Route::group(['prefix'=>'requetes'], function(){
+
+    Route::get("/", [requetesController::class, "index"])->name("requetes.index");
+
+    Route::get("/add filter/", [requetesController::class, "filter_requetes_statut"])->name("requetes.filter_statut");
+
+    Route::patch("/update/{id}", [requetesController::class, "update"])->name("requetes.update");
+
+});
+
+/* Routes des requetes */
+/* Routes des requetes */
+/* Routes des requetes */
 
 /* FIN*/
