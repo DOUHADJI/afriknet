@@ -137,7 +137,7 @@
     <li class="nav-item">
         <a class="nav-link" href="{{route('requetes.index')}}">
             <i class="fas fa-comments"></i>
-            <span>Plaintes</span></a>
+            <span>Requêtes</span></a>
     </li>
 
 

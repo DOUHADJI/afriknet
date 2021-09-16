@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\clients;
 use App\Models\requetes_plaintes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,13 @@ class plaintesController extends Controller
         ->orderBy('id', 'asc')
         ->get();
 
-        return view ("plaintes.index", compact("plaintes"));
+        $new_requetes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'requete') ->orderBy('id', 'desc')->get() -> take(3);
+        $new_plaintes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'plainte') ->orderBy('id', 'desc')->get() -> take(3);
+        $clients= clients::get();
+
+
+
+        return view ("plaintes.index", compact("plaintes" , 'new_plaintes', 'clients', 'new_requetes'));
     }
 
 
@@ -48,14 +55,27 @@ class plaintesController extends Controller
         ->orderBy('id', 'asc')
         ->get();
 
+        $new_requetes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'requete') ->orderBy('id', 'desc')->get() -> take(3);
+        $new_plaintes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'plainte') ->orderBy('id', 'desc')->get() -> take(3);
+        $clients= clients::get();
 
       /*   $plaintes = requetes_plaintes::when($statut_plainte, function($query) use ($statut_plainte) {
                 $query->where("statut", $statut_plainte);
         } )->get(); */
 
 
-          return view ("plaintes.add_filter", compact("plaintes"));
+          return view ("plaintes.add_filter", compact("plaintes", 'new_plaintes', 'clients', 'new_requetes'));
     }
+
+
+
+ /*
+    * Display a listing of the resource.
+    * 
+    * @param  \Illuminate\Http\Request  $request
+    *
+    * @return \Illuminate\Http\Response
+    *
 
     /**
      * Show the form for creating a new resource.

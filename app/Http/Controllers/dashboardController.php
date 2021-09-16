@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\abonnements;
 use App\Models\clients;
 use App\Models\forfaits;
+use App\Models\requetes_plaintes;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class dashboardController extends Controller
 {
@@ -19,7 +22,42 @@ class dashboardController extends Controller
         $abonnements = abonnements::get();
         $forfaits = forfaits::get();
         $clients= clients::get();
-        return view('dashboard.index', compact('abonnements', 'forfaits', 'clients'));
+
+        $new_plaintes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'plainte') ->orderBy('id', 'desc')->get() -> take(3);
+
+        $new_requetes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'requete') ->orderBy('id', 'desc')->get() -> take(3);
+
+        $clients_array = clients::get()->groupBy(function($val){
+            return Carbon::parse($val->created_at)->format('M');
+        }) -> toArray();
+
+        $months = DB::table('clients') -> select('created_at') ->get();
+
+        dd($clients_array, $months);
+        
+        return view('dashboard.index', compact(
+
+            'abonnements', 
+            'forfaits', 
+            'clients',
+            'new_plaintes',
+            'new_requetes'
+        
+        
+        ));
+    }
+
+
+    public function new_plaintes (Request $request)
+    {
+ 
+          return redirect()->route('plaintes.filter_statut', ['statut' => 'reçu']);
+    }
+
+    public function new_requetes (Request $request)
+    {
+ 
+          return redirect()->route('requetes.filter_statut', ['statut' => 'reçu']);
     }
 
     /**

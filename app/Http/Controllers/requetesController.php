@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\clients;
 use App\Models\requetes_plaintes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,12 @@ class requetesController extends Controller
         ->orderBy('id', 'asc')
         ->get();
 
-        return view ("requetes.index", compact("requetes"));
+        $new_plaintes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'plainte') ->orderBy('id', 'desc')->get() -> take(3);
+        $new_requetes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'requete') ->orderBy('id', 'desc')->get() -> take(3);
+        $clients= clients::get();
+
+
+        return view ("requetes.index", compact("requetes", 'new_requetes', 'clients', 'new_plaintes'));
     }
 
 
@@ -48,13 +54,16 @@ class requetesController extends Controller
         ->orderBy('id', 'asc')
         ->get();
 
+        $new_requetes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'requete') ->orderBy('id', 'desc')->get() -> take(3);
+        $new_plaintes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'plainte') ->orderBy('id', 'desc')->get() -> take(3);
+        $clients= clients::get();
 
       /*   $requetes = requetes_requetes::when($statut_requete, function($query) use ($statut_requete) {
                 $query->where("statut", $statut_requete);
         } )->get(); */
 
 
-          return view ("requetes.add_filter", compact("requetes"));
+          return view ("requetes.add_filter", compact("requetes", 'new_requetes', 'clients', 'new_plaintes'));
     }
 
     /**

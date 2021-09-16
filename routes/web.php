@@ -20,12 +20,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('login');
+    return view('welcome');
 });
 
 
 
 Route::get('dashboard', [dashboardController::class, 'index']) ->name('dashboard');
+
+Route::get('/new_plaintes', [dashboardController::class, 'new_plaintes']) ->name('new_plaintes');
+
+Route::get('/new_requetes', [dashboardController::class, 'new_requetes']) ->name('new_requetes');
 
 
 /* 
