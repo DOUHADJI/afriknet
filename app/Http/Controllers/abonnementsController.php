@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\abonnements;
+use App\Models\clients;
+use App\Models\requetes_plaintes;
 use Illuminate\Http\Request;
 
 class abonnementsController extends Controller
@@ -14,7 +16,7 @@ class abonnementsController extends Controller
     public function index()
     {
         $abonnements = abonnements::get();
-
+        
         return view("abonnements.index", compact('abonnements'));
     }
 

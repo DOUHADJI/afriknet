@@ -21,11 +21,7 @@ class dashboardController extends Controller
     {
         $abonnements = abonnements::get();
         $forfaits = forfaits::get();
-        $clients= clients::get();
-
-        $new_plaintes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'plainte') ->orderBy('id', 'desc')->get() -> take(3);
-
-        $new_requetes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'requete') ->orderBy('id', 'desc')->get() -> take(3);
+ 
 
         $clients_array = clients::get()->groupBy(function($val){
             return Carbon::parse($val->created_at)->format('M');
@@ -33,17 +29,12 @@ class dashboardController extends Controller
 
         $months = DB::table('clients') -> select('created_at') ->get();
 
-        dd($clients_array, $months);
+      /*   dd($clients_array, $months); */
         
         return view('dashboard.index', compact(
 
             'abonnements', 
-            'forfaits', 
-            'clients',
-            'new_plaintes',
-            'new_requetes'
-        
-        
+            'forfaits',       
         ));
     }
 

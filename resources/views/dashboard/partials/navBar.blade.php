@@ -49,6 +49,20 @@
         </li>
 
         <!-- Nav Item - Alerts -->
+
+        @php
+                use App\Models\requetes_plaintes;
+                use App\Models\clients;
+
+
+                $new_plaintes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'plainte') ->orderBy('id', 'desc')->get() -> take(3);
+
+                $new_requetes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'requete') ->orderBy('id', 'desc')->get() -> take(3);
+
+                $clients= clients::get();
+
+        @endphp
+
         <li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

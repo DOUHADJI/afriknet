@@ -38,7 +38,7 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <a href="dashboard" class="btn btn-primary btn-user btn-block">
+                                        <a href="{{route('user.index')}}" class="btn btn-primary btn-user btn-block">
                                             Login
                                         </a>
                                         <hr>

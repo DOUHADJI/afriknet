@@ -6,6 +6,9 @@ use App\Http\Controllers\abonnementsController;
 use App\Http\Controllers\forfaitsController;
 use App\Http\Controllers\plaintesController;
 use App\Http\Controllers\requetesController;
+use App\Http\Controllers\userController;
+use App\Models\abonnements;
+use App\Models\forfaits;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,8 +23,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $abonnements = abonnements::get();
+    $forfaits = forfaits::get();
+    return view('welcome', compact('abonnements', 'forfaits'));
+})->name('welcome');
+
+Route::get('/sign_in', function(){ 
+    return view('login');
+}) -> name('login');
 
 
 
@@ -181,5 +190,22 @@ Route::group(['prefix'=>'requetes'], function(){
 /* Routes des requetes */
 /* Routes des requetes */
 /* Routes des requetes */
+
+/* FIN*/
+
+
+/* Routes user */
+/* Routes user */
+/* Routes user */
+
+/* DEBUT*/
+
+Route::group(['prefix' => 'user'], function(){
+
+    Route::get('/', [userController::class, 'index'])->name('user.index');
+});
+/* Routes user */
+/* Routes user */
+/* Routes user */
 
 /* FIN*/

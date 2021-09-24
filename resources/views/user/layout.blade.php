@@ -9,20 +9,37 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="{{URL::asset('/template_resources/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
 
 
     <title>Afriknet</title>
 
 </head>
 
-<body class="container-fluid">
+<body>
 
-    <main>
-        <div>
+    <style>
+      /*   .nav_div{
+            background-image: url('template_resources/img/fibre_1.jpg');
+            background-repeat: no-repeat;
+            height:76vh; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        } */
+
+    </style>
+
+    <div>
+
+        <div  class="nav_div">
 
            {{--  Navbar Debut --}}
 
-           <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 fixed-top shadow">
+           <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow">
 
             <!-- Sidebar Toggle (Topbar) -->
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -42,8 +59,8 @@
             <ul class="navbar-nav ml-5">
 
                 <li class="nav-item dropdown no-arrow">
-                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-primary fw-bold"><span  class="bi bi-emoji-laughing "></span>  Nos offres</span>
+                    <a class="nav-link dropdown-toggle " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline  fw-bold "><span  class="bi bi-emoji-laughing "></span>  Nos offres</span>
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -72,7 +89,7 @@
 
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Se connecter </span>
+                        <span class="mr-2 d-none d-lg-inline text-white-600 small"></span>
                         <img class="img-profile rounded-circle" src="{{asset("template_resources/img/undraw_profile.svg")}}">
                     </a>
                     <!-- Dropdown - User Information -->
@@ -92,8 +109,8 @@
 
                         <div class="dropdown-divider"></div>
 
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" class="fw-bold">
-                           Login <span class="bi bi-box-arrow-in-right "></span>
+                        <a class="dropdown-item" href="{{route('welcome')}}"  class="fw-bold">
+                           Logout <span class="bi bi-box-arrow-in-right "></span>
                         </a>
 
                         <div class="dropdown-divider"></div>
@@ -102,45 +119,49 @@
                     </div>
                 </li>
             </ul>
+            </nav>
 
-        </nav>
-
-            {{-- NavBar Fin --}}
+               {{-- NavBar Fin --}}
 
 
-        {{--     Carousel Debut --}}
+        {{--     SubNav Debut --}}
 
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="https://www.enter.co/wp-content/uploads/2019/02/photographer-1927657_1920-768x432.jpg" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="https://www.enter.co/wp-content/uploads/2019/02/photographer-1927657_1920-768x432.jpg." class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="https://www.enter.co/wp-content/uploads/2019/02/photographer-1927657_1920-768x432.jpg" class="d-block w-100" alt="...">
-              </div>
+            @yield('content')
+
+        {{--     SubNav Fin --}}
+
+
+        
+
+        
+
+        
+
+
+        <div class="text-white bg-dark p-3">
+
+            <div class="row">
+
+                <div class="col">
+                    <p class="fst-italic fw-bold  text-center">Afriknet</p>
+                    
+                </div>
+
+                <div class="col">
+
+                </div>
+
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-
-            {{-- Carousel Fin  --}}
-
-            
-
-
+            <div class="text-center">@Copyright 2021 - all rights reserved</div>
         </div>
-    </main>
+
+           
+
+         
+       
+
+    </div>
     
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 @include("dashboard.partials.footer")
 
 </body>

@@ -14,6 +14,6 @@ class forfaitsSeeder extends Seeder
      */
     public function run()
     {
-        forfaits::factory(10)->create();
+        forfaits::factory(4)->create();
     }
 }

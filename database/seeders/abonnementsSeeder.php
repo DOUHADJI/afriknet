@@ -14,6 +14,6 @@ class abonnementsSeeder extends Seeder
      */
     public function run()
     {
-        abonnements::factory(10)->create();
+        abonnements::factory(2)->create();
     }
 }

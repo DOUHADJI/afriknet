@@ -24,7 +24,7 @@
         .nav_div{
             background-image: url('template_resources/img/fibre_1.jpg');
             background-repeat: no-repeat;
-            height:80vh; 
+            height:76vh; 
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -59,8 +59,8 @@
             <ul class="navbar-nav ml-5">
 
                 <li class="nav-item dropdown no-arrow">
-                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-white fw-bold"><span  class="bi bi-emoji-laughing "></span>  Nos offres</span>
+                    <a class="nav-link dropdown-toggle " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-white fw-bold "><span  class="bi bi-emoji-laughing "></span>  Nos offres</span>
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -109,7 +109,7 @@
 
                         <div class="dropdown-divider"></div>
 
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" class="fw-bold">
+                        <a class="dropdown-item" href="{{route('login')}}"  class="fw-bold">
                            Login <span class="bi bi-box-arrow-in-right "></span>
                         </a>
 
@@ -129,19 +129,16 @@
         <div class="container">
             <div class="row ">
 
-                <div class="col-lg-6 col-md-6 p-5 mt-3">
+        
+
+                <div class="col-lg-6 col-md-6 p-5 mt-3  ">
                         <p class="text-white fw-bold fs-2 text-uppercase">Vivez <br> l'internet <br> autrement  !!!</p>
 
                         <hr class="text-white p-1">
 
-
-
                 </div>
 
-                <div class="col-lg-6 col-md-6 p-3">
-                    
-                </div>
-
+               
 
             </div>
     </div>
@@ -151,8 +148,8 @@
 
         </div>
 
-        <div class="container">
-            <p class="text-center text-success fs-5 fw-bold mt-5">Disposez de nos offres partout où vous êtes !</p>
+        <div class="container-fluid ">
+            <p class="text-center text-success fs-5 fw-bold pt-5">Disposez de nos offres partout où vous êtes !</p>
 
             <div class="my-5">
                 <div class="row text-center">
@@ -181,7 +178,7 @@
 
                         <div class="col border border-2 border-success p-4 m-2">
                             <span class="fas fa-car text-success fs-2"></span>
-                            <p>Depuis votre voiture 
+                            <p>Même en voiture 
                                 <span class="bi bi-emoji-sunglasses fs-5"></span>
                             </p>
                             <hr  class="bg-success">
@@ -192,16 +189,89 @@
                 </div>
             </div>
         </div>
+        
+        
+
+        <div class="d-flex  p-5">
+                <div class="col m-3 pt-3  shadow pb-5 pr-5 pl-5">
+                    <p class="text-secondary text-center fst-italic fw-bold   "><span class="bi bi-emoji-laughing"></span> Decouvrez nos offres d'abonnements !!!</p>
+
+                    <div class=" row row-cols-2">
+
+                                @foreach ($abonnements as $abonnement )
+                                    <div class="col ">
+                                        <div class=" p-4 border border-4 border-secondary mt-4">
+                                            <div class="fst-italic fw-bold text-success">
+                                                {{$abonnement->nom}}
+                                            </div>
+
+                                            <div class="fst-italic fw-bold d-flex">
+                                                Volume : <span class="fw-bold">{{$abonnement->volume}} Go</span>
+                                            </div>
+
+                                            <div class="d-flex flex-row-reverse">
+                                                <p class="fst-italic fst-bold text-warning">Validité : <span>{{$abonnement->validite}} jours</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                    </div>
+
+                </div>
+
+                <div class="col shadow m-3 pt-3 pb-5 pr-5 pl-5">
+                    <p class="text-secondary text-center fst-italic fw-bold "><span class="bi bi-emoji-laughing"></span> Decouvrez nos offres de forfaits !!!</p>
+
+                <div class="row row-cols-2 ">
+                    
+                    @foreach ($forfaits as $forfait )
+                        <div class="col ">
+                            <div class=" p-4 border border-4 border-secondary mt-4">
+                                <div class="fst-italic fw-bold text-success">
+                                    {{$forfait->nom}}
+                                </div>
+
+                                <div class="fst-italic fw-bold d-flex">
+                                    Volume : <span class="fw-bold">{{$forfait->volume}} Go</span>
+                                </div>
+
+                                <div class="d-flex flex-row-reverse">
+                                    <p class="fst-italic fst-bold text-warning">Validité : <span>{{$forfait->validite}} jours</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                </div>
+
+        </div>
+
+
+        <div class="text-white bg-dark p-3">
+
+            <div class="row">
+
+                <div class="col">
+                    <p class="fst-italic fw-bold  text-center">Afriknet</p>
+                    
+                </div>
+
+                <div class="col">
+
+                </div>
+
+            </div>
+            <div class="text-center">@Copyright 2021 - all rights reserved</div>
+        </div>
 
            
 
          
        
 
-
     </div>
     
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 @include("dashboard.partials.footer")
 
 </body>

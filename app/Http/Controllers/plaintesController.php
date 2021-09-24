@@ -24,13 +24,11 @@ class plaintesController extends Controller
         ->orderBy('id', 'asc')
         ->get();
 
-        $new_requetes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'requete') ->orderBy('id', 'desc')->get() -> take(3);
-        $new_plaintes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'plainte') ->orderBy('id', 'desc')->get() -> take(3);
-        $clients= clients::get();
+      
 
 
 
-        return view ("plaintes.index", compact("plaintes" , 'new_plaintes', 'clients', 'new_requetes'));
+        return view ("plaintes.index", compact("plaintes"));
     }
 
 
@@ -55,16 +53,12 @@ class plaintesController extends Controller
         ->orderBy('id', 'asc')
         ->get();
 
-        $new_requetes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'requete') ->orderBy('id', 'desc')->get() -> take(3);
-        $new_plaintes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'plainte') ->orderBy('id', 'desc')->get() -> take(3);
-        $clients= clients::get();
-
       /*   $plaintes = requetes_plaintes::when($statut_plainte, function($query) use ($statut_plainte) {
                 $query->where("statut", $statut_plainte);
         } )->get(); */
 
 
-          return view ("plaintes.add_filter", compact("plaintes", 'new_plaintes', 'clients', 'new_requetes'));
+          return view ("plaintes.add_filter", compact("plaintes"));
     }
 
 
