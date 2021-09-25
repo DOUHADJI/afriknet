@@ -58,7 +58,7 @@
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-5">
 
-                <li class="nav-item dropdown no-arrow">
+               {{--  <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="mr-2 d-none d-lg-inline text-white fw-bold "><span  class="bi bi-emoji-laughing "></span>  Nos offres</span>
                     </a>
@@ -79,7 +79,7 @@
                      
                     </div>
 
-                </li>
+                </li> --}}
 
                 
 

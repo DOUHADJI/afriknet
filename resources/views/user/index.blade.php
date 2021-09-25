@@ -4,11 +4,27 @@
 
 @section('content')
      <div class="h-100">
-         <p class=" text-xs fw-bold text-center fst-italic">Bienvenue dans votre espace client <span>Afriknet</span> <span class="bi bi-emoji-smile"></span></p>
+         <p class=" text-xs fw-bold text-center fst-italic">Bienvenue dans votre espace client <span>Afriknet</span> <span class="bi bi-emoji-smile"></span>
+        </p>
+
+
+        <div class=" d-flex justify-content-center">
+
+            <div class="example1 bg-light mb-3 w-75">
+                <h3 class="  fw-bold text-center fst-italic  text-nowrap position-absolute mx-5 py-2">
+                    Souscrivez à un de nos abonnements ou forfaits via les services <strong>Tmoney</strong> / <strong>Flooz</strong> ou rendez-vous dans une de nos agences !</h3>
+            </div>
+
+        </div>
+
+        
         
          <div class="container">
              <p class="alert alert-danger text-center">Votre abonnement (nom de l'abonnement) prendra fin le (expire le) !!!</p>  
              <p class="alert alert-danger text-center">Votre abonnement (nom de l'abonnement) prendra fin le (expire le) !!!</p>  
+
+             
+
          </div>
 
          {{-- User informations div --}}

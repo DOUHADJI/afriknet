@@ -20,17 +20,54 @@
 
 <body>
 
-    <style>
-      /*   .nav_div{
-            background-image: url('template_resources/img/fibre_1.jpg');
-            background-repeat: no-repeat;
-            height:76vh; 
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        } */
+   <!-- Styles --> 
+<style>
+    .example1 {
+     height: 35px;  
+     overflow: hidden;
+     position: relative;
+     vertical-align: middle !important;
+    }
 
+    .example1 h3 {
+     font-size: 18px;
+        
+  /*    position: absolute;
+     margin: 0;
+     font-size: 15px; */
+     
+   
+    
+     /* Starting position */
+     -moz-transform:translateX(100%);
+     -webkit-transform:translateX(100%);  
+     transform:translateX(100%);
+     /* Apply animation to this element */  
+     -moz-animation: example1 15s linear infinite;
+     -webkit-animation: example1 15s linear infinite;
+     animation: example1 15s linear infinite;
+    }
+    /* Move it (define the animation) */
+    @-moz-keyframes example1 {
+     0%   { -moz-transform: translateX(100%); }
+     100% { -moz-transform: translateX(-100%); }
+    }
+    @-webkit-keyframes example1 {
+     0%   { -webkit-transform: translateX(100%); }
+     100% { -webkit-transform: translateX(-100%); }
+    }
+    @keyframes example1 {
+     0%   { 
+     -moz-transform: translateX(100%); /* Firefox bug fix */
+     -webkit-transform: translateX(100%); /* Firefox bug fix */
+     transform: translateX(100%);     
+     }
+     100% { 
+     -moz-transform: translateX(-100%); /* Firefox bug fix */
+     -webkit-transform: translateX(-100%); /* Firefox bug fix */
+     transform: translateX(-100%); 
+     }
+    }
     </style>
 
     <div>
@@ -81,9 +118,12 @@
 
                 </li>
 
-                
+              
 
             </ul>
+
+        
+
 
             <ul class="navbar-nav ml-auto">
 
@@ -161,6 +201,8 @@
        
 
     </div>
+
+ 
     
 @include("dashboard.partials.footer")
 
