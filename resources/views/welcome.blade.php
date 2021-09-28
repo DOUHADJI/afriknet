@@ -24,7 +24,7 @@
         .nav_div{
             background-image: url('template_resources/img/02.jpg');
             background-repeat: no-repeat;
-            height:90vh; 
+            height:85vh; 
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -54,6 +54,18 @@
             background-size: cover;
         }
 
+        .middlePageBrand{
+            background-image: url('template_resources/img/07.jpg');
+            background-repeat: no-repeat;
+            height:100px;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            background-attachment: fixed;
+            padding: 100px;
+        }
+
     </style>
 
     <div>
@@ -62,118 +74,93 @@
 
            {{--  Navbar Debut --}}
 
-           <nav class="navbar navbar-expand   topbar mb-4 sticky-top shadow" style="background-color:rgba(134, 132, 132, 0.288);">
+                <nav class="navbar navbar-expand   topbar mb-4 sticky-top shadow" style="background-color:rgba(134, 132, 132, 0.288);">
 
-            <!-- Sidebar Toggle (Topbar) -->
-            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                <i class="fa fa-bars"></i>
-            </button>
+                    <!-- Sidebar Toggle (Topbar) -->
+                  {{--   <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button> --}}
 
-            <!-- Topbar Search -->
-            <div class="">
-               
-                <nav class=" text-white   ">
-                        <span class="fs-3 fw-bolder fst-italic  p-1 shadow">Global</span><span class=" p-1 fs-3 shadow fw-bold fst-italic">.net</span>
-               </nav>
-
-            </div>
-
-            <!-- Topbar Navbar -->
-            <ul class="navbar-nav ml-5">
-
-               {{--  <li class="nav-item dropdown no-arrow">
-                    <a class="nav-link dropdown-toggle " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-white fw-bold "><span  class="bi bi-emoji-laughing "></span>  Nos offres</span>
-                    </a>
-                    <!-- Dropdown - User Information -->
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                          Nos abonnements
-                        </a>
-
-                        <div class="dropdown-divider"></div>
-
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Nos forfaits
-                        </a>
-                      
-                     
-                    </div>
-
-                </li> --}}
-
-                
-
-            </ul>
-
-            <ul class="navbar-nav ml-auto">
-
-                <li class="nav-item dropdown no-arrow">
-                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-white fw-bold small">Se connecter </span>
-                        <img class="img-profile rounded-circle" src="{{asset("template_resources/img/undraw_profile.svg")}}">
-                    </a>
-                    <!-- Dropdown - User Information -->
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Create an account
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Settings
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Activity Log
-                        </a>
-
-                        <div class="dropdown-divider"></div>
-
-                        <a class="dropdown-item" href="{{route('login')}}"  class="fw-bold">
-                           Login <span class="bi bi-box-arrow-in-right "></span>
-                        </a>
-
-                        <div class="dropdown-divider"></div>
-
+                    <!-- Topbar Search -->
+                    <div class="">
+                    
+                        <nav class=" text-white   ">
+                                <span class="fs-3 fw-bolder fst-italic  p-1 shadow">Global</span><span class=" p-1 fs-3 shadow fw-bold fst-italic">.net</span>
+                        </nav>
 
                     </div>
-                </li>
-            </ul>
-            </nav>
+
+                    <!-- Topbar Navbar -->
+
+                    <ul class="navbar-nav ml-auto">
+
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-white fw-bold small">Se connecter </span>
+                                <img class="img-profile rounded-circle" src="{{asset("template_resources/img/undraw_profile.svg")}}">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Create an account
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+
+                                <div class="dropdown-divider"></div>
+
+                                <a class="dropdown-item" href="{{route('login')}}"  class="fw-bold">
+                                Login <span class="bi bi-box-arrow-in-right "></span>
+                                </a>
+
+                                <div class="dropdown-divider"></div>
+
+
+                            </div>
+                        </li>
+                    </ul>
+
+                </nav>
 
                {{-- NavBar Fin --}}
 
 
         {{--     SubNav Debut --}}
 
-        <div class="container position-absolute  " style="bottom: 20px">
+                <div class="container position-absolute  " style="bottom: 20px">
 
-            <div class="row  ">
+                    <div class="row  ">
 
-    
-                <div class="col-lg-6 col-md-6 p-5 ml-5   d-flex align-items-end " style="background-color:rgba(134, 132, 132, 0.671);">
+            
+                        <div class="col-lg-6 col-md-6 p-5 ml-5   d-flex align-items-end " style="background-color:rgba(134, 132, 132, 0.671);">
 
-                    <div class="opacity-100">
-                        <p class="text-white fw-bold fs-2 text-uppercase opacity-100" >Vivez <br> l'internet <br> autrement  !!!</p>
+                            <div class="opacity-100">
+                                <p class="text-white fw-bold fs-2 text-uppercase opacity-100" >Vivez <br> l'internet <br> autrement  !!!</p>
 
-                        <hr class="text-white p-1 opacity-100">
+                                <hr class="text-white p-1 opacity-100">
+                            </div>
+                            
+
+                        </div>
                     </div>
-                      
 
+            
+                           
                 </div>
-
-               
-
-            </div>
-    </div>
+        
 
 {{--     SubNav Fin --}}
 
+</div>
 
-        </div>
+
 
         <div class="container-fluid ">
             <p class="text-center text-secondary fs-5 fw-bold pt-5">Disposez de nos offres partout où vous êtes !</p>
@@ -281,11 +268,20 @@
             </div>
         </div>
 
-        <div>
-            
+
+
+        <div class="middlePageBrand position-sticky shadow" >
+            <div>
+                <nav class=" text-white   ">
+                    <span class="fs-3 fw-bolder fst-italic  p-1 shadow">Global</span><span class=" p-1 fs-3 shadow fw-bold fst-italic">.net</span>
+                </nav>
+            </div>
         </div>
+        
+
 
         <div class="d-flex  p-5">
+
                 <div class="col m-3 pt-3  shadow pb-5 pr-5 pl-5">
                     <p class="text-secondary text-center fst-italic fw-bold   "><span class="bi bi-emoji-laughing"></span> Decouvrez nos offres d'abonnements !!!</p>
 
@@ -348,7 +344,9 @@
          
        
 
-    </div>
+  
+
+</div>
     
 @include("dashboard.partials.footer")
 
