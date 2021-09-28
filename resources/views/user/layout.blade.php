@@ -14,7 +14,7 @@
 
 
 
-    <title>Afriknet</title>
+    <title>Global .net</title>
 
 </head>
 

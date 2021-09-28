@@ -21,10 +21,13 @@ class abonnementsFactory extends Factory
      */
     public function definition()
     {
+        $ab = [ 10 , 50];
+
         return [
+
             
             'nom'=>$this->faker->firstName(),
-            'volume'=>$this->faker->numberBetween(1,20),
+            'debit'=>$ab[array_rand($ab)],
             'validite'=>$this->faker->numberBetween(1,100),
 
         ];

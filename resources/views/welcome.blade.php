@@ -14,7 +14,7 @@
 
 
 
-    <title>Afriknet</title>
+    <title>Global .net</title>
 
 </head>
 
@@ -22,9 +22,32 @@
 
     <style>
         .nav_div{
-            background-image: url('template_resources/img/fibre_1.jpg');
+            background-image: url('template_resources/img/02.jpg');
             background-repeat: no-repeat;
-            height:76vh; 
+            height:90vh; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+        .subNavInFooter{
+            background-image: url('template_resources/img/02.jpg');
+            background-repeat: no-repeat;
+            height:150px;
+            width: 400px; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+        .roundDivinImgBb{
+            
+            background-repeat: no-repeat;
+            height: 250px;
+            width: 250px;
+            border-radius: 190px;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -35,11 +58,11 @@
 
     <div>
 
-        <div  class="nav_div">
+        <div  class="nav_div position-relative ">
 
            {{--  Navbar Debut --}}
 
-           <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow">
+           <nav class="navbar navbar-expand   topbar mb-4 sticky-top shadow" style="background-color:rgba(134, 132, 132, 0.288);">
 
             <!-- Sidebar Toggle (Topbar) -->
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -50,7 +73,7 @@
             <div class="">
                
                 <nav class=" text-white   ">
-                        <span class="fs-3 fw-bolder fst-italic bg-secondary p-1 shadow">Afrik</span><span class="bg-primary p-1 fs-3 shadow fw-bold fst-italic">net</span>
+                        <span class="fs-3 fw-bolder fst-italic  p-1 shadow">Global</span><span class=" p-1 fs-3 shadow fw-bold fst-italic">.net</span>
                </nav>
 
             </div>
@@ -89,7 +112,7 @@
 
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-white-600 small">Se connecter </span>
+                        <span class="mr-2 d-none d-lg-inline text-white fw-bold small">Se connecter </span>
                         <img class="img-profile rounded-circle" src="{{asset("template_resources/img/undraw_profile.svg")}}">
                     </a>
                     <!-- Dropdown - User Information -->
@@ -126,15 +149,19 @@
 
         {{--     SubNav Debut --}}
 
-        <div class="container">
-            <div class="row ">
+        <div class="container position-absolute  " style="bottom: 20px">
 
-        
+            <div class="row  ">
 
-                <div class="col-lg-6 col-md-6 p-5 mt-3  ">
-                        <p class="text-white fw-bold fs-2 text-uppercase">Vivez <br> l'internet <br> autrement  !!!</p>
+    
+                <div class="col-lg-6 col-md-6 p-5 ml-5   d-flex align-items-end " style="background-color:rgba(134, 132, 132, 0.671);">
 
-                        <hr class="text-white p-1">
+                    <div class="opacity-100">
+                        <p class="text-white fw-bold fs-2 text-uppercase opacity-100" >Vivez <br> l'internet <br> autrement  !!!</p>
+
+                        <hr class="text-white p-1 opacity-100">
+                    </div>
+                      
 
                 </div>
 
@@ -149,48 +176,114 @@
         </div>
 
         <div class="container-fluid ">
-            <p class="text-center text-success fs-5 fw-bold pt-5">Disposez de nos offres partout où vous êtes !</p>
+            <p class="text-center text-secondary fs-5 fw-bold pt-5">Disposez de nos offres partout où vous êtes !</p>
 
             <div class="my-5">
                 <div class="row text-center">
 
                    
 
-                        <div class="col border border-2 border-success p-4 m-2">
-                            <span class="fas fa-industry text-success fs-2"></span>
-                            <p>Dans vos entreprises
-                                <span class="bi bi-emoji-wink fs-5"></span>
-                            </p>
-                            <hr  class="bg-success">
-                            <p class="fs-6 fw-light">Profitez <br> du wifi à haut débit <br> et restez connectés <br> au monde depuis votre bureau
-                            </p>
+                        <div class="col  p-4 m-2">
+
+                            <div class="border border-2 border-secondary p-2">
+
+                                <p>Dans vos entreprises
+                                    <span class="bi bi-emoji-wink fs-5"></span>
+                                </p>
+
+                                <span class="fas fa-industry text-secondary fs-2"></span>
+
+                            </div>
+
+                             <div class="d-flex justify-content-center mt-3">
+                                <div class=" m-2  roundDivinImgBb" style="background-image: url('template_resources/img/03.jpg');">
+                                </div>
+                            </div>
+
+
+                            <div class=" border border-2 border-secondary p-4 mt-3">
+
+                                <p class="fs-6 fw-light  ">Profitez <br> du wifi à haut débit <br> et restez connectés <br> au monde depuis votre bureau
+                                </p>
+    
+                            </div>
+                          
+                           
+                            
+                          
                         </div>
 
-                        <div class="col border border-2 border-success p-4 m-2">
-                            <span class="fas fa-home text-success fs-2"></span>
-                            <p>Depuis chez vous 
-                                <span class="bi bi-emoji-smile fs-5"></span>
-                            </p>
-                            <hr  class="bg-primary">
-                            <p class="fs-6 fw-light">Profitez <br> de nos forfaits et abonnements <br> et restez connectés <br> au monde depuis chez vous
-                            </p>
+                        <div class="col  p-4 m-2">
+
+                            <div class="border border-2 border-secondary p-2">
+
+                                <p>Depuis chez vous 
+                                    <span class="bi bi-emoji-smile fs-5"></span>
+                                </p>
+
+                                <span class="fas fa-home text-secondary fs-2"></span>
+
+
+                            </div>
+
+
+                            <div class="d-flex justify-content-center mt-3">
+                                <div class=" m-2  roundDivinImgBb" style="background-image: url('template_resources/img/06.jpg');">
+                                </div>
+                            </div>
+
+                            <div class=" border border-2 border-secondary p-4 mt-3">
+
+                                <p class="fs-6 fw-light">Profitez <br> de nos forfaits et abonnements <br> et restez connectés <br> au monde depuis chez vous
+                                </p>
+    
+                            </div>
+
+                          
+                            
+                   
+                            
                     </div>
 
-                        <div class="col border border-2 border-success p-4 m-2">
-                            <span class="fas fa-car text-success fs-2"></span>
-                            <p>Même en voiture 
-                                <span class="bi bi-emoji-sunglasses fs-5"></span>
-                            </p>
-                            <hr  class="bg-success">
-                            <p class="fs-6 fw-light">Profitez <br> de nos différrents <br> forfaits et abonnements <br> et restez connectés <br> au monde depuis chez vous
-                            </p>
+                        <div class="col  p-4 m-2">
+
+                          
+
+                            <div class="border border-2 border-secondary p-2">
+
+                                <p>Même en voiture 
+                                    <span class="bi bi-emoji-sunglasses fs-5"></span>
+                                </p>
+
+                                <span class="fas fa-car text-secondary fs-2"></span>
+
+
+
+                            </div>
+
+                              <div class="d-flex justify-content-center mt-3">
+                                <div class=" m-2  roundDivinImgBb" style="background-image: url('template_resources/img/04.jpg');">
+                                </div>
+                            </div>
+
+                            <div class=" border border-2 border-secondary p-4 mt-3">
+
+                                <p class="fs-6 fw-light">Profitez <br> de nos forfaits et abonnements <br> depuis le confort <br> de votre voiture
+                                </p>
+    
+                            </div>
+
+                          
+                            
                         </div>
 
                 </div>
             </div>
         </div>
-        
-        
+
+        <div>
+            
+        </div>
 
         <div class="d-flex  p-5">
                 <div class="col m-3 pt-3  shadow pb-5 pr-5 pl-5">
@@ -201,16 +294,16 @@
                                 @foreach ($abonnements as $abonnement )
                                     <div class="col ">
                                         <div class=" p-4 border border-4 border-secondary mt-4">
-                                            <div class="fst-italic fw-bold text-success">
+                                            <div class="fst-italic fw-bold text-secondary">
                                                 {{$abonnement->nom}}
                                             </div>
 
                                             <div class="fst-italic fw-bold d-flex">
-                                                Volume : <span class="fw-bold">{{$abonnement->volume}} Go</span>
+                                                Débit : <span class="fw-bold"> {{$abonnement->debit}}  Mo/s</span>
                                             </div>
 
                                             <div class="d-flex flex-row-reverse">
-                                                <p class="fst-italic fst-bold text-warning">Validité : <span>{{$abonnement->validite}} jours</span></p>
+                                                <p class="fst-italic fst-bold text-warning">Validité : <span> {{$abonnement->validite}} jours</span></p>
                                             </div>
                                         </div>
                                     </div>
@@ -227,7 +320,7 @@
                     @foreach ($forfaits as $forfait )
                         <div class="col ">
                             <div class=" p-4 border border-4 border-secondary mt-4">
-                                <div class="fst-italic fw-bold text-success">
+                                <div class="fst-italic fw-bold text-secondary">
                                     {{$forfait->nom}}
                                 </div>
 
@@ -248,22 +341,7 @@
         </div>
 
 
-        <div class="text-white bg-dark p-3">
-
-            <div class="row">
-
-                <div class="col">
-                    <p class="fst-italic fw-bold  text-center">Afriknet</p>
-                    
-                </div>
-
-                <div class="col">
-
-                </div>
-
-            </div>
-            <div class="text-center">@Copyright 2021 - all rights reserved</div>
-        </div>
+       @include("user.partials.footer")
 
            
 
