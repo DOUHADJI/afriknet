@@ -28,9 +28,15 @@ Route::get('/', function () {
     return view('welcome', compact('abonnements', 'forfaits'));
 })->name('welcome');
 
+
 Route::get('/sign_in', function(){ 
     return view('login');
 }) -> name('login');
+
+
+Route::get('/register', function(){ 
+    return view('register');
+}) -> name('register');
 
 
 

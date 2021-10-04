@@ -18,7 +18,9 @@
 
 </head>
 
-<body>
+<body class="position-relative">
+
+   
 
     <style>
         .nav_div{
@@ -70,6 +72,7 @@
 
     <div>
 
+
         <div  class="nav_div position-relative ">
 
            {{--  Navbar Debut --}}
@@ -101,18 +104,15 @@
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('register') }}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Create an account
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
+                                <a class="dropdown-item" href="#offresEtAbonnements">
+                                    <i class="bi bi-back fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Nos offres
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
+                                
 
                                 <div class="dropdown-divider"></div>
 
@@ -270,17 +270,19 @@
 
 
 
-        <div class="middlePageBrand position-sticky shadow" >
+        <div class="middlePageBrand position-sticky shadow" id="offresEtAbonnements">
             <div>
                 <nav class=" text-white   ">
                     <span class="fs-3 fw-bolder fst-italic  p-1 shadow">Global</span><span class=" p-1 fs-3 shadow fw-bold fst-italic">.net</span>
                 </nav>
             </div>
         </div>
+
+           
         
 
 
-        <div class="d-flex  p-5">
+        <div class="d-flex  p-5" >
 
                 <div class="col m-3 pt-3  shadow pb-5 pr-5 pl-5">
                     <p class="text-secondary text-center fst-italic fw-bold   "><span class="bi bi-emoji-laughing"></span> Decouvrez nos offres d'abonnements !!!</p>
@@ -295,7 +297,7 @@
                                             </div>
 
                                             <div class="fst-italic fw-bold d-flex">
-                                                Débit : <span class="fw-bold"> {{$abonnement->debit}}  Mo/s</span>
+                                                <span>Débit : <span class="fw-bold"> {{$abonnement->debit}}  Mo/s</span></span>
                                             </div>
 
                                             <div class="d-flex flex-row-reverse">
@@ -308,29 +310,29 @@
 
                 </div>
 
-                <div class="col shadow m-3 pt-3 pb-5 pr-5 pl-5">
+                <div class="col shadow m-3 pt-3 pb-5 pr-5 pl-5" >
                     <p class="text-secondary text-center fst-italic fw-bold "><span class="bi bi-emoji-laughing"></span> Decouvrez nos offres de forfaits !!!</p>
 
-                <div class="row row-cols-2 ">
-                    
-                    @foreach ($forfaits as $forfait )
-                        <div class="col ">
-                            <div class=" p-4 border border-4 border-secondary mt-4">
-                                <div class="fst-italic fw-bold text-secondary">
-                                    {{$forfait->nom}}
-                                </div>
+                        <div class="row row-cols-2 ">
+                            
+                            @foreach ($forfaits as $forfait )
+                                <div class="col ">
+                                    <div class=" p-4 border border-4 border-secondary mt-4">
+                                        <div class="fst-italic fw-bold text-secondary">
+                                            {{$forfait->nom}}
+                                        </div>
 
-                                <div class="fst-italic fw-bold d-flex">
-                                    Volume : <span class="fw-bold">{{$forfait->volume}} Go</span>
-                                </div>
+                                        <div class="fst-italic fw-bold d-flex">
+                                            <span>Volume : <span class="fw-bold">{{$forfait->volume}} Go</span></span>
+                                        </div>
 
-                                <div class="d-flex flex-row-reverse">
-                                    <p class="fst-italic fst-bold text-warning">Validité : <span>{{$forfait->validite}} jours</span></p>
+                                        <div class="d-flex flex-row-reverse">
+                                            <p class="fst-italic fst-bold text-warning">Validité : <span>{{$forfait->validite}} jours</span></p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
-                    @endforeach
-                </div>
 
                 </div>
 
