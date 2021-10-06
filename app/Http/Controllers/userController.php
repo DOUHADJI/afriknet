@@ -16,6 +16,25 @@ class userController extends Controller
         return view ('user.index');
     }
 
+
+    public function writte_us(){
+        
+    
+        return view('user.writte_us');
+    }
+
+
+    public function faq(){
+
+        return view ('user.faq');
+    }
+
+    public function modifier_infos(){
+        
+        return view('user.modifier_infos');
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -66,9 +85,22 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $request -> validate([
+
+            "firstname" =>["required"],
+            "prenom" => ["required"],
+            "contact" => ["required"],
+            "pays" => ["required"],
+            "ville" => ["required"],
+            "email" => ["required"],
+            "password" => ["required"],
+            "type" => ["required"],
+        ]);
+
+        return redirect() -> route('user.index');
+        
     }
 
     /**

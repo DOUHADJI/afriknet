@@ -206,9 +206,15 @@ Route::group(['prefix'=>'requetes'], function(){
 
 /* DEBUT*/
 
-Route::group(['prefix' => 'user'], function(){
+Route::group(['prefix' => 'user_space'], function(){
 
     Route::get('/', [userController::class, 'index'])->name('user.index');
+    Route::get('/messages', [userController::class, 'writte_us'])->name('user.writte');
+    Route::get('/help', [userController::class, 'faq'])->name('user.faq');
+    Route::get('/modifier_mes_informations', [userController::class, 'modifier_infos'])->name('user.modifier_infos');
+    Route::patch('/modifier_mes_informations', [userController::class, 'update'])->name('user.update');
+
+    
 });
 /* Routes user */
 /* Routes user */

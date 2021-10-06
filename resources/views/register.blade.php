@@ -22,8 +22,7 @@
                                         <h1 class="h4 text-gray-900 mb-4">Global .net</h1>
                                     </div>
 
-
-                                    <form class="user" action="{{route('')}}">
+                                     <form class="user" >
                                         
                                         <div class="form-group d-flex">
 
@@ -98,7 +97,7 @@
                           
                                   
                                     <div class="text-center">
-                                        <a class="small" href="{{route('login')}}">Create an Account!</a>
+                                        <a class="small" href="{{ route('login') }}">Login ? Click here </a>
                                     </div>
                                 </div>
                             </div>
@@ -125,3 +124,6 @@
 </body>
 
 </html>
+
+
+   

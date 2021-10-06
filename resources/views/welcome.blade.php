@@ -350,7 +350,7 @@
 
 </div>
     
-@include("dashboard.partials.footer")
+
 
 </body>
 

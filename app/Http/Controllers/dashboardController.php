@@ -21,6 +21,8 @@ class dashboardController extends Controller
     {
         $abonnements = abonnements::get();
         $forfaits = forfaits::get();
+        $clients = clients::get();
+
  
 
         $clients_array = clients::get()->groupBy(function($val){
@@ -34,7 +36,8 @@ class dashboardController extends Controller
         return view('dashboard.index', compact(
 
             'abonnements', 
-            'forfaits',       
+            'forfaits',  
+            'clients'     
         ));
     }
 
