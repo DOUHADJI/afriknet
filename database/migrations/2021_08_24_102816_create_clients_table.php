@@ -18,7 +18,7 @@ class CreateClientsTable extends Migration
 
             $table->string('name')->nullable(false);
             $table->string('prenom')->nullable(false);
-            $table->string('email')->nullable(false);
+            $table->string('email')->nullable(false) ->unique();
             $table->string('password')->nullable(false);
             $table->string('pays')->nullable(false);
             $table->string('ville')->nullable(false);

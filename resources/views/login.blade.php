@@ -21,16 +21,39 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Global .net</h1>
                                     </div>
-                                    <form class="user">
+
+                                    @if ($message = Session::get('error'))
+
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                
+                                        <p class="text-center fst-bold"> {{ $message }} <span class="bi bi-emoji-frown ml-2 "></span> </p>
+                                        
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                
+                                    </div>    
+                                
+                                    @endif
+
+                                    <form class="user" method="POST" action="{{ route('login')}}">
+                                        @csrf
+                                        
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                            <input type="email" class="form-control form-control-user @error('email') is-invalid  @enderror"
+                                                id="email" aria-describedby="emailHelp"
+                                                placeholder="Enter Email Address..." name="email">  
+                                                @error("email")
+                                                <div class="invalid-feedback">{{$message}}</div>
+                                                @enderror
                                         </div>
+
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                            <input type="password" class="form-control form-control-user @error("password") is-invalid @enderror"
+                                                id="password" placeholder="Password" name="password">
+                                                @error("password")
+                                                <div class="invalid-feedback">{{$message}}</div>
+                                                @enderror
                                         </div>
+
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">
@@ -38,9 +61,10 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <a href="{{route('user.index')}}" class="btn btn-primary btn-user btn-block">
+
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
-                                        </a>
+                                        </button>
                                         <hr>
                                        
                                     </form>
@@ -70,6 +94,8 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{URL::asset("/template_resourcesjs/sb-admin-2.min.js")}}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
 
 </body>
 

@@ -1,16 +1,19 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\clientsController;
 use App\Http\Controllers\abonnementsController;
 use App\Http\Controllers\forfaitsController;
+use App\Http\Controllers\Auth\loginController;
+use App\Http\Controllers\Auth\logOutController;
 use App\Http\Controllers\plaintesController;
 use App\Http\Controllers\requetesController;
+use App\Http\Controllers\Auth\signInController;
 use App\Http\Controllers\userController;
 use App\Models\abonnements;
 use App\Models\forfaits;
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,14 +32,22 @@ Route::get('/', function () {
 })->name('welcome');
 
 
-Route::get('/sign_in', function(){ 
-    return view('login');
-}) -> name('login');
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
-Route::get('/register', function(){ 
-    return view('register');
-}) -> name('register');
+Route::group(["prefix" => "auth"], function () {
+    Route::group(["middleware" => ["guest"]], function () {
+
+        Route::get("/signin", [signInController::class, "create"])->name("register");
+        Route::post("/signin", [signInController::class, "register"]);
+
+        Route::get("/login", [loginController::class, "create"])->name("login");
+        Route::post("/login", [loginController::class, "authenticate"]);
+    });
+    Route::post("/logout", logOutController::class)->name("auth.logout")->middleware("auth");
+});
 
 
 
@@ -51,7 +62,6 @@ Route::get('/new_requetes', [dashboardController::class, 'new_requetes']) ->name
 Routes des clients
 Routes des clients
 Routes des clients
-
 DEBUT */
 
 Route::group(['prefix'=>'clients'], function(){
@@ -88,7 +98,6 @@ Route::group(['prefix'=>'clients'], function(){
 Routes des clients
 Routes des clients
 Routes des clients
-
 FIN */
 
 
@@ -96,7 +105,6 @@ FIN */
 /* Route des abonnements
 Route des abonnements
 Route des abonnements
-
 DEBUT */
 
 Route::group(['prefix'=>'abonnements'], function(){
@@ -118,7 +126,6 @@ Route::group(['prefix'=>'abonnements'], function(){
 /* Route des abonnements
 Route des abonnements
 Route des abonnements
-
 FIN */
 
 
@@ -127,7 +134,6 @@ FIN */
 /* Routes des forfaits
 Routes des forfaits
 Routes des forfaits
-
 DEBUT */
 
 Route::group(['prefix'=>'forfaits'], function(){
@@ -147,7 +153,6 @@ Route::group(['prefix'=>'forfaits'], function(){
 /* Routes des forfaits
 Routes des forfaits
 Routes des forfaits
-
 FIN */
 
 
@@ -221,3 +226,4 @@ Route::group(['prefix' => 'user_space'], function(){
 /* Routes user */
 
 /* FIN*/
+
