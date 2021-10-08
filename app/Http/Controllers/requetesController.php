@@ -54,7 +54,7 @@ class requetesController extends Controller
         } )->get(); */
 
 
-          return view ("requetes.add_filter", compact("requetes"));
+          return view ("requetes.add_filter", compact("requetes", "statut_requete"));
     }
 
     /**

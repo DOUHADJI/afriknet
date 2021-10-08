@@ -300,6 +300,10 @@
                                                 <span>Débit : <span class="fw-bold"> {{$abonnement->debit}}  Mo/s</span></span>
                                             </div>
 
+                                            <div class="fst-italic fw-bold d-flex">
+                                                <span> Price: <span class="fw-bold">{{$abonnement->price}} F CFA </span></span>
+                                            </div>
+
                                             <div class="d-flex flex-row-reverse">
                                                 <p class="fst-italic fst-bold text-warning">Validité : <span> {{$abonnement->validite}} jours</span></p>
                                             </div>
@@ -324,6 +328,10 @@
 
                                         <div class="fst-italic fw-bold d-flex">
                                             <span>Volume : <span class="fw-bold">{{$forfait->volume}} Go</span></span>
+                                        </div>
+
+                                        <div class="fst-italic fw-bold d-flex">
+                                            <span> Price: <span class="fw-bold">{{$forfait->price}} F CFA </span></span>
                                         </div>
 
                                         <div class="d-flex flex-row-reverse">

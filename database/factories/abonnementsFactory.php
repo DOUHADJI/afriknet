@@ -22,6 +22,7 @@ class abonnementsFactory extends Factory
     public function definition()
     {
         $ab = [ 10 , 50];
+         $price = [500, 1000, 2000, 5000];
 
         return [
 
@@ -29,6 +30,7 @@ class abonnementsFactory extends Factory
             'nom'=>$this->faker->firstName(),
             'debit'=>$ab[array_rand($ab)],
             'validite'=>$this->faker->numberBetween(1,100),
+            'price' => $price[array_rand($price)],
 
         ];
     }

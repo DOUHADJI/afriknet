@@ -39,7 +39,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Faire une souscription</h6>
                 <a class="collapse-item" href="{{route ('abonnements.index') }}">abonnement</a>
-                <a class="collapse-item" href="{{route ("abonnements.create") }}">Forfait</a>
+                <a class="collapse-item" href="{{route ("user.scrire_forfait") }}">Forfait</a>
             </div>
         </div>
     </li>
@@ -75,8 +75,8 @@
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Voir mes souscriptions</h6>
-                <a class="collapse-item" href="{{route('clients.index')}}">Abonnements</a>
-                <a class="collapse-item" href="{{route('clients.create')}}">Forfaits</a>
+                <a class="collapse-item" href="{{route("user.scrire_forfait")}}">Abonnements</a>
+                <a class="collapse-item" href="{{route('user.scrire_forfait')}}">Forfaits</a>
             </div>
         </div>
     </li>

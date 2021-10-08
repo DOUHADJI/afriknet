@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateForfaitsTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateForfaitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('forfaits', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-
-            $table ->string('nom') ->nullable(false);
-            $table -> unsignedBigInteger('volume')->nullable(false);
-            $table -> unsignedBigInteger('validite')->nullable(false);
-            $table -> unsignedBigInteger('price')->nullable(false);
-
-            
+            $table->bigInteger('client_id')->unsigned();
+            $table->decimal('amount');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ class CreateForfaitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('forfaits');
+        Schema::dropIfExists('orders');
     }
 }

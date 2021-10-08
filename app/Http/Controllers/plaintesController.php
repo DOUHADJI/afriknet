@@ -58,7 +58,7 @@ class plaintesController extends Controller
         } )->get(); */
 
 
-          return view ("plaintes.add_filter", compact("plaintes"));
+          return view ("plaintes.add_filter", compact("plaintes", "statut_plainte"));
     }
 
 

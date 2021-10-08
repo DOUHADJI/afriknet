@@ -5,12 +5,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\clientsController;
 use App\Http\Controllers\abonnementsController;
+use App\Http\Controllers\auth\loginController;
+use App\Http\Controllers\auth\logOutController;
+use App\Http\Controllers\auth\signInController;
 use App\Http\Controllers\forfaitsController;
-use App\Http\Controllers\Auth\loginController;
-use App\Http\Controllers\Auth\logOutController;
+
 use App\Http\Controllers\plaintesController;
 use App\Http\Controllers\requetesController;
-use App\Http\Controllers\Auth\signInController;
+
 use App\Http\Controllers\userController;
 use App\Models\abonnements;
 use App\Models\forfaits;
@@ -48,7 +50,50 @@ Route::group(["prefix" => "auth"], function () {
     });
     Route::post("/logout", logOutController::class)->name("auth.logout")->middleware("auth");
 });
+ 
+/* 
+CHECK IF THE USER IS CURRENTLY CONNECTED
 
+DEBUT
+*/
+
+Route::group(["middleware" => ["auth"]], function(){
+
+    /* Routes user */
+/* Routes user */
+/* Routes user */
+
+/* DEBUT*/
+
+Route::group(['prefix' => 'user_space'], function(){
+
+    Route::get('/', [userController::class, 'index'])->name('user.index');
+    Route::get('/messages', [userController::class, 'writte_us'])->name('user.writte');
+    Route::get('/help', [userController::class, 'faq'])->name('user.faq');
+    Route::get('/modifier_mes_informations', [userController::class, 'modifier_infos'])->name('user.modifier_infos');
+    Route::patch('/modifier_mes_informations', [userController::class, 'update'])->name('user.update');
+    Route::get('/souscrire_à_un_forfait', [userController::class, 'scrire_forfaitShow'])->name('user.scrire_forfait');
+
+
+    
+});
+/* Routes user */
+/* Routes user */
+/* Routes user */
+
+/* FIN*/
+
+
+
+});
+
+/* 
+
+CHECK IF THE USER IS CURRENTLY CONNECTED *
+
+FIN
+
+*/
 
 
 Route::get('dashboard', [dashboardController::class, 'index']) ->name('dashboard');
@@ -204,26 +249,4 @@ Route::group(['prefix'=>'requetes'], function(){
 
 /* FIN*/
 
-
-/* Routes user */
-/* Routes user */
-/* Routes user */
-
-/* DEBUT*/
-
-Route::group(['prefix' => 'user_space'], function(){
-
-    Route::get('/', [userController::class, 'index'])->name('user.index');
-    Route::get('/messages', [userController::class, 'writte_us'])->name('user.writte');
-    Route::get('/help', [userController::class, 'faq'])->name('user.faq');
-    Route::get('/modifier_mes_informations', [userController::class, 'modifier_infos'])->name('user.modifier_infos');
-    Route::patch('/modifier_mes_informations', [userController::class, 'update'])->name('user.update');
-
-    
-});
-/* Routes user */
-/* Routes user */
-/* Routes user */
-
-/* FIN*/
 

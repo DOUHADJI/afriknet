@@ -19,6 +19,8 @@ class CreateAbonnementsTable extends Migration
             $table ->string('nom') ->nullable(false);
             $table -> unsignedBigInteger('debit')->nullable(false);
             $table -> unsignedBigInteger('validite')->nullable(false);
+            $table -> unsignedBigInteger('price')->nullable(false);
+
 
             $table->timestamps();
         });

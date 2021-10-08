@@ -21,11 +21,15 @@ class forfaitsFactory extends Factory
      */
     public function definition()
     {
+        $price = [500, 1000, 2000, 5000];
+
         return [
             
             'nom'=>$this->faker->firstName(),
             'volume'=>$this->faker->numberBetween(1,20),
             'validite'=>$this->faker->numberBetween(1,50),
+            'price' => $price[array_rand($price)],
+
         ];
     }
 }

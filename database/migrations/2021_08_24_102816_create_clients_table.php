@@ -22,9 +22,10 @@ class CreateClientsTable extends Migration
             $table->string('password')->nullable(false);
             $table->string('pays')->nullable(false);
             $table->string('ville')->nullable(false);
-            $table->string('contact')->nullable(false);
+            $table->string('contact')->nullable(false) -> unique();
             $table->string('type')->nullable(false);
             $table->boolean('statut_activite')->default(true);
+       
           
             
             $table->timestamps();

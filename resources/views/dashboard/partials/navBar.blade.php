@@ -68,7 +68,11 @@
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-clipboard-list fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">{{$new_plaintes->count()}}+</span>
+                <span class="badge badge-danger badge-counter" @if ($new_plaintes->count()==0)
+                    hidden
+                @else
+                    
+                @endif>{{$new_plaintes->count()}}+</span>
             </a>
             <!-- Dropdown - Alerts -->
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -77,6 +81,11 @@
                     New plaints
                 </h6>
 
+                @if ($new_plaintes->count()==0)
+                    <p class="text-xs dropdown-item ">No element</p>
+                @else
+                    
+                
                 @foreach ($new_plaintes as $plainte )
 
                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -95,6 +104,7 @@
 
                 @endforeach
 
+                @endif
                 
               
                 <a class="dropdown-item text-center small text-gray-500" href="{{route('new_plaintes')}}"> <span class="fas fa-eye ml-2"></span> Show All </a>
@@ -107,7 +117,12 @@
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-comments fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">{{$new_requetes->count()}}+</span>
+                
+                <span class="badge badge-danger badge-counter" @if ($new_requetes->count()==0)
+                    hidden
+                @else
+                    
+                @endif>{{$new_requetes->count()}}+</span>
             </a>
             <!-- Dropdown - Alerts -->
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -148,7 +163,7 @@
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                 <img class="img-profile rounded-circle"
-                    src="{{URL::asset('public\template_resources\img\undraw_profile.svg')}}">
+                src="{{asset("template_resources/img/undraw_profile.svg")}}">
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\abonnements;
+use App\Models\clients;
+use App\Models\forfaits;
+use Database\Factories\abonnementsFactory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class userController extends Controller
 {
@@ -30,8 +36,19 @@ class userController extends Controller
     }
 
     public function modifier_infos(){
+
+        $client = DB::table("clients") -> where ("email", "=", auth()->user()->email)->first();
         
-        return view('user.modifier_infos');
+        return view('user.modifier_infos', compact('client'));
+    }
+
+
+    public function scrire_forfaitShow (){
+
+        $forfaits = forfaits::get();
+      
+
+        return view("user.souscrire.scrire_forfait", compact('forfaits'));
     }
 
 
@@ -73,9 +90,9 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function confirmPasswordBeforeUpddate($id)
     {
-        //
+       
     }
 
     /**
@@ -98,6 +115,38 @@ class userController extends Controller
             "password" => ["required"],
             "type" => ["required"],
         ]);
+
+        $client = DB::table("clients") -> where ("email", "=", auth()->user()->email)->first();
+
+        $user =  Auth::user();
+
+       
+        $user->name = $request->firstname;
+        $user-> email = $request -> email;
+        $user -> password = $request -> password;
+
+       /*  $user->save(); */
+
+     dd($user);
+
+
+       /*  $client->update([
+
+            "name" => $request -> firstname,
+            "prenom" => $request -> prenom,
+            "pays" => $request -> pays,
+            "ville" => $request -> ville,
+            "contact" => $request -> contact,
+            "email" => $request -> email,
+            "password" => $request -> password,
+            "type" => $request -> type,
+
+        ]); */
+
+
+       
+
+        
 
         return redirect() -> route('user.index');
         
