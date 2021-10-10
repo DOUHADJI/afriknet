@@ -19,7 +19,9 @@ class userController extends Controller
      */
     public function index()
     {
-        return view ('user.index');
+        $client = DB::table("clients") -> where ("email", "=", auth()->user()->email)->first();
+
+        return view ('user.index', compact('client'));
     }
 
 

@@ -18,17 +18,33 @@
                             <p class="fw-bolder">Select your forfait</p>
 
                             <div>
-                                <select name="bank" id="" class="form-control">
+                                <select name="bank" id="mySelection" class="form-control">
                                     <option value="0">click to select your forfait</option>
 
                                     @foreach($forfaits as $forfait)
                                     
-                                    <option><strong> {{$forfait->nom}}</strong> </option>
+                                    <option>
+                                        <strong aria-describedby="basic-addon"> {{$forfait->nom}}</strong> 
+                                        <span class="input-group-text" id="basic-addon"> {{$forfait->price}}</span>
+                                    </option>
                                         
                                     @endforeach
                                   
                                 </select>
                             </div>
+
+
+                            <script>
+                                        var e = document.getElementById("mySelection");
+                                        function show(){
+                                        var as = document.forms[0].mySelection.value;
+                                        var strUser = e.options[e.selectedIndex].text;
+                                        console.log(as, strUser);
+                                        }
+                                        e.onchange=show;
+                                        console.log(show())
+                                       
+                            </script>
 
                            {{--  <button class="btn btn-success mt-2" type="submit"><span class="bi bi-phone"></span> Proceed Payment</button> --}}
 

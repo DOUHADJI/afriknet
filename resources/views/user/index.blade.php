@@ -67,13 +67,13 @@
                                 <div class="card-body">
 
                                     <div class="row row-cols-2">
-                                        <p class=" col text-xs">Nom : <strong>the client's name</strong></p>
-                                        <p class=" col text-xs">Prénom(s) : <strong>the client's name</strong></p>
+                                        <p class=" col text-xs">Nom : <strong>{{$client->name}}</strong></p>
+                                        <p class=" col text-xs">Prénom(s) : <strong>{{$client->prenom}}</strong></p>
                                     </div>
 
                                     <div class="row row-cols-2">
-                                        <p class=" col text-xs">Country : <strong>the client's name</strong></p>
-                                        <p class=" col text-xs">City : <strong>the client's name</strong></p>
+                                        <p class=" col text-xs">Country : <strong>{{$client->pays}}</strong></p>
+                                        <p class=" col text-xs">City : <strong>{{$client->ville}}</strong></p>
                                     </div>
 
 
@@ -97,8 +97,8 @@
                                 <div class="card-body">
 
                                     <div class="row row-cols-2">
-                                        <p class=" col text-xs">Contact : <strong>the client's name</strong></p>
-                                        <p class=" col text-xs">Email : <strong>the client's name</strong></p>
+                                        <p class=" col text-xs">Contact : <strong>{{$client->contact}}</strong></p>
+                                        <p class=" col text-xs">Email : <strong>{{$client->email}}</strong></p>
                                     </div>
 
                                 </div>

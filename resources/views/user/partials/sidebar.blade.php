@@ -15,7 +15,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="{{route('dashboard')}}">
+        <a class="nav-link" href="{{route("user.index")}}">
             <i class="fas fa-user fa-tachometer-alt"></i>
             <span>My account</span></a>
     </li>
