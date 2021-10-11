@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\clients;
+use App\Models\forfaits;
 use App\Models\liste_des_forfaits;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +24,10 @@ class liste_des_forfaitsFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "souscri_le" => $this->faker ->dateTime(),
+            "fini_le" => $this->faker ->dateTime(),
+            "forfait_id" =>forfaits::factory(),
+            "client_id" => clients::factory(),
         ];
     }
 }

@@ -13,74 +13,83 @@
          <p class=" text-xs fw-bold text-center fst-italic">Bienvenue dans votre espace client <span>Afriknet</span> <span class="bi bi-emoji-smile"></span>
         </p>
 
-       
-
-
-
-        
-        
-
          {{-- User informations div --}}
 
-        <div class="container">
+        <div class="container-fluid bg-primary text-white py-5">
+            <div class="container">
+
                 <div class="row">
 
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xm-12">
-
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Accordion -->
-                            <a href="#collapseCardExample1" class="d-block card-header py-3 collapsed" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseCardExample">
-                                <h6 class="m-0 font-weight-bold text-primary"> <span class="bi bi-person-fill"></span>  Legal informations</h6>
-                            </a>
-                            <!-- Card Content - Collapse -->
-                            <div class="collapse" id="collapseCardExample1" style="">
-                                <div class="card-body">
-
-                                    <div class="row row-cols-2">
-                                        <p class=" col text-xs">Nom : <strong>{{$client->name}}</strong></p>
-                                        <p class=" col text-xs">Prénom(s) : <strong>{{$client->prenom}}</strong></p>
-                                    </div>
-
-                                    <div class="row row-cols-2">
-                                        <p class=" col text-xs">Country : <strong>{{$client->pays}}</strong></p>
-                                        <p class=" col text-xs">City : <strong>{{$client->ville}}</strong></p>
-                                    </div>
-
-
-                                   
-
-                                </div>
-                            </div>
-                        </div>
-
+                    <div class="col-lg-6">
+                            <p class="text-uppercase fw-bolder fs-6 mt-3">Code d'identification Client : {{$client->barcode_number}}</p>
                     </div>
 
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xm-12">
+                    <div class="col-lg-6 d-flex">
+                     
+                       
+                        <div class="container">
 
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Accordion -->
-                            <a href="#collapseCardExample2" class="d-block card-header py-3 collapsed" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseCardExample">
-                                <h6 class="m-0 font-weight-bold text-primary">Contact informations</h6>
-                            </a>
-                            <!-- Card Content - Collapse -->
-                            <div class="collapse" id="collapseCardExample2" style="">
-                                <div class="card-body">
+                        <p class=" text-uppercase fw-bolder text-xs mt-3">Nom : <strong>{{$client->name}}</strong></p>
+                        <p class=" text-uppercase fw-bolder text-xs mt-3">Prénom(s) : <strong>{{$client->prenom}}</strong></p>
+                        <p class=" text-uppercase fw-bolder text-xs mt-3">Country : <strong>{{$client->pays}}</strong></p>
+                        <p class=" text-uppercase fw-bolder text-xs mt-3">City : <strong>{{$client->ville}}</strong></p>
+                        <p class=" text-uppercase fw-bolder text-xs mt-3">Contact : <strong>{{$client->contact}}</strong></p>
+                        <p class=" text-uppercase fw-bolder text-xs mt-3"> Email : <strong>{{$client->email}}</strong></p>
 
-                                    <div class="row row-cols-2">
-                                        <p class=" col text-xs">Contact : <strong>{{$client->contact}}</strong></p>
-                                        <p class=" col text-xs">Email : <strong>{{$client->email}}</strong></p>
-                                    </div>
-
-                                </div>
-                            </div>
                         </div>
-                        
+
                     </div>
 
                 </div>
+
+            </div>
+               
         </div>
 
+        <div class="container  pt-5">
+            <p class="text-uppercase fw-bolder fs-6 text-white text-center bg-success p-5">
+                Votre abonnement en cours : 
+            </p>
+
+        </div>
+       
          {{-- User informations div --}}
+
+
+         <div class="container mt-5">
+          <p class="text-uppercase fw-bolder fs-4 text-black text-center">
+           Vos souscriptions
+         </p>
+
+         <table class="table mb-5">
+          <tr class="bg-dark text-white">
+            <th>Payé le</th>
+            <th>Moyen de payement</th>
+            <th>Montant</th>
+            <th>type de souscription</th>
+          </tr>
+          <tr>
+            <td>Alfreds Futterkiste</td>
+            <td>Maria Anders</td>
+            <td>Germany</td>
+            <td>Germany</td>
+          </tr>
+          <tr>
+            <td>Centro comercial Moctezuma</td>
+            <td>Centro comercial Moctezuma</td>
+            <td>Francisco Chang</td>
+            <td>Mexico</td>
+          </tr>
+        </table>
+
+         </div>
+
+
+
+        
+        
+
+
 
 
 
@@ -168,7 +177,7 @@
 
         {{--  Plaints and request sending section --}}
 
-        <div class="container-fluid bg-gray-200 pt-5 pb-5 mb-4">
+        <div class="container-fluid bg-gray-200 pt-5 pb-5">
             <p class="fw-bolder text-uppercase text-center fs-3 text-black">une question ? nous avons la réponse !</p>
 
             <div class="container">
@@ -188,24 +197,29 @@
                     <div class="accordion-item">
                       <h2 class="accordion-header" id="flush-headingTwo">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                          Accordion Item #2
+                          Comment modifier mes identifiants ?
                         </button>
                       </h2>
                       <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                        <div class="accordion-body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo similique nesciunt libero a totam quo eius dolorem iure sapiente, corporis cupiditate est eveniet suscipit aspernatur! Optio nihil numquam similique aliquid.</div>
                       </div>
                     </div>
                     <div class="accordion-item">
                       <h2 class="accordion-header" id="flush-headingThree">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                          Accordion Item #3
+                          Comment nous faire par de vos plaintes ?
                         </button>
                       </h2>
                       <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                        <div class="accordion-body">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam voluptatum expedita, ex quo vero magni! Alias fugiat voluptatem suscipit optio, id repellendus, quam incidunt ipsum cumque dicta impedit et atque.</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
                       </div>
                     </div>
                   </div>
+
+                <p class="text-center mt-3">  Vous n'avez pas trouvé la réponse à votre question ? 
+                  <a href="{{route("user.faq")}}"> Consultez notre FAQ.</a> 
+                </p>
+
             </div>
 
             

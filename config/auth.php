@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Admin;
+use App\Models\clients;
 
 return [
 
@@ -49,6 +50,12 @@ return [
             'provider' => 'admins',
         ],
 
+        'client' => [
+            'driver' => 'session',
+            'provider' => 'clients',
+        ],
+
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -85,6 +92,10 @@ return [
             'driver' => 'eloquent',
             'model' => Admin::class,
         ],
+
+        'clients' => [
+            'driver' => 'eloquent',
+            'model' => clients::class,
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -127,5 +138,8 @@ return [
     */
 
     'password_timeout' => 10800,
+    
+    ]
 
 ];
+

@@ -8,6 +8,8 @@ use App\Models\clients;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Faker;
+use Illuminate\Support\Facades\DB;
 
 class signInController extends Controller
 {
@@ -18,14 +20,26 @@ class signInController extends Controller
 
     public function register (registerUserRequest $request) {
 
+        function generateBarcodeNumber() {
+            $number = mt_rand(10000000, 9999999999); // better than rand()
         
+            // call the same function if the barcode exists already
+            if (barcodeNumberExists($number)) {
+                return generateBarcodeNumber();
+            }
         
-        User::create([
-            "name" => $request->name,
-            "email" => $request->email,
-            "password" => Hash::make($request->password),
-            "email_verified_at" => now(),
-        ]);
+            // otherwise, it's valid and can be used
+            return $number;
+        }
+        
+        function barcodeNumberExists($number) {
+            // query the database and return a boolean
+            // for instance, it might look like this in Laravel
+            return clients::whereBarcodeNumber($number)->exists();
+        }
+        $code = generateBarcodeNumber();
+         
+ /*    dd($code); */
 
         clients::create([
             "name" =>$request->name,
@@ -37,6 +51,14 @@ class signInController extends Controller
             "password" => $request->password,
             "type" => $request->type,
             "statut_activite" =>$request->statut,
+            'barcode_number' =>$code,
+        ]);
+
+        User::create([
+            "name" => $request->name,
+            "email" => $request->email,
+            "password" => Hash::make($request->password),
+            "email_verified_at" => now(),
         ]);
 
         return redirect()->route("login");

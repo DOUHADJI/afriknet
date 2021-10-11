@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\liste_des_abonnements;
+use Database\Factories\liste_des_abonnementsFactory;
 use Illuminate\Database\Seeder;
 
 class liste_des_abonnementsSeeder extends Seeder
@@ -13,6 +15,6 @@ class liste_des_abonnementsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        liste_des_abonnements::factory(100)->create();
     }
 }

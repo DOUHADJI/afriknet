@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\clients;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\DB;
 
 class registerUserRequest extends FormRequest
 {
@@ -24,6 +26,10 @@ class registerUserRequest extends FormRequest
     public function rules()
     {
        
+   
+
+    
+
 
         return [
             "name" => ["required"],

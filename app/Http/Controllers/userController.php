@@ -21,6 +21,8 @@ class userController extends Controller
     {
         $client = DB::table("clients") -> where ("email", "=", auth()->user()->email)->first();
 
+        $ab = DB::table("liste_des_abonnements") -> where ("client_id", "=", $client->email)->latest('souscri_le')->first();
+
         return view ('user.index', compact('client'));
     }
 
