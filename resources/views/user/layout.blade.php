@@ -7,7 +7,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        @include('user.partials.sidebar')
+   {{--      @include('user.partials.sidebar') --}}
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->

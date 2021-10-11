@@ -48,7 +48,8 @@
     <li class="nav-item">
         <a class="nav-link" href="{{route('user.writte')}}">
             <i class="fas fa-comments"></i>
-            <span>Writte  with us</span></a>
+            <span>Writte  with us</span>
+        </a>
     </li>
 
 
@@ -89,7 +90,8 @@
     <li class="nav-item">
         <a class="nav-link" href="{{route('user.modifier_infos')}}">
             <i class="fas fa-pencil-alt"></i>
-            <span>Modifier mes informations</span></a>
+            <span>Modifier mes informations</span>
+        </a>
     </li>
 
 

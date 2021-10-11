@@ -6,49 +6,19 @@
 
 @section('content')
 
-@if ($message = Session::get('success'))
 
-<script>
-
-    var toastLiveExample = document.getElementById('liveToast')
-    var toast = new bootstrap.Toast(toastLiveExample)
-
-    toast.show()
-
-</script>
-
-@endif
-
-<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="toast-header">
-        <img src="..." class="rounded me-2" alt="...">
-        <strong class="me-auto">Bootstrap</strong>
-        <small>11 mins ago</small>
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-      <div class="toast-body">
-        Hello, world! This is a toast message.
-      </div>
-    </div>
-</div>
 
      <div class="">
 
          <p class=" text-xs fw-bold text-center fst-italic">Bienvenue dans votre espace client <span>Afriknet</span> <span class="bi bi-emoji-smile"></span>
         </p>
 
+       
+
 
 
         
         
-         <div class="container">
-             <p class="alert alert-danger text-center">Votre abonnement (nom de l'abonnement) prendra fin le (expire le) !!!</p>  
-             <p class="alert alert-danger text-center">Votre abonnement (nom de l'abonnement) prendra fin le (expire le) !!!</p>  
-
-             
-
-         </div>
 
          {{-- User informations div --}}
 
@@ -116,7 +86,7 @@
 
         {{--  Plaints and request sending section --}}
 
-        <div class=" mx-5 my-5 border shadow">
+{{--         <div class=" mx-5 my-5 border shadow">
 
             
             <div class="d-flex">
@@ -194,9 +164,52 @@
 
               
 
-        </div>
+        </div> --}}
 
         {{--  Plaints and request sending section --}}
+
+        <div class="container-fluid bg-gray-200 pt-5 pb-5 mb-4">
+            <p class="fw-bolder text-uppercase text-center fs-3 text-black">une question ? nous avons la réponse !</p>
+
+            <div class="container">
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                          Comment souscrire à une offre ?
+                        </button>
+                      </h2>
+                      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt explicabo molestiae aspernatur, harum laborum voluptas earum nemo commodi, sit accusantium quo consequuntur quae recusandae sapiente dicta, maiores a ullam numquam.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="flush-headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                          Accordion Item #2
+                        </button>
+                      </h2>
+                      <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="flush-headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                          Accordion Item #3
+                        </button>
+                      </h2>
+                      <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+
+            
+    </div>
 
      </div>
 @endsection
