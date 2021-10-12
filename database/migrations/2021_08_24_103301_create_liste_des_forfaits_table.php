@@ -22,8 +22,8 @@ class CreateListeDesForfaitsTable extends Migration
             $table->unsignedBigInteger('forfait_id');
             $table->foreign('forfait_id')->references('id')->on('forfaits');
 
-            $table->unsignedBigInteger('client_id')->nullable(false);
-            $table->foreign('client_id')->references('id')->on('clients');
+            $table->unsignedBigInteger('user_id')->nullable(false);
+            $table->foreign('user_id')->references('id')->on('users');
 
 
             $table->timestamps();

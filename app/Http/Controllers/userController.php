@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\abonnements;
 use App\Models\clients;
 use App\Models\forfaits;
+use App\Models\User;
 use Database\Factories\abonnementsFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,11 +20,22 @@ class userController extends Controller
      */
     public function index()
     {
-        $client = DB::table("clients") -> where ("email", "=", auth()->user()->email)->first();
+        $client = DB::table("users") -> where ("email", "=", auth()->user()->email)->first();
 
-        $ab = DB::table("liste_des_abonnements") -> where ("client_id", "=", $client->email)->latest('souscri_le')->first();
+        $souscriptions = DB::table('users')
+            -> where ("user_id", "=", $client->id)
+            ->join('liste_des_abonnements', 'users.id', '=', 'liste_des_abonnements.user_id')
+          /*   ->join('liste_des_forfaits', 'users.id', '=', 'liste_des_forfaits.user_id') */
+            ->join('abonnements', 'abonnements.id', '=', 'liste_des_abonnements.abonnement_id')
+           /*  ->join('forfaits', 'forfaits.id', '=', 'liste_des_forfaits.forfait_id') */
+            ->select('users.*', 'liste_des_abonnements.*','abonnements.*',/*  'liste_des_forfaits.*', 'forfaits.*' */ )
+            ->get();
 
-        return view ('user.index', compact('client'));
+  /*       dd($abonnements); */
+
+
+
+        return view ('user.index', compact('client', 'souscriptions'));
     }
 
 
@@ -39,20 +51,28 @@ class userController extends Controller
         return view ('user.faq');
     }
 
-    public function modifier_infos(){
 
-        $client = DB::table("clients") -> where ("email", "=", auth()->user()->email)->first();
+
+
+    public function modifier_infos(User $user){
+
+        $client = DB::table("users") -> where ("email", "=", auth()->user()->email)->first();
         
-        return view('user.modifier_infos', compact('client'));
+        return view('user.modifier_infos', compact('client','user'));
     }
 
 
-    public function scrire_forfaitShow (){
+
+
+
+
+    public function scrire_Show (){
 
         $forfaits = forfaits::get();
+        $abonnements = abonnements::get();
       
 
-        return view("user.souscrire.scrire_forfait", compact('forfaits'));
+        return view("user.scrire", compact('forfaits', 'abonnements'));
     }
 
 
@@ -106,7 +126,7 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, User $user)
     {
         $request -> validate([
 
@@ -120,21 +140,10 @@ class userController extends Controller
             "type" => ["required"],
         ]);
 
-        $client = DB::table("clients") -> where ("email", "=", auth()->user()->email)->first();
-
-        $user =  Auth::user();
-
-       
-        $user->name = $request->firstname;
-        $user-> email = $request -> email;
-        $user -> password = $request -> password;
-
-       /*  $user->save(); */
-
-     dd($user);
 
 
-       /*  $client->update([
+
+        $user->update([
 
             "name" => $request -> firstname,
             "prenom" => $request -> prenom,
@@ -144,15 +153,16 @@ class userController extends Controller
             "email" => $request -> email,
             "password" => $request -> password,
             "type" => $request -> type,
+            "email_verified_at" => now(),
 
-        ]); */
+        ]);
 
 
        
 
         
 
-        return redirect() -> route('user.index');
+        return redirect() -> route('user.index')->with("success", "Informations updated successfully");
         
     }
 

@@ -39,8 +39,13 @@
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     My account
                 </a>
+{{-- 
+                <a class="dropdown-item" href="{{route('user.scrire')}}">
+                    <i class="fas fa-plus  fa-sm fa-fw mr-2 text-gray-400"></i>
+                    <span>Souscription</span>
+                </a> --}}
 
-                <a class="dropdown-item" href="{{route('user.modifier_infos')}}">
+                <a class="dropdown-item" href="{{route('user.modifier_infos', auth()->user() )}}">
                     <i class="fas fa-pencil-alt  fa-sm fa-fw mr-2 text-gray-400"></i>
                     <span>Update my profile</span>
                 </a>

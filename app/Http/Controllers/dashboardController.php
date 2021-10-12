@@ -6,6 +6,7 @@ use App\Models\abonnements;
 use App\Models\clients;
 use App\Models\forfaits;
 use App\Models\requetes_plaintes;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,15 +22,15 @@ class dashboardController extends Controller
     {
         $abonnements = abonnements::get();
         $forfaits = forfaits::get();
-        $clients = clients::get();
+        $clients = User::get();
 
  
 
-        $clients_array = clients::get()->groupBy(function($val){
+        $clients_array = User::get()->groupBy(function($val){
             return Carbon::parse($val->created_at)->format('M');
         }) -> toArray();
 
-        $months = DB::table('clients') -> select('created_at') ->get();
+        $months = DB::table('users') -> select('created_at') ->get();
 
       /*   dd($clients_array, $months); */
         

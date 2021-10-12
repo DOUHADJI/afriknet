@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
            UserSeeder::class,
             abonnementsSeeder::class,
             forfaitsSeeder::class,
-            clientsSeeder::class,
            requetes_plaintesSeeder::class,
            liste_des_forfaitsSeeder::class,
            liste_des_abonnementsSeeder::class,

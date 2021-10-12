@@ -35,30 +35,27 @@ class signInController extends Controller
         function barcodeNumberExists($number) {
             // query the database and return a boolean
             // for instance, it might look like this in Laravel
-            return clients::whereBarcodeNumber($number)->exists();
+            return User::whereBarcodeNumber($number)->exists();
         }
         $code = generateBarcodeNumber();
          
- /*    dd($code); */
+   /*  dd($request); */
 
-        clients::create([
+        User::create([
+
             "name" =>$request->name,
             "prenom" => $request->prenoms,
             "contact" =>$request->contact,
             "pays" => $request->pays,
             "ville" => $request->ville,
             "email" => $request->email,
-            "password" => $request->password,
+            "password" => Hash::make($request->password),
+            "email_verified_at" => now(),
             "type" => $request->type,
             "statut_activite" =>$request->statut,
             'barcode_number' =>$code,
-        ]);
+        
 
-        User::create([
-            "name" => $request->name,
-            "email" => $request->email,
-            "password" => Hash::make($request->password),
-            "email_verified_at" => now(),
         ]);
 
         return redirect()->route("login");

@@ -6,7 +6,19 @@
 
 @section('content')
 
+@if ($message = Session::get('success'))
 
+<div class="container">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+
+    <p> <span class="bi-check-circle-fill mr-1 fa-2x"></span>{{ $message }}</p>
+    
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+</div>
+</div>    
+
+@endif
 
      <div class="">
 
@@ -48,7 +60,8 @@
 
         <div class="container  pt-5">
             <p class="text-uppercase fw-bolder fs-6 text-white text-center bg-success p-5">
-                Votre abonnement en cours : 
+                Votre souscription en cours : 
+
             </p>
 
         </div>
@@ -58,28 +71,39 @@
 
          <div class="container mt-5">
           <p class="text-uppercase fw-bolder fs-4 text-black text-center">
-           Vos souscriptions
+           Vos abonnements
          </p>
 
          <table class="table mb-5">
+
           <tr class="bg-dark text-white">
             <th>Payé le</th>
             <th>Moyen de payement</th>
             <th>Montant</th>
-            <th>type de souscription</th>
+            <th>Abonnements</th>
           </tr>
+
+          @if($souscriptions->count() ==0 )
           <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-            <td>Germany</td>
+            <p class="text-center">Vous n'avez aucune souscription effectuée</p>
           </tr>
-          <tr>
-            <td>Centro comercial Moctezuma</td>
-            <td>Centro comercial Moctezuma</td>
-            <td>Francisco Chang</td>
-            <td>Mexico</td>
-          </tr>
+          @else
+
+              @foreach($souscriptions as $souscription)
+              <tr>
+                <td>{{$souscription->souscri_le}}</td>
+                <td>Mobile</td>
+                <td>{{$souscription->price}} F </td>
+                <td>{{$souscription->nom}}</td>
+              </tr>
+              @endforeach
+            
+          @endif
+
+        
+
+         
+
         </table>
 
          </div>
@@ -190,7 +214,8 @@
                       </h2>
                       <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt explicabo molestiae aspernatur, harum laborum voluptas earum nemo commodi, sit accusantium quo consequuntur quae recusandae sapiente dicta, maiores a ullam numquam.
+                            Pour souscrire à une de nos offres rendez-vous dans un de <strong>nos points de vente</strong> ou souscrivez en payant via 
+                            les services mobiles <strong>Flooz</strong> ou <strong>TMoney</strong>
                         </div>
                       </div>
                     </div>

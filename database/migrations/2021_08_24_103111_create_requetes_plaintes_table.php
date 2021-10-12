@@ -21,8 +21,8 @@ class CreateRequetesPlaintesTable extends Migration
             $table->mediumText('message')->nullable(false);
             $table->string('statut');
 
-            $table->unsignedBigInteger('client_id');
-            $table->foreign('client_id')->references('id')->on('clients');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
 
             $table->timestamps();
         });

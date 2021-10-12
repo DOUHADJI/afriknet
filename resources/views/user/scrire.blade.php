@@ -9,23 +9,77 @@
         <div class="col-6">
                 <div class="card">
                     <div class="card-header">
-                        Select the forfait
+                        Select the package
                     </div>
 
                     <div class="card-body">
                         <form action="">
 
-                            <p class="fw-bolder">Select your forfait</p>
+                            <p class="fw-bolder">Select your package</p>
 
                             <div>
                                 <select name="bank" id="mySelection" class="form-control">
-                                    <option value="0">click to select your forfait</option>
+                                    <option value="0">click to select your package</option>
 
                                     @foreach($forfaits as $forfait)
                                     
-                                    <option>
-                                        <strong aria-describedby="basic-addon"> {{$forfait->nom}}</strong> 
-                                        <span class="input-group-text" id="basic-addon"> {{$forfait->price}}</span>
+                                    <option value="{{$forfait->nom}}">
+                                        <strong class="fw-bold"">Package :  {{$forfait->nom}} </strong> 
+                                        ----
+                                        <span> {{$forfait->price}} TTC</span>
+                                        ----
+                                        <span class="input-group-text" id="basic-addon"> {{$forfait->validite}} jours</span>
+                                        ----
+                                        <span class="input-group-text" id="basic-addon"> {{$forfait->volume}} Go</span>
+                                    </option>
+                                        
+                                    @endforeach
+                                  
+                                </select>
+                            </div>
+
+
+                    
+
+                           {{--  <button class="btn btn-success mt-2" type="submit"><span class="bi bi-phone"></span> Proceed Payment</button> --}}
+
+
+                            <div class="mt-3">
+                                <p>
+                                    <strong>Note :</strong> There is above a list of our differents abonnements availables.
+                                </p>
+                            </div>
+
+                        </form>
+                    </div>
+                 
+
+                </div>
+
+                <div class="card mt-5">
+                    <div class="card-header">
+                        Select the subscription
+                    </div>
+
+                    <div class="card-body">
+                        <form action="">
+
+                            <p class="fw-bolder">Select your subscription </p>
+
+                            <div>
+                                <select name="bank" id="mySelection" class="form-control">
+                                    <option value="0">click to select your subscription</option>
+
+                                    @foreach($abonnements as $abonnement)
+                                    
+                                    <option value="{{$abonnement->nom}}">
+                                        <strong class="fw-bold"">Subscription : {{$abonnement->nom}} </strong> 
+                                        ----
+                                        <span class="input-group-text" id="basic-addon"> {{$abonnement->price}} TTC</span>
+                                        ----
+                                        <span class="input-group-text" id="basic-addon"> {{$abonnement->validite}} jours</span>
+                                        ----
+                                        <span class="input-group-text" id="basic-addon"> {{$abonnement->debit}} Mo/s</span>
                                     </option>
                                         
                                     @endforeach
@@ -51,7 +105,7 @@
 
                             <div class="mt-3">
                                 <p>
-                                    <strong>Note :</strong> There is above a list of our differents forfaits availables.
+                                    <strong>Note :</strong> There is above a list of our differents abonnements availables.
                                 </p>
                             </div>
 
@@ -59,29 +113,6 @@
                     </div>
                  
 
-                </div>
-
-                <div class="mt-5 d-flex  justify-content-around">
-                    @foreach ($forfaits as $forfait )
-                        <div class="card">
-                            <div class="card-header">
-                                {{$forfait->nom}}
-                            </div>
-                            <div class="card-body">
-                                <div class="fst-italic fw-bold d-flex text-xs">
-                                    <span>Débit : <span class="fw-bold"> {{$forfait->volume}}  Go</span></span>
-                                </div>
-
-                                <div class="fst-italic fw-bold d-flex text-xs my-2">
-                                    <span> Price: <span class="fw-bold">{{$forfait->price}} F CFA </span></span>
-                                </div>
-
-                                <div class="d-flex flex-row-reverse text-xs">
-                                    <p class="fst-italic fst-bold text-warning">Validité : <span> {{$forfait->validite}} jours</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
                 </div>
 
 

@@ -15,6 +15,6 @@ class liste_des_abonnementsSeeder extends Seeder
      */
     public function run()
     {
-        liste_des_abonnements::factory(100)->create();
+        liste_des_abonnements::factory(37)->create();
     }
 }

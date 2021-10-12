@@ -16,6 +16,6 @@ class logOutController extends Controller
 
         $request->session()->regenerateToken();
         
-        return redirect()->route("welcome");
+        return redirect()->route("login");
     }
 }

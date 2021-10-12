@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\clients;
 use App\Models\type_client;
+use App\Models\User;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class clientsController extends Controller
 {
@@ -16,7 +18,7 @@ class clientsController extends Controller
      */
     public function index()
     {
-        $clients = clients::get();
+        $clients = User::get();
 
         return view ('clients.index', compact('clients'));
     }
@@ -41,7 +43,24 @@ class clientsController extends Controller
      */
     public function store(Request $request)
     {
+        function generateBarcodeNumber() {
+            $number = mt_rand(10000000, 9999999999); // better than rand()
         
+            // call the same function if the barcode exists already
+            if (barcodeNumberExists($number)) {
+                return generateBarcodeNumber();
+            }
+        
+            // otherwise, it's valid and can be used
+            return $number;
+        }
+        
+        function barcodeNumberExists($number) {
+            // query the database and return a boolean
+            // for instance, it might look like this in Laravel
+            return User::whereBarcodeNumber($number)->exists();
+        }
+        $code = generateBarcodeNumber();
         
         $request->validate ([
             
@@ -57,16 +76,18 @@ class clientsController extends Controller
                 
         ]);
 
-        clients::create([
+        User::create([
             "name" =>$request->firstname,
             "prenom" => $request->prenom,
             "contact" =>$request->contact,
             "pays" => $request->pays,
             "ville" => $request->ville,
             "email" => $request->email,
-            "password" => $request->password,
+            "password" => Hash::make($request->password),
+            "email_verified_at" => now(),
             "type" => $request->type,
             "statut_activite" =>$request->statut,
+            'barcode_number' =>$code,
         ]);
         
         return redirect() -> route('clients.index') -> with('success', 'client added successfully');
@@ -78,7 +99,7 @@ class clientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(clients $client)
+    public function show(User $client)
     {
         return view("clients.show", compact('client'));
     }
@@ -89,7 +110,7 @@ class clientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(clients $client)
+    public function edit(User $client)
     {
         $statut = "";
         $statut_value = $client->statut_activite;
@@ -103,7 +124,7 @@ class clientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, clients $client)
+    public function update(Request $request, User $client)
     {
         $request->validate ([
 
@@ -149,7 +170,7 @@ class clientsController extends Controller
      */
     public function statuts_index()
     {
-        $clients = clients::get();
+        $clients = User::get();
 
     return view ('clients.statuts', compact('clients'));
     }
@@ -161,7 +182,7 @@ class clientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showForchangeStatut (clients $client)
+    public function showForchangeStatut (User $client)
     {
 
     return view ('clients.changeStatut', compact('client'));
@@ -176,7 +197,7 @@ class clientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function changeStatut( Request $request, clients $client)
+    public function changeStatut( Request $request, User $client)
     {
        
 
@@ -203,7 +224,7 @@ class clientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showForDeletion(clients $client)
+    public function showForDeletion(User $client)
     {
         $statut_value = $client->statut_activite;
 
@@ -217,7 +238,7 @@ class clientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(clients $client)
+    public function destroy(User $client)
     {
         $client->delete();
 

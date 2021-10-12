@@ -23,12 +23,22 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $types = ['Entreprise', 'Individu'];
+
         return [
+            
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => Hash::make("password"), // password
             'remember_token' => Str::random(10),
+            'prenom'=>$this->faker->lastName(),
+            'pays' => $this ->faker ->country(),
+            'ville'=> $this ->faker -> city(),
+            'contact' => $this ->faker -> phoneNumber(),
+            'type' =>$types[array_rand($types)],
+            'statut_activite' => $this ->faker ->boolean(),
+            'barcode_number'=>$this-> faker ->ean8(),
         ];
     }
 

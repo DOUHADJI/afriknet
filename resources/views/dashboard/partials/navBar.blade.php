@@ -52,14 +52,17 @@
 
         @php
                 use App\Models\requetes_plaintes;
-                use App\Models\clients;
+                use App\Models\User;
+                
+           
 
+             
 
                 $new_plaintes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'plainte') ->orderBy('id', 'desc')->get() -> take(3);
 
                 $new_requetes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'requete') ->orderBy('id', 'desc')->get() -> take(3);
 
-                $clients= clients::get();
+                $users= User::get();
 
         @endphp
 
@@ -95,7 +98,7 @@
                         </div>
                     </div>
                     <div>
-                        <div class="small text-gray-500">by {{$clients->where('id', $plainte->client_id)->first()->name}} </div>
+                        <div class="small text-gray-500">by {{$users->where('id', $plainte->user_id)->first()->name}} </div>
                         <span class="font-weight-bold">{{$plainte->motif}}</span>
                         <div class="small text-gray-500 text-truncate">{{$plainte->message}} </div>
 
@@ -140,7 +143,7 @@
                         </div>
                     </div>
                     <div>
-                        <div class="small text-gray-500">by {{$clients->where('id', $requete->client_id)->first()->name}} </div>
+                        <div class="small text-gray-500">by {{$users->where('id', $requete->user_id)->first()->name}} </div>
                         <span class="font-weight-bold">{{$requete->motif}}</span>
                         <div class="small text-gray-500 text-truncate">{{$requete->message}} </div>
 

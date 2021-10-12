@@ -190,20 +190,20 @@
                                 <div class="d-flex  justify-content-around">
                                     <div class="">
                                         <p>Email : <span class="badge badge-light p-2">
-                                            {{App\Models\clients::where(['id'=> $requete->client_id]) ->first()->email}}</span></p>
+                                            {{App\Models\User::where(['id'=> $requete->user_id]) ->first()->email}}</span></p>
                                     </div>
 
                                     <div class="">
                                         <p>statut : <span class="badge 
                                             
-                                            @if( App\Models\clients::where(['id'=> $requete->client_id]) ->first()->statut_activite == 1)
+                                            @if( App\Models\User::where(['id'=> $requete->user_id]) ->first()->statut_activite == 1)
                                                 badge-success
                                                 @else
                                                 badge-danger
                                             @endif
                                             p-2"> 
                                             
-                                            @if( App\Models\clients::where(['id'=> $requete->client_id]) ->first()->statut_activite == 1)
+                                            @if( App\Models\User::where(['id'=> $requete->user_id]) ->first()->statut_activite == 1)
                                             Active
                                             @else
                                             Inactive
@@ -213,7 +213,7 @@
 
                                     <div class="">
                                         <p>Contact : <span class="badge badge-light  p-2">
-                                            {{App\Models\clients::where(['id'=> $requete->client_id]) ->first()->contact}}</span></p>
+                                            {{App\Models\User::where(['id'=> $requete->user_id]) ->first()->contact}}</span></p>
                                     </div>
 
                                 </div>
@@ -227,7 +227,7 @@
 
 
                                     <div class="d-flex flex-row-reverse">
-                                        <p class=" mr-4 mt-5"">by : {{App\Models\clients::where(['id'=> $requete->client_id]) ->first()->name}}</p>
+                                        <p class=" mr-4 mt-5"">by : {{App\Models\User::where(['id'=> $requete->user_id]) ->first()->name}}</p>
                                     </div>
                                    
                                 </div>

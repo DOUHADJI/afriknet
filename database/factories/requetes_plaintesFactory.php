@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\clients;
 use App\Models\requetes_plaintes;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class requetes_plaintesFactory extends Factory
@@ -33,7 +34,7 @@ class requetes_plaintesFactory extends Factory
                 "motif"  =>$motifs[array_rand($motifs)],
                 "message" => $this -> faker -> realText(),
                 "statut"  =>$statuts[array_rand($statuts)],
-                "client_id" => clients::factory(),
+                "user_id" => $this ->faker -> numberBetween(1,50),
         ];
     }
 }

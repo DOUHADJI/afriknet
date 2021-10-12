@@ -27,7 +27,7 @@
 
         </div>
 
-    <form action="{{route('user.update' )}}"  method="POST" >
+    <form action="{{route('user.update', $user )}}"  method="POST" >
         @csrf
         @method("PATCH")
 
