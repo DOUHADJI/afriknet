@@ -32,11 +32,17 @@
 
                 <div class="row">
 
-                    <div class="col-lg-6">
-                            <p class="text-uppercase fw-bolder fs-6 mt-3">Code d'identification Client : {{$client->barcode_number}}</p>
+                    <div class="col-lg-7 mb-5 ">
+                            <p class="text-uppercase fw-bolder fs-6 mt-3 mb-5 bg-secondary border border-light px-1 text-center">Code d'identification Client : {{$client->barcode_number}}</p>
+
+                            <div class="d-flex justify-content-around mt-5">
+                              <a href="{{ route("user.scrire_forfait") }}" class="btn btn-light ">Simulate a package <br> payment</a>
+                              <a href="{{ route("user.scrire_abonnement") }}" class="btn btn-light ">Simulate a subscription <br> payment</a>
+                             </div>
+
                     </div>
 
-                    <div class="col-lg-6 d-flex">
+                    <div class="col-lg-5 d-flex bg-secondary border border-light mt-1 ">
                      
                        
                         <div class="container">
@@ -52,6 +58,8 @@
 
                     </div>
 
+          
+
                 </div>
 
             </div>
@@ -59,12 +67,68 @@
         </div>
 
         <div class="container  pt-5">
-            <p class="text-uppercase fw-bolder fs-6 text-white text-center bg-success p-5">
-                Votre souscription en cours : 
 
-            </p>
+          <div class="row">
 
-        </div>
+            <div class="col-lg-6 col-md-6">
+
+              @if($last_souscription == null)
+
+                    <p class="text-uppercase fw-bolder fs-6 text-white text-center bg-warning p-5">
+
+                      Vous n'avez aucun abonnement en cours !!! 
+
+                  </p>
+
+              @else
+
+                  <p class="text-uppercase fw-bolder fs-6 text-white text-center bg-success p-5">
+
+                    Votre Abonnement en cours :  {{$last_souscription->nom}} 
+                    <br>     
+                    Votre abonnement prendra fin :  {{$last_souscription->fini_le}} 
+
+                </p>
+
+              @endif
+                
+            </div>
+
+          <div class="col-lg-6 col-md-6">
+
+              @if($last_forfait == null)
+
+                    <p class="text-uppercase fw-bolder fs-6 text-white text-center bg-warning p-5">
+
+                      Vous n'avez aucun forfait en cours !!! 
+
+                  </p>
+
+              @else
+              
+                  <p class="text-uppercase fw-bolder fs-6 text-white text-center bg-success p-5">
+
+                    Votre forfait en cours :  {{$last_forfait->nom}}  
+                    <br>     
+                   Votre forfait prendra fin :  {{$last_forfait->fini_le}} 
+
+
+                  </p>
+          
+
+              @endif
+                
+            </div>
+  
+
+          </div>
+
+
+      </div>
+
+           
+
+
        
          {{-- User informations div --}}
 
@@ -74,22 +138,25 @@
            Vos abonnements
          </p>
 
-         <table class="table mb-5">
-
-          <tr class="bg-dark text-white">
-            <th>Payé le</th>
-            <th>Moyen de payement</th>
-            <th>Montant</th>
-            <th>Abonnements</th>
-          </tr>
+        
 
           @if($souscriptions->count() ==0 )
-          <tr>
-            <p class="text-center">Vous n'avez aucune souscription effectuée</p>
-          </tr>
+          <div class="bg-warning mx-5 py-2">
+            <p class="text-center text-white">Vous n'avez aucune souscription effectuée <span class="bi bi-emoji-dizzy"></span></p>
+          </div>
           @else
 
+          <table class="table mb-5">
+
+            <tr class="bg-dark text-white">
+              <th>Payé le</th>
+              <th>Moyen de payement</th>
+              <th>Montant</th>
+              <th>Abonnements</th>
+            </tr>
+
               @foreach($souscriptions as $souscription)
+
               <tr>
                 <td>{{$souscription->souscri_le}}</td>
                 <td>Mobile</td>
@@ -97,6 +164,7 @@
                 <td>{{$souscription->nom}}</td>
               </tr>
               @endforeach
+        </table>
             
           @endif
 
@@ -104,7 +172,6 @@
 
          
 
-        </table>
 
          </div>
 

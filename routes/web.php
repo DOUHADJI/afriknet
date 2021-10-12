@@ -72,7 +72,8 @@ Route::group(['prefix' => 'user_space'], function(){
     Route::get('/help', [userController::class, 'faq'])->name('user.faq');
     Route::get('/modifier_mes_informations/{user}', [userController::class, 'modifier_infos'])->name('user.modifier_infos');
     Route::patch('/modifier_mes_informations/{user}/update', [userController::class, 'update'])->name('user.update');
-    Route::get('/souscrire_à_une_offre', [userController::class, 'scrire_Show'])->name('user.scrire');
+    Route::get('/souscrire_à_un_forfait', [userController::class, 'scrire_forfait'])->name('user.scrire_forfait');
+    Route::get('/souscrire_à_un_abonnement', [userController::class, 'scrire_abonnement'])->name('user.scrire_abonnement');
 
 
     

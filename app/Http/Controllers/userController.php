@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\abonnements;
 use App\Models\clients;
 use App\Models\forfaits;
+use App\Models\liste_des_abonnements;
+use App\Models\liste_des_forfaits;
 use App\Models\User;
 use Database\Factories\abonnementsFactory;
 use Illuminate\Http\Request;
@@ -22,6 +24,8 @@ class userController extends Controller
     {
         $client = DB::table("users") -> where ("email", "=", auth()->user()->email)->first();
 
+
+
         $souscriptions = DB::table('users')
             -> where ("user_id", "=", $client->id)
             ->join('liste_des_abonnements', 'users.id', '=', 'liste_des_abonnements.user_id')
@@ -31,11 +35,25 @@ class userController extends Controller
             ->select('users.*', 'liste_des_abonnements.*','abonnements.*',/*  'liste_des_forfaits.*', 'forfaits.*' */ )
             ->get();
 
-  /*       dd($abonnements); */
+         $last_souscription = DB::table('liste_des_abonnements')
+                                                ->where("fini_le", ">", now())
+                                                -> where ("user_id", "=", auth()->user()->id)
+                                                ->join('abonnements', 'abonnements.id', '=', 'liste_des_abonnements.abonnement_id')
+                                               ->select('liste_des_abonnements.*','abonnements.*')
+                                                /* -> orderBy("updated_at", "asc") */ ->first();
+                                                
+   $last_forfait = DB::table('liste_des_forfaits')
+                                                ->where("fini_le", ">", now())
+                                                -> where ("user_id", "=", auth()->user()->id)
+                                                ->join('forfaits', 'forfaits.id', '=', 'liste_des_forfaits.forfait_id')
+                                               ->select('liste_des_forfaits.*','forfaits.*')
+                                                /* -> orderBy("updated_at", "asc") */ ->first();
+
+      
+/* dd($last_souscription); */
 
 
-
-        return view ('user.index', compact('client', 'souscriptions'));
+        return view ('user.index', compact('client', 'souscriptions', 'last_souscription', 'last_forfait'));
     }
 
 
@@ -66,13 +84,44 @@ class userController extends Controller
 
 
 
-    public function scrire_Show (){
+    public function scrire_forfait (){
 
-        $forfaits = forfaits::get();
-        $abonnements = abonnements::get();
+        $forfait = forfaits::inRandomOrder()->first();
+
+        liste_des_forfaits::create([
+
+                    "souscri_le" => now(),
+                    "fini_le" => now() ->addDays($forfait->validite),
+                    "forfait_id"=> $forfait->id,
+                    "user_id" => Auth::user()->id,
+
+        ]);
+
+        return redirect() -> back() -> with("success", "Votre souscription au forfait  $forfait->nom   a bien effectuée");
+    }
+
+
+    public function scrire_abonnement (){
+
+        $abonnement = abonnements::inRandomOrder()->first();
+
+        liste_des_abonnements::create([
+
+                    "souscri_le" => now(),
+                    "fini_le" => now() ->addDays($abonnement->validite),
+                    "abonnement_id"=> $abonnement->id,
+                    "user_id" => Auth::user()->id,
+
+        ]);
+
+
+        
+
+
+
       
 
-        return view("user.scrire", compact('forfaits', 'abonnements'));
+        return redirect() -> back() -> with("success", "Votre souscription à l'abonnement  $abonnement->nom   a bien effectuée");
     }
 
 
