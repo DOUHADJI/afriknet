@@ -104,7 +104,7 @@
 
                         <div class="col">
                             <label for="type">Type</label>
-                            <select name="type" id="type" class="form-control form-control-user @error("type") is-invalid @enderror " >
+                            <select  name="type" id="type" class="form-control form-control-user @error("type") is-invalid @enderror " >
 
                                 <option value="0">--choix--</option>
                                 <option value="Individu" @if($client->type =="Individu")

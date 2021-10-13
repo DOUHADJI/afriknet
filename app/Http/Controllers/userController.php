@@ -7,6 +7,7 @@ use App\Models\clients;
 use App\Models\forfaits;
 use App\Models\liste_des_abonnements;
 use App\Models\liste_des_forfaits;
+use App\Models\requetes_plaintes;
 use App\Models\User;
 use Database\Factories\abonnementsFactory;
 use Illuminate\Http\Request;
@@ -49,11 +50,12 @@ class userController extends Controller
                                                ->select('liste_des_forfaits.*','forfaits.*')
                                                 /* -> orderBy("updated_at", "asc") */ ->first();
 
-      
+      $plainte_courante = requetes_plaintes::where("user_id", "=", auth()->user()->id)->orderBy("created_at", "desc") -> first();
+
 /* dd($last_souscription); */
 
 
-        return view ('user.index', compact('client', 'souscriptions', 'last_souscription', 'last_forfait'));
+        return view ('user.index', compact('client', 'souscriptions', 'last_souscription', 'last_forfait' , 'plainte_courante'));
     }
 
 
@@ -114,7 +116,6 @@ class userController extends Controller
 
         ]);
 
-
         
 
 
@@ -124,6 +125,64 @@ class userController extends Controller
         return redirect() -> back() -> with("success", "Votre souscription à l'abonnement  $abonnement->nom   a bien effectuée");
     }
 
+    public function formuler_requete_Show () {
+
+        return view ("user.frml_requete");
+    }
+
+    public function formuler_requete (Request $request) {
+
+        $request -> validate([
+
+            "motif" => ["required", "string"],
+            "message" => ["required" , "string"],
+
+        ]);
+
+        requetes_plaintes::create([
+
+            "type" => $request -> type,
+            "motif" => $request->motif,
+            "message"=> $request -> message,
+             "statut" => "reçu",
+             "user_id" => Auth::user()-> id
+
+        ]);
+
+        return redirect() -> route ("user.index") -> with ("success", "Nous avons bien reçu votre requête");
+
+
+    }
+
+
+    public function formuler_plainte_Show () {
+
+        return view ("user.frml_plainte");
+    }
+
+    public function formuler_plainte (Request $request) {
+
+        $request -> validate([
+
+            "motif" => ["required", "string"],
+            "message" => ["required" , "string"],
+
+        ]);
+
+        requetes_plaintes::create([
+
+            "type" => $request -> type,
+            "motif" => $request->motif,
+            "message"=> $request -> message,
+             "statut" => "reçu",
+             "user_id" => Auth::user()-> id
+
+        ]);
+
+        return redirect() -> route ("user.index") -> with ("success", "Nous avons bien reçu votre plainte. Nos équipe se chargeront de vous satisfaire dans les plus bref délai");
+
+
+    }
 
     /**
      * Show the form for creating a new resource.

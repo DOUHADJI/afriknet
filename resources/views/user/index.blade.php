@@ -6,65 +6,170 @@
 
 @section('content')
 
-@if ($message = Session::get('success'))
 
-<div class="container">
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
-
-    <p> <span class="bi-check-circle-fill mr-1 fa-2x"></span>{{ $message }}</p>
-    
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-
-</div>
-</div>    
-
-@endif
 
      <div class="">
 
-         <p class=" text-xs fw-bold text-center fst-italic">Bienvenue dans votre espace client <span>Afriknet</span> <span class="bi bi-emoji-smile"></span>
-        </p>
+         
 
          {{-- User informations div --}}
 
-        <div class="container-fluid bg-primary text-white py-5">
-            <div class="container">
+        <div class="  text-white" 
 
-                <div class="row">
+        style="
+        background-image: url({{ asset('template_resources/img/11.jpg') }});
+        background-repeat: no-repeat;
+        background-size: cover;
+    /*     height:600px; */
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-attachment: fixed;
+        
+        ">
+            <div class="h-100 p-5" style="background-color: rgba(0, 0, 0, 0.13)">
 
-                    <div class="col-lg-7 mb-5 ">
-                            <p class="text-uppercase fw-bolder fs-6 mt-3 mb-5 bg-secondary border border-light px-1 text-center">Code d'identification Client : {{$client->barcode_number}}</p>
+              <p class=" text-xs fw-bold text-center fst-italic bg-white text-black mx-5 py-3 mb-5">Bienvenue dans votre espace client <span>Afriknet</span> <span class="bi bi-emoji-smile"></span>
+              </p>
 
-                            <div class="d-flex justify-content-around mt-5">
-                              <a href="{{ route("user.scrire_forfait") }}" class="btn btn-light ">Simulate a package <br> payment</a>
-                              <a href="{{ route("user.scrire_abonnement") }}" class="btn btn-light ">Simulate a subscription <br> payment</a>
-                             </div>
+             
 
-                    </div>
+                <div class="mt-5 py-5" 
 
-                    <div class="col-lg-5 d-flex bg-secondary border border-light mt-1 ">
-                     
+                @if(auth()->user()->statut_activite == '0')
+
+                style="background-color: rgba(150, 54, 54, 0.582)"
+                  
+                @else
+
+                style="background-color: rgba(54, 150, 78, 0.582)"
+                  
+                @endif
+                
+                
+                
+                >
+                  <div class="container">
+                    <div class="row" >
+
+                      <div class="col-lg-7 mb-5 ">
+                              <p class="text-uppercase fw-bolder fs-6 mt-3 mb-5    px-1 text-center">Code d'identification Client : {{$client->barcode_number}}</p>
+  
+
+                              @if(auth()->user()->statut_activite == '0')
+
+                              <p class="text-uppercase fw-bolder fs-6 mt-3 mb-5    px-1 text-center">
+                                Votre compte est actulllement inactif <br>
+                                <br>
+                                Veuillez vous rendre dans une de nos agences pour ré-activer votre compte ou cliquer sur le bouton ci-dessous pour une demande d'activation en ligne. Merci.
+                              </p>
+
+                              <button class="btn btn-light">Demande d'activation de compte</button>
+                                
+                              @else
+
+                              <div class="d-flex justify-content-around mt-3 mb-3">
+
+                                <a href="{{ route("user.formuler_requete") }}" class="btn px-5 text-white" style="background-color: #2f254dbb">Formuler une <br> requête</a>
+                                <a href="{{ route("user.formuler_plainte") }}" class="btn text-white px-5" style="background-color: #fc08008c">Formuler une <br> plainte</a>
+                               </div>
+
+                               
+                               @if($plainte_courante == null ||$plainte_courante->statut == "archivé" )
+
+                                 @elseif ($plainte_courante->statut == "traitement")
+
+                                 <div class="mt-2 py-2 text-center mb-3" style="background-color: rgba(28, 145, 115, 0.863)">
+                                  <p class="bg-light text-danger fw-bolder"> Statut de traitement de votre plainte courante <br> </p>
+                                  motif : {{ $plainte_courante->motif }} <br>
+                                  Statut : {{ $plainte_courante->statut }} le  {{ $plainte_courante->updated_at }} 
+                                  </div>
+
+                                  @elseif ($plainte_courante->statut == "traité")
+
+                                  <div class="container">
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                  
+                                      <p> <span class="bi-check-circle-fill mr-1 fa-2x"></span>Votre plainte a été traité. Merci de votre patience et pour votre confiance</p>
+                                      
+                                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                  
+                                  </div>
+                                  </div> 
+                                   
+                              
+                               @else 
+
+                                 <div class="mt-2 py-2 text-center mb-3" style="background-color: rgba(88, 22, 175, 0.863)">
+                                <p class="bg-light text-danger fw-bolder"> Statut de traitement de votre plainte courante <br> </p>
+                                motif : {{ $plainte_courante->motif }} <br>
+                                Statut :  <p class="badge badge-light p-1">{{ $plainte_courante->statut }} </p> le  {{ $plainte_courante->updated_at }} 
+                                </div>
+
+                               @endif
+
+                                
+                              @endif
+
+                             
+
+                              @if ($message = Session::get('success'))
+
+
+                              <div class="container">
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                              
+                                  <p> <span class="bi-check-circle-fill mr-1 fa-2x"></span>{{ $message }}</p>
+                                  
+                                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                              
+                              </div>
+                              </div>    
+                              
+                              @endif
+  
+                      </div>
+  
+                      <div class="col-lg-5 d-flex   mt-1 ">
                        
-                        <div class="container">
-
-                        <p class=" text-uppercase fw-bolder text-xs mt-3">Nom : <strong>{{$client->name}}</strong></p>
-                        <p class=" text-uppercase fw-bolder text-xs mt-3">Prénom(s) : <strong>{{$client->prenom}}</strong></p>
-                        <p class=" text-uppercase fw-bolder text-xs mt-3">Country : <strong>{{$client->pays}}</strong></p>
-                        <p class=" text-uppercase fw-bolder text-xs mt-3">City : <strong>{{$client->ville}}</strong></p>
-                        <p class=" text-uppercase fw-bolder text-xs mt-3">Contact : <strong>{{$client->contact}}</strong></p>
-                        <p class=" text-uppercase fw-bolder text-xs mt-3"> Email : <strong>{{$client->email}}</strong></p>
-
-                        </div>
-
+                         
+                          <div class="container">
+  
+                          <p class=" text-uppercase fw-bolder text-xs mt-3">Nom : <strong>{{$client->name}}</strong></p>
+                          <p class=" text-uppercase fw-bolder text-xs mt-3">Prénom(s) : <strong>{{$client->prenom}}</strong></p>
+                          <p class=" text-uppercase fw-bolder text-xs mt-3">Country : <strong>{{$client->pays}}</strong></p>
+                          <p class=" text-uppercase fw-bolder text-xs mt-3">City : <strong>{{$client->ville}}</strong></p>
+                          <p class=" text-uppercase fw-bolder text-xs mt-3">Contact : <strong>{{$client->contact}}</strong></p>
+                          <p class=" text-uppercase fw-bolder text-xs mt-3"> Email : <strong>{{$client->email}}</strong></p>
+  
+                          </div>
+  
+                      </div>
+  
+            
+  
                     </div>
-
-          
-
+                  </div>
                 </div>
+ 
+                @if(auth()->user()->statut_activite == '0')
+                  
+                @else
 
+                <div class="d-flex justify-content-around mt-3 ">
+
+                  <a href="{{ route("user.scrire_forfait") }}" class="btn text-white  " style="background-color: #2f254d">Simulate a package <br> payment</a>
+                  <a href="{{ route("user.scrire_abonnement") }}" class="btn text-white  " style="background-color: #2f254d"">Simulate a subscription <br> payment</a>
+                 </div>
+
+                @endif
+             
+                 
             </div>
                
         </div>
+        
+
 
         <div class="container  pt-5">
 
@@ -82,7 +187,7 @@
 
               @else
 
-                  <p class="text-uppercase fw-bolder fs-6 text-white text-center bg-success p-5">
+                  <p class="text-uppercase fw-bolder fs-6 text-black text-center bg-gray-200 p-5">
 
                     Votre Abonnement en cours :  {{$last_souscription->nom}} 
                     <br>     
@@ -106,7 +211,7 @@
 
               @else
               
-                  <p class="text-uppercase fw-bolder fs-6 text-white text-center bg-success p-5">
+                  <p class="text-uppercase fw-bolder fs-6 text-black text-center bg-gray-200 p-5">
 
                     Votre forfait en cours :  {{$last_forfait->nom}}  
                     <br>     
@@ -184,89 +289,6 @@
 
 
 
-        {{--  Plaints and request sending section --}}
-
-{{--         <div class=" mx-5 my-5 border shadow">
-
-            
-            <div class="d-flex">
-
-                
-                        <img class="img-fluid w-50" src="https://www.republiquetogolaise.com/media/k2/items/cache/7d70964d0f7ca0ac820829f5fc1d53f9_XL.jpg" alt="statut de la liberté">
-                
-
-                <div class=" bg-white w-50 ">
-
-                    <p class="text-center text-white container-fluid border-bottom py-3" style="background-color: #D2BBEB">Send us a request or a plaint here</p>
-
-                    
-                  
-
-                    <div class="">
-
-                      
-        
-                        <div>
-        
-                            <form class="p-2 m-2">
-                                
-                                <div class="row">
-
-                                    <div class="col-4">
-                                        
-                                        <div class="mb-3">
-                                            <div class="form-floating">
-                                                <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
-                                                  <option selected>-- choix --</option>
-                                                  <option value="requete">Requête</option>
-                                                  <option value="plainte">Plainte</option>
-                                                </select>
-                                                <label for="floatingSelectGrid">Type de message </label>
-                                              </div>
-
-                                          </div>
-
-                                    </div>
-
-                                    <div class="col-8">
-
-                                        <div class="mb-3">
-                                            <label for="motif" class="form-label">Motif</label>
-                                            <input type="text" class="form-control" id="motif" name="motif" aria-describedby="motiflHelp">
-                                            <div id="motifHelp" class="form-text text-xs fst-italic ">Motif de votre message</div>
-                                          </div>
-
-                                    </div>
-
-                                   
-
-                                </div>
-
-
-                                <div class="mb-3">
-                                  <label for="exampleInputmessage1" class="form-label">Message</label>
-                                  <textarea type="message" class="form-control" id="exampleInputmessage1"></textarea>
-                                  <div id="typeHelp" class="form-text text-xs fst-italic">Dites nous quel est votre souci</div>
-                                </div>
-
-                                <div class="d-flex flex-row-reverse">
-                                    <button type="submit" class="btn btn-success w-25">Send</button>
-                                </div>
-        
-                            </form>
-        
-                        </div>
-        
-                      </div>
-                </div>
-
-            </div>
-
-              
-
-        </div> --}}
-
-        {{--  Plaints and request sending section --}}
 
         <div class="container-fluid bg-gray-200 pt-5 pb-5">
             <p class="fw-bolder text-uppercase text-center fs-3 text-black">une question ? nous avons la réponse !</p>
@@ -318,4 +340,9 @@
     </div>
 
      </div>
+
+
+
+
+
 @endsection

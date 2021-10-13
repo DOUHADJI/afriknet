@@ -11,7 +11,7 @@ class requetes_plaintes extends Model
 
     protected $fillable = [
         
-        "statut"
+        "statut", "motif", "type", "user_id", "message"
     ];
 
     public function client()

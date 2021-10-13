@@ -104,6 +104,8 @@ class clientsController extends Controller
         return view("clients.show", compact('client'));
     }
 
+    
+
     /**
      * Show the form for editing the specified resource.
      *

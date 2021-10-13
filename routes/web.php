@@ -75,6 +75,12 @@ Route::group(['prefix' => 'user_space'], function(){
     Route::get('/souscrire_à_un_forfait', [userController::class, 'scrire_forfait'])->name('user.scrire_forfait');
     Route::get('/souscrire_à_un_abonnement', [userController::class, 'scrire_abonnement'])->name('user.scrire_abonnement');
 
+    Route::get('/formuler_requete', [userController::class, 'formuler_requete_Show'])->name('user.formuler_requete');
+    Route::post('/formuler_requete', [userController::class, 'formuler_requete'])->name('user.formuler_requete');
+
+    Route::get('/formuler_plainte', [userController::class, 'formuler_plainte_Show'])->name('user.formuler_plainte');
+    Route::post('/formuler_plainte', [userController::class, 'formuler_plainte'])->name('user.formuler_plainte');
+
 
     
 });

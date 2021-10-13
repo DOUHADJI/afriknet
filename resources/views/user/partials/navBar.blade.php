@@ -1,6 +1,6 @@
 
 
- <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+ <nav class="navbar navbar-expand navbar-light bg-white topbar  static-top shadow">
 
        <!-- Sidebar - Brand -->
        <a class="navbar-brand d-flex align-items-center justify-content-center fw-bolder text-gray-600" href="{{route("user.index")}}">
@@ -35,7 +35,7 @@
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                 aria-labelledby="userDropdown">
 
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{{route("user.index")}}">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     My account
                 </a>

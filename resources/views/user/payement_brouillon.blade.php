@@ -1,7 +1,8 @@
-@extends("user.layout")
 
 
-@section("content")
+{{--  This front end code was for the payment via credit card, paypal and mobile bank --}}
+
+
 
 <div class="container">
     <div class="row">
@@ -259,5 +260,4 @@
 
     </div>
 </div>
-    
-@endsection
+

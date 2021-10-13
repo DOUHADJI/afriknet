@@ -5,7 +5,7 @@
 
 <div class="container">
 
-    <div class="alert alert-light mb-5">
+    <div class="alert alert-light mb-4 mt-4">
         <p class=" text-xs fw-bold text-center fst-italic">FAQ <span></span> <span class="bi bi-emoji-smile"></span>
         </p>
 
