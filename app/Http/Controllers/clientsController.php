@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\activation_requests;
 use App\Models\clients;
 use App\Models\type_client;
 use App\Models\User;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class clientsController extends Controller
@@ -201,6 +203,7 @@ class clientsController extends Controller
      */
     public function changeStatut( Request $request, User $client)
     {
+
        
 
         $request->validate ([
@@ -215,7 +218,46 @@ class clientsController extends Controller
         "statut_activite" => $request->statut,
     ]);
 
-    return redirect() -> route('clients.statuts') -> with('success', 'statut updated successfully');
+       return redirect() -> route("clients.statuts") -> with('success', 'statut updated successfully');
+
+    }
+
+
+    public function activate_account_show()
+    {
+        $clients = DB::table('users')
+                         ->where("statut_activite", "=", 0)
+                         ->join("activation_requests", "users.id", "=",  "activation_requests.user_id")
+                         -> where("request_statut", "=", 0)
+                         ->select('users.*')
+                         ->get();
+                         
+
+
+        return view ('clients.activate_account', compact('clients'));
+    }
+
+    public function activate_account( Request $request)
+    {
+       
+    
+
+    $client = User::where("id", "=", $request->user_id) ->first();
+
+    $activation_request = activation_requests::where("user_id", "=", $request->user_id)->where("request_statut", "=", 0)->first();
+
+   /*  dd($client); */
+
+    $client->update([
+        
+        "statut_activite" => $request->statut,
+    ]);
+
+    $activation_request->update([
+        "request_statut" => $request->statut,
+    ]);
+
+    return redirect() -> route('clients.activate_account_show') -> with('success', "Client  $client->barcode_number activated ");
 
     }
 

@@ -137,7 +137,7 @@
                                 </div>
 
                                 
-                                <div class="col">
+                                <div class="col" hidden>
                                     <label for="password">Password</label>
                                     <input disabled type="password" class="form-control form-control-user  @error("password") is-invalid @enderror" 
                                     id="password"  name="password" value="{{$client->password}}">

@@ -81,6 +81,8 @@ Route::group(['prefix' => 'user_space'], function(){
     Route::get('/formuler_plainte', [userController::class, 'formuler_plainte_Show'])->name('user.formuler_plainte');
     Route::post('/formuler_plainte', [userController::class, 'formuler_plainte'])->name('user.formuler_plainte');
 
+    Route::get('/account_activation_request', [userController::class, 'activation_request']) -> name('user.activation_request');
+
 
     
 });
@@ -135,6 +137,12 @@ Route::group(['prefix'=>'clients'], function(){
     Route::get("/show_statut/{client}", [clientsController::class, "showForchangeStatut"])->name("clients.showForchangeStatut");
 
     Route::patch("/change_statut/{client}", [clientsController::class, "changeStatut"])->name("clients.changeStatut");
+
+    Route::get("/activate_clients_accounts", [clientsController::class, "activate_account_show"])->name("clients.activate_account_show");
+
+    Route::patch("/activate_clients_accounts", [clientsController::class, "activate_account"])->name("clients.activate_account");
+
+
 
     Route::patch("/update/{client}", [clientsController::class, "update"])->name("clients.update");
 

@@ -104,6 +104,7 @@
                 <h6 class="collapse-header">Actions sur clients</h6>
                 <a class="collapse-item" href="{{route('clients.index')}}">Liste des clients</a>
                 <a class="collapse-item" href="{{route('clients.create')}}">+ nouveau client</a>
+                <a class="collapse-item" href="{{route('clients.activate_account_show')}}">Activation requests</a>
                 <a class="collapse-item" href="{{route('clients.statuts')}}">Change client's statut</a>
             </div>
         </div>
@@ -111,22 +112,7 @@
 
     <!-- Nav Item - Charts -->
 
-{{--     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3"
-            aria-expanded="true" aria-controls="collapse3">
-            <i class="fas fa-clipboard-list"></i>
-            <span>Plaintes</span>
-        </a>
-        <div id="collapse3" class="collapse" aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Actions sur plaintes</h6>
-                <a class="collapse-item" href="{{route('clients.index')}}">Non traitées</a>
-                <a class="collapse-item" href="{{route('clients.create')}}">Urgentes</a>
-                <a class="collapse-item" href="{{route('plaintes.archives')}}">Archives</a>
-            </div>
-        </div>
-    </li> --}}
+
 
     <li class="nav-item">
         <a class="nav-link" href="{{route('plaintes.index')}}">
@@ -141,27 +127,7 @@
     </li>
 
 
-    {{-- <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse4"
-            aria-expanded="true" aria-controls="collapse4">
-            <i class="fas fa-comments"></i>
-            <span>Requêtes</span>
-        </a>
-        <div id="collapse4" class="collapse" aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Actions sur requêtes</h6>
-                <a class="collapse-item" href="{{route('clients.index')}}">Non traitées</a>
-                <a class="collapse-item" href="{{route('clients.create')}}">Urgentes</a>
-                <a class="collapse-item" href="{{route('clients.statuts')}}">Archives</a>
-            </div>
-        </div>
-    </li> --}}
-  {{--   <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Abonnements</span></a>
-    </li> --}}
+   
 
     <!-- Nav Item - Tables -->
     

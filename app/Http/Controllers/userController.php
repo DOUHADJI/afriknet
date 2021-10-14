@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\abonnements;
+use App\Models\activation_requests;
 use App\Models\clients;
 use App\Models\forfaits;
 use App\Models\liste_des_abonnements;
@@ -52,10 +53,43 @@ class userController extends Controller
 
       $plainte_courante = requetes_plaintes::where("user_id", "=", auth()->user()->id)->orderBy("created_at", "desc") -> first();
 
+      $request_existance = activation_requests::where('user_id', '=', Auth::user()->id)->where("request_statut", "=", 0)->orderBy("created_at", "desc") ->first();
+
+
 /* dd($last_souscription); */
 
 
-        return view ('user.index', compact('client', 'souscriptions', 'last_souscription', 'last_forfait' , 'plainte_courante'));
+        return view ('user.index', compact('client', 'souscriptions', 'last_souscription', 'last_forfait' , 'plainte_courante', 'request_existance'));
+    }
+
+
+
+    public function activation_request() {
+
+        $request_existance = activation_requests::where('user_id', '=', Auth::user()->id)->where("request_statut", "=", 0)->orderBy("created_at", "desc") ->first();
+       
+        /* dd($request_existance); */
+
+        if ( $request_existance !=null )
+
+        {
+            $request_existance->delete();
+
+            return redirect()->route('user.index') -> with("success", "Votre demande d'activation de compte a été annulée");
+        }
+        else
+        {
+            activation_requests::create([
+
+                "user_id" => Auth::user()->id,
+                "request_statut" => 0,
+            ]);
+
+        return redirect()->route('user.index') -> with("success", "Votre demande a été prise en compte. Votre compte sera bientôt activé");
+
+            
+        }       
+
     }
 
 

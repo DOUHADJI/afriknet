@@ -1,5 +1,28 @@
 
 
+  @php
+  use App\Models\requetes_plaintes;
+  use App\Models\User;
+  
+
+
+
+
+  $new_plaintes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'plainte') ->orderBy('id', 'desc')->get() -> take(3);
+
+  $new_requetes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'requete') ->orderBy('id', 'desc')->get() -> take(3);
+
+  $users= User::get();
+
+  $inactive_users =  DB::table('users')
+                         ->where("statut_activite", "=", 0)
+                         ->join("activation_requests", "users.id", "=",  "activation_requests.user_id")
+                         -> where("request_statut", "=", 0)
+                         ->select('users.*')
+                         ->get();
+
+@endphp
+
  <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
     <!-- Sidebar Toggle (Topbar) -->
@@ -11,13 +34,24 @@
     <form
         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         <div class="input-group">
-            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search fa-sm"></i>
-                </button>
-            </div>
+            @if($inactive_users->count() !=null)
+
+            <a href="#" class="btn btn-danger btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="bi bi-person-x-fill"></i>
+                </span>
+                <span class="text">Activation requests</span>
+
+                <span class="icon text-white-50">
+                    {{ $inactive_users->count() }}
+                </span>
+            </a>
+
+            
+        @else
+            
+        @endif
+
         </div>
     </form>
 
@@ -50,22 +84,9 @@
 
         <!-- Nav Item - Alerts -->
 
-        @php
-                use App\Models\requetes_plaintes;
-                use App\Models\User;
-                
-           
+      
 
-             
-
-                $new_plaintes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'plainte') ->orderBy('id', 'desc')->get() -> take(3);
-
-                $new_requetes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'requete') ->orderBy('id', 'desc')->get() -> take(3);
-
-                $users= User::get();
-
-        @endphp
-
+     
         <li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
