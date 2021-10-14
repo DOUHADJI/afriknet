@@ -56,7 +56,7 @@
                               <p class="text-uppercase fw-bolder fs-6 mt-3 mb-5    px-1 text-center">Code d'identification Client : {{$client->barcode_number}}</p>
   
 
-                              @if(auth()->user()->statut_activite == '0')
+                          @if(auth()->user()->statut_activite == '0')
 
                               <p class="text-uppercase fw-bolder fs-6 mt-3 mb-5    px-1 text-center">
                                 Votre compte est actulllement inactif <br>
@@ -101,20 +101,24 @@
                                 <a href="{{ route("user.formuler_plainte") }}" class="btn text-white px-5" style="background-color: #fc08008c">Formuler une <br> plainte</a>
                                </div>
 
+                               @endif
+                           
                                
-                               @if($plainte_courante == null ||$plainte_courante->statut == "archivé" )
+                               @if($plainte_courante == null || $plainte_courante->statut == "archivé" )
 
-                                 @elseif ($plainte_courante->statut == "traitement")
+                                 @elseif ($plainte_courante->statut == "en cours de traitement")
 
                                  <div class="mt-2 py-2 text-center mb-3" style="background-color: rgba(28, 145, 115, 0.863)">
                                   <p class="bg-light text-danger fw-bolder"> Statut de traitement de votre plainte courante <br> </p>
                                   motif : {{ $plainte_courante->motif }} <br>
-                                  Statut : {{ $plainte_courante->statut }} le  {{ $plainte_courante->updated_at }} 
+                                  Statut : <p class="badge badge-light"> {{ $plainte_courante->statut }} </p> le  {{ $plainte_courante->updated_at }} 
                                   </div>
 
                                   @elseif ($plainte_courante->statut == "traité")
 
-                                  <div class="container">
+                              {{--     Commented because if the statut = traité it always displays the code commented below --}}
+                              
+                             {{--      <div class="container">
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                                   
                                       <p> <span class="bi-check-circle-fill mr-1 fa-2x"></span>Votre plainte a été traité. Merci de votre patience et pour votre confiance</p>
@@ -122,7 +126,7 @@
                                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                   
                                   </div>
-                                  </div> 
+                                  </div>  --}}
                                    
                               
                                @else 
@@ -136,7 +140,7 @@
                                @endif
 
                                 
-                              @endif
+                    
 
                              
 
