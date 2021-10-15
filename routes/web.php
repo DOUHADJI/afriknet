@@ -5,11 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\clientsController;
 use App\Http\Controllers\abonnementsController;
-use App\Http\Controllers\auth\admin\adminLoginController;
-use App\Http\Controllers\auth\admin\adminLogoutController;
-use App\Http\Controllers\auth\loginController;
-use App\Http\Controllers\auth\logOutController;
-use App\Http\Controllers\auth\signInController;
+use App\Http\Controllers\auth\admin\AdminLoginController;
+use App\Http\Controllers\auth\admin\AdminLogoutController;
+use App\Http\Controllers\auth\LoginController;
+use App\Http\Controllers\auth\LogOutController;
+use App\Http\Controllers\auth\SignInController;
 use App\Http\Controllers\forfaitsController;
 
 use App\Http\Controllers\plaintesController;
@@ -43,11 +43,11 @@ Route::group(["prefix" => "auth"], function () {
     
     Route::group(["middleware" => ["guest"]], function () {
 
-        Route::get("/signin", [signInController::class, "create"])->name("register");
-        Route::post("/signin", [signInController::class, "register"]);
+        Route::get("/signin", [S::class, "create"])->name("register");
+        Route::post("/signin", [S::class, "register"]);
 
-        Route::get("/login", [loginController::class, "create"])->name("login");
-        Route::post("/login", [loginController::class, "authenticate"]);
+        Route::get("/login", [LoginController::class, "create"])->name("login");
+        Route::post("/login", [LoginController::class, "authenticate"]);
 
         Route::get('/email/verify', function () {
             return view('verify_email');
@@ -62,7 +62,7 @@ Route::group(["prefix" => "auth"], function () {
         
     });
 
-    Route::post("/logout", logOutController::class)->name("auth.logout")->middleware("auth");
+    Route::post("/logout", LogOutController::class)->name("auth.logout")->middleware("auth");
 
 
 });
@@ -141,8 +141,8 @@ Route::group(['prefix'=>"admin"], function () {
 
     Route::group(['middleware' =>["guest:admin"]] ,function(){
  
-        Route::get('/login',[adminLoginController::class, "index"])->name('admin.login');
-        Route::post('/login',[adminLoginController::class, "login"])->name("admin.authenticate");
+        Route::get('/login',[AdminLoginController::class, "index"])->name('admin.login');
+        Route::post('/login',[AdminLoginController::class, "login"])->name("admin.authenticate");
 
      /*    Route::view('/post','data-post')->name('post')->middleware('can:role,"admin","editor"');
         Route::view('/admin','data-admin')->name('admin')->middleware('can:role,"admin"'); */
@@ -153,7 +153,7 @@ Route::group(['prefix'=>"admin"], function () {
      /*   Authenticate the admins */
   /*   FIN */
 
-    Route::post('logout',[adminLogoutController::class, "logout"])->name('admin.logout');
+    Route::post('logout',[A::class, "logout"])->name('admin.logout');
 
 });
 
