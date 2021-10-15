@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
            requetes_plaintesSeeder::class,
            liste_des_forfaitsSeeder::class,
            liste_des_abonnementsSeeder::class,
+           adminSeeder::class,
           
 
         ]);

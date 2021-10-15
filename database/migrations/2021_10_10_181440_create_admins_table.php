@@ -18,7 +18,7 @@ class CreateAdminsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->boolean('is_super')->default(false);
+            $table->enum('role',['L1','L2','L3'])->default('L1');
             $table->rememberToken();
             $table->timestamps();
         });

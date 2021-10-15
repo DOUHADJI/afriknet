@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Faker;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Auth\Events\Registered;
 
 class signInController extends Controller
 {
@@ -41,7 +42,7 @@ class signInController extends Controller
          
    /*  dd($request); */
 
-        User::create([
+      $user =  User::create([
 
             "name" =>$request->name,
             "prenom" => $request->prenoms,
@@ -57,6 +58,8 @@ class signInController extends Controller
         
 
         ]);
+
+     /*    event(new Registered($user)); */
 
         return redirect()->route("login");
 

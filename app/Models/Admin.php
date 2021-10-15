@@ -9,10 +9,10 @@ use Illuminate\Notifications\Notifiable;
     {
         use Notifiable;
 
-        protected $guard = 'admin';
+      
 
         protected $fillable = [
-            'name', 'email', 'password',
+            'name', 'email', 'password', 'role'
         ];
 
         protected $hidden = [

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\clientsController;
 use App\Http\Controllers\abonnementsController;
+use App\Http\Controllers\auth\admin\adminLoginController;
+use App\Http\Controllers\auth\admin\adminLogoutController;
 use App\Http\Controllers\auth\loginController;
 use App\Http\Controllers\auth\logOutController;
 use App\Http\Controllers\auth\signInController;
@@ -16,6 +18,8 @@ use App\Http\Controllers\requetesController;
 use App\Http\Controllers\userController;
 use App\Models\abonnements;
 use App\Models\forfaits;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,11 +39,8 @@ Route::get('/', function () {
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
 Route::group(["prefix" => "auth"], function () {
+    
     Route::group(["middleware" => ["guest"]], function () {
 
         Route::get("/signin", [signInController::class, "create"])->name("register");
@@ -47,9 +48,26 @@ Route::group(["prefix" => "auth"], function () {
 
         Route::get("/login", [loginController::class, "create"])->name("login");
         Route::post("/login", [loginController::class, "authenticate"]);
+
+        Route::get('/email/verify', function () {
+            return view('verify_email');
+        })->middleware('auth')->name('verification.notice');
+    
+        Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+            $request->fulfill();
+        
+            return redirect() -> route ('user.index');
+        })->middleware(['auth', 'signed'])->name('verification.verify');
+
+        
     });
+
     Route::post("/logout", logOutController::class)->name("auth.logout")->middleware("auth");
+
+
 });
+
+
  
 /* 
 CHECK IF THE USER IS CURRENTLY CONNECTED
@@ -86,6 +104,7 @@ Route::group(['prefix' => 'user_space'], function(){
 
     
 });
+
 /* Routes user */
 /* Routes user */
 /* Routes user */
@@ -105,11 +124,58 @@ FIN
 */
 
 
-Route::get('dashboard', [dashboardController::class, 'index']) ->name('dashboard');
 
-Route::get('/new_plaintes', [dashboardController::class, 'new_plaintes']) ->name('new_plaintes');
 
-Route::get('/new_requetes', [dashboardController::class, 'new_requetes']) ->name('new_requetes');
+
+
+
+
+/* Admin part routes */
+/* Admin part routes */
+/* Admin part routes */
+
+Route::group(['prefix'=>"admin"], function () {
+
+  /*   Authenticate the admins */
+  /*   DEBUT */
+
+    Route::group(['middleware' =>["guest:admin"]] ,function(){
+ 
+        Route::get('/login',[adminLoginController::class, "index"])->name('admin.login');
+        Route::post('/login',[adminLoginController::class, "login"])->name("admin.authenticate");
+
+     /*    Route::view('/post','data-post')->name('post')->middleware('can:role,"admin","editor"');
+        Route::view('/admin','data-admin')->name('admin')->middleware('can:role,"admin"'); */
+
+    });
+
+
+     /*   Authenticate the admins */
+  /*   FIN */
+
+    Route::post('logout',[adminLogoutController::class, "logout"])->name('admin.logout');
+
+});
+
+
+
+
+    Route::group(["prefix"=>"dashboard"], function() {
+
+        Route::get("/", [dashboardController::class, "index"])->name('dashboard');
+
+        Route::get('/new_plaintes', [dashboardController::class, 'new_plaintes']) ->name('new_plaintes');
+        Route::get('/new_requetes', [dashboardController::class, 'new_requetes']) ->name('new_requetes');
+
+
+});
+
+/* Admin part routes */
+/* Admin part routes */
+/* Admin part routes */
+
+
+
 
 
 /* 

@@ -17,5 +17,11 @@ class Authenticate extends Middleware
         if (! $request->expectsJson()) {
             return route('login');
         }
+
+        if($request->is(config('admin.prefix').'*')){
+            return route('admin.login');
+        }
+
+        
     }
 }
