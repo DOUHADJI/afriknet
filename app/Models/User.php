@@ -21,7 +21,7 @@ class User extends Authenticatable /* implements MustVerifyEmail */
         'name',
         'email',
         'password',
-        "pays", 'ville', 'contact', 'type' , 'statut_activite', 'barcode_number','prenom'
+        "pays", 'ville', 'contact', 'type' , 'statut_activite', 'barcode_number','prenom', 'token', 'email_verified_at'
     ];
 
     /**

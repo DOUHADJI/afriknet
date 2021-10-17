@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\registerMail;
 use App\Models\abonnements;
 use App\Models\activation_requests;
 use App\Models\clients;
@@ -14,6 +15,11 @@ use Database\Factories\abonnementsFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+
+
 
 class userController extends Controller
 {
@@ -51,7 +57,7 @@ class userController extends Controller
                                                ->select('liste_des_forfaits.*','forfaits.*')
                                                 /* -> orderBy("updated_at", "asc") */ ->first();
 
-      $plainte_courante = requetes_plaintes::where("user_id", "=", auth()->user()->id)->orderBy("created_at", "desc") -> first();
+      $plainte_courante = requetes_plaintes::where("user_id", "=", auth()->user()->id)->where("type", "=", "plainte")->orderBy("created_at", "desc") -> first();
 
       $request_existance = activation_requests::where('user_id', '=', Auth::user()->id)->where("request_statut", "=", 0)->orderBy("created_at", "desc") ->first();
 
@@ -110,9 +116,9 @@ class userController extends Controller
 
     public function modifier_infos(User $user){
 
-        $client = DB::table("users") -> where ("email", "=", auth()->user()->email)->first();
+        $client = Auth::user();
         
-        return view('user.modifier_infos', compact('client','user'));
+        return view('user.modifier_infos', compact('client', 'user'));
     }
 
 
@@ -150,14 +156,10 @@ class userController extends Controller
 
         ]);
 
-        
-
-
-
-      
-
         return redirect() -> back() -> with("success", "Votre souscription à l'abonnement  $abonnement->nom   a bien effectuée");
     }
+
+
 
     public function formuler_requete_Show () {
 
@@ -218,48 +220,6 @@ class userController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function confirmPasswordBeforeUpddate($id)
-    {
-       
-    }
 
     /**
      * Update the specified resource in storage.
@@ -270,6 +230,7 @@ class userController extends Controller
      */
     public function update(Request $request, User $user)
     {
+
         $request -> validate([
 
             "firstname" =>["required"],
@@ -277,37 +238,174 @@ class userController extends Controller
             "contact" => ["required"],
             "pays" => ["required"],
             "ville" => ["required"],
-            "email" => ["required"],
             "password" => ["required"],
             "type" => ["required"],
         ]);
 
+        $credentials = [
+            'email' => $user -> email,
+            'password' =>$request -> password
 
-
-
-        $user->update([
-
-            "name" => $request -> firstname,
-            "prenom" => $request -> prenom,
-            "pays" => $request -> pays,
-            "ville" => $request -> ville,
-            "contact" => $request -> contact,
-            "email" => $request -> email,
-            "password" => $request -> password,
-            "type" => $request -> type,
-            "email_verified_at" => now(),
-
-        ]);
-
-
-       
+        ];
 
         
 
-        return redirect() -> route('user.index')->with("success", "Informations updated successfully");
+        if(Auth::attempt($credentials)) {
+           
+            $user->update([
+
+                "name" => $request -> firstname,
+                "prenom" => $request -> prenom,
+                "pays" => $request -> pays,
+                "ville" => $request -> ville,
+                "contact" => $request -> contact,
+                "type" => $request -> type,
+            ]);
+
+            return redirect() -> route('user.index')->with("success", "Informations updated successfully");
+
+            
+        } else {
+
+            return redirect() -> back()->with("error", "Mot de passe incorrect. Impossible de modifier vos informations");
+
+        }
+
         
     }
 
+    public function modifier_identifiants(){
+
+        $user = Auth::user();
+        return view("user.modifier_identifiants" , compact('user') );
+    }
+
+
+
+    public function update_identifiants (Request $request, User $user) {
+
+     
+
+        $credentials = [
+            'email' => $user-> email,
+            'password' => $request-> password,
+        ];
+
+        $user->update([
+            'token' => null,
+        ]);
+
+
+
+        if(Auth::attempt($credentials)){
+            
+            if(is_null($request->new_email)){
+
+                if(is_null($request->new_password)){
+
+                    return redirect() -> back()->with('error', "Oups ! Nous avons rencontré un problême. Merci de réessayer !!!");
+                }
+                else {
+
+                    $request -> validate([
+
+                        'new_password' => ["confirmed", "min:8"],
+                        'new_password_confirmation' => ["min:8"],
+    
+                    ]);
+
+                    if($request->new_password === $request-> new_password_confirmation) {
+                        
+                        $user->update([
+                                "password"=> Hash::make($request->new_password),
+                                "token" => Str::random(50),
+                                
+                        ]);
+
+                        Auth::logout();
+
+                        $request->session()->invalidate();
+                
+                        $request->session()->regenerateToken();
+                        
+                        return redirect()->route("login")->with('success', "  Votre mot de passe a été mis à jour avec success");
+                            
+                    } else{
+
+                        return redirect() -> back()->with('error', "Oups ! Les mots de passe ne correspondent pas. Merci de réessayer !!!");
+
+                    }
+                }
+
+               
+            } else{
+
+                if(is_null($request->new_password)){
+
+                    $request -> validate([
+
+                        'new_email' => ["email:rfc,dns"],
+            
+                    ]);
+
+                    $user->update([
+                        "email" => $request-> new_email,
+                        "token" => Str::random(50),
+                    ]);
+
+                    Auth::logout();
+
+                    $request->session()->invalidate();
+            
+                    $request->session()->regenerateToken();
+
+                    Mail::to($user)->send(new registerMail($user));
+
+                    return view("verify_email", compact('user'));
+                }
+                else {
+
+                    $request -> validate([
+
+                        'new_email' => ["email:rfc,dns"],
+                        'new_password' => ["confirmed", "min:8"],
+                        'new_password_confirmation' => ["min:8"],
+            
+                    ]);
+
+                    if($request->new_password === $request->new_password_confirmation) {
+                        
+                        $user->update([
+                                "email" => $request-> new_email,
+                                "password"=> Hash::make($request->new_password),
+                                "token" => Str::random(50),
+                                
+
+                        ]);
+
+                        Auth::logout();
+
+                        $request->session()->invalidate();
+                
+                        $request->session()->regenerateToken();
+
+                        Mail::to($user)->send(new registerMail($user));
+
+                        return view("verify_email", compact('user'));
+                            
+                    } else{
+
+                        return redirect() -> back()->with('error', "Oups ! Les mots de passe ne correspondent pas. Merci de réessayer !!!");
+
+                    }
+                }
+            }
+        }
+
+        return redirect() -> back()->with('error', "Oups ! Mot de passe incorrect. Merci de réessayer !!!");
+
+
+    }
     /**
      * Remove the specified resource from storage.
      *

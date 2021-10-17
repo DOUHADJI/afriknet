@@ -28,7 +28,7 @@
             background-size: cover;
         }
 
-        .sub_main_div{
+        .sub_main_div {
             background-color: rgba(0, 0, 0, 0.438)
         }
 
@@ -42,16 +42,16 @@
                         <p class="text-center fs-3 text-white fw-light ">Confirmation par email</p>
                         <hr class="bg-light">
 
-                        <p class="fw-lighter mt-3 " ><span class="fs-5">Salut {{ $user->name }}</span> . <br> Bienvenue chez Global .net.</p>
-                        <p class=" fw-lighter" >Il vous reste une dernière étape pour pouvoir profiter pleinement de nos services</p>
-                        <p class=" mt-2 fw-lighter ">Un mail de confirmation vous a été envoyé. Veuillez confirmer votre addresse mail pour valider votre compte </p>
 
-                        {{-- <a href="#" class="btn btn-light btn-icon-split ">
+                        <p class=" mt-5 fw-lighter ">Votre compte a été bien valider. Vous pouvez dès à présent profiter pleinement de nos services</p>
+
+                        <a href="{{ route('login') }}" class="btn btn-light btn-icon-split ">
+
                             <span class="icon text-gray-600">
-                                <i class="fas fa-envelope"></i>
+                                <i class="fas fa-arrow-right"></i>
                             </span>
-                            <span class="text">Renvoyer un mail de confirmation</span>
-                        </a> --}}
+                            <span class="text">Se connecter</span>
+                        </a>
 
                         
                 </div>

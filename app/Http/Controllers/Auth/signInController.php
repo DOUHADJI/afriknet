@@ -4,6 +4,7 @@ namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\registerUserRequest;
+use App\Mail\registerMail;
 use App\Models\clients;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Faker;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class signInController extends Controller
 {
@@ -39,8 +42,9 @@ class signInController extends Controller
             return User::whereBarcodeNumber($number)->exists();
         }
         $code = generateBarcodeNumber();
-         
-   /*  dd($request); */
+        
+
+        $token = Str::random(50);
 
       $user =  User::create([
 
@@ -51,17 +55,30 @@ class signInController extends Controller
             "ville" => $request->ville,
             "email" => $request->email,
             "password" => Hash::make($request->password),
-            "email_verified_at" => now(),
+            "email_verified_at" =>null,
             "type" => $request->type,
             "statut_activite" =>$request->statut,
             'barcode_number' =>$code,
-        
+            'token' => $token,
+         
 
         ]);
 
-     /*    event(new Registered($user)); */
+    /*     dd($user); */
 
-        return redirect()->route("login");
+      Mail::to($user)->send(new registerMail($user));
 
+        return view("verify_email", compact('user'));
+
+    }
+
+    public function confirm_account (User $user , $token) {
+
+        $user -> update([
+            "email_verified_at" =>now(),
+            "token" => Hash::make($user->barcode_number)
+        ]);
+
+            return view('confirmed_email');
     }
 }

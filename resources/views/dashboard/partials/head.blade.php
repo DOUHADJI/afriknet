@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Global .net</title>
+    <title>{{ config('app.name') }}</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{URL::asset("/template_resources/vendor/fontawesome-free/css/all.min.css")}}" rel="stylesheet" type="text/css">

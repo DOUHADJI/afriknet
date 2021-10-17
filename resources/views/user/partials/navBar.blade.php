@@ -20,6 +20,7 @@
     
 
       
+     
 
         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -36,29 +37,29 @@
                 aria-labelledby="userDropdown">
 
                 <a class="dropdown-item" href="{{route("user.index")}}">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    My account
+                    <i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Accueil
                 </a>
-{{-- 
-                <a class="dropdown-item" href="{{route('user.scrire')}}">
-                    <i class="fas fa-plus  fa-sm fa-fw mr-2 text-gray-400"></i>
-                    <span>Souscription</span>
-                </a> --}}
+
+                <a class="dropdown-item" href="{{route('user.modifier_identifiants')}}">
+                    <i class="fas fa-user-edit  fa-sm fa-fw mr-2 text-gray-400"></i>
+                    <span>Modifier mes identifiants</span>
+                </a>
 
                 <a class="dropdown-item" href="{{route('user.modifier_infos', auth()->user() )}}">
                     <i class="fas fa-pencil-alt  fa-sm fa-fw mr-2 text-gray-400"></i>
-                    <span>Update my profile</span>
+                    <span>Mettre à jour mes informations</span>
                 </a>
 
-                <a class="dropdown-item" href="{{route('user.writte')}}">
+                {{-- <a class="dropdown-item" href="{{route('user.writte')}}">
                     <i class="fas fa-comments fa-sm fa-fw mr-2 text-gray-400"></i>
                     <span>Writte  with us</span>
-                </a>
+                </a> --}}
 
-                <a class="dropdown-item" href="#">
+               {{--  <a class="dropdown-item" href="#">
                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                     Settings
-                </a>
+                </a> --}}
 
                 <a class="dropdown-item" href="{{route('user.faq')}}">
                     <i class="fas fa-question-circle fa-sm fa-fw mr-2 text-gray-400"></i>

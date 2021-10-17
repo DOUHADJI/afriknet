@@ -5,11 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\clientsController;
 use App\Http\Controllers\abonnementsController;
-use App\Http\Controllers\auth\admin\AdminLoginController;
-use App\Http\Controllers\auth\admin\AdminLogoutController;
-use App\Http\Controllers\auth\LoginController;
-use App\Http\Controllers\auth\LogOutController;
-use App\Http\Controllers\auth\SignInController;
+use App\Http\Controllers\auth\admin\adminLoginController;
+use App\Http\Controllers\auth\admin\adminLogoutController;
+use App\Http\Controllers\auth\loginController;
+use App\Http\Controllers\auth\logOutController;
+use App\Http\Controllers\auth\signInController;
 use App\Http\Controllers\forfaitsController;
 
 use App\Http\Controllers\plaintesController;
@@ -43,26 +43,18 @@ Route::group(["prefix" => "auth"], function () {
     
     Route::group(["middleware" => ["guest"]], function () {
 
-        Route::get("/signin", [S::class, "create"])->name("register");
-        Route::post("/signin", [S::class, "register"]);
+        Route::get("/signin", [signInController::class, "create"])->name("register");
+        Route::post("/signin", [signInController::class, "register"]);
 
-        Route::get("/login", [LoginController::class, "create"])->name("login");
-        Route::post("/login", [LoginController::class, "authenticate"]);
-
-        Route::get('/email/verify', function () {
-            return view('verify_email');
-        })->middleware('auth')->name('verification.notice');
-    
-        Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-            $request->fulfill();
-        
-            return redirect() -> route ('user.index');
-        })->middleware(['auth', 'signed'])->name('verification.verify');
+        Route::get("/login", [loginController::class, "create"])->name("login");
+        Route::post("/login", [loginController::class, "authenticate"]);
 
         
     });
 
-    Route::post("/logout", LogOutController::class)->name("auth.logout")->middleware("auth");
+    Route::get("/confirm_account/{user}/{token}", [signInController::class, "confirm_account"]) -> name('confirmation_notice');
+
+    Route::post("/logout", logOutController::class)->name("auth.logout")->middleware("auth");
 
 
 });
@@ -86,10 +78,19 @@ Route::group(["middleware" => ["auth"]], function(){
 Route::group(['prefix' => 'user_space'], function(){
 
     Route::get('/', [userController::class, 'index'])->name('user.index');
-    Route::get('/messages', [userController::class, 'writte_us'])->name('user.writte');
+
+    Route::get('/messages', [userController::class, 'writte_us'])->name('user.writte')
+    ;
     Route::get('/help', [userController::class, 'faq'])->name('user.faq');
+
     Route::get('/modifier_mes_informations/{user}', [userController::class, 'modifier_infos'])->name('user.modifier_infos');
-    Route::patch('/modifier_mes_informations/{user}/update', [userController::class, 'update'])->name('user.update');
+    Route::patch('/modifier_mes_informations/{user}', [userController::class, 'update'])->name('user.update');
+
+    Route::get('/modifier_mes_identifiants/', [userController::class, 'modifier_identifiants'])->name('user.modifier_identifiants');
+    Route::patch('/modifier_mes_identifiants/{user}', [userController::class, 'update_identifiants'])->name('user.update_identifiants');
+
+
+
     Route::get('/souscrire_à_un_forfait', [userController::class, 'scrire_forfait'])->name('user.scrire_forfait');
     Route::get('/souscrire_à_un_abonnement', [userController::class, 'scrire_abonnement'])->name('user.scrire_abonnement');
 
@@ -141,8 +142,8 @@ Route::group(['prefix'=>"admin"], function () {
 
     Route::group(['middleware' =>["guest:admin"]] ,function(){
  
-        Route::get('/login',[AdminLoginController::class, "index"])->name('admin.login');
-        Route::post('/login',[AdminLoginController::class, "login"])->name("admin.authenticate");
+        Route::get('/login',[adminLoginController::class, "index"])->name('admin.login');
+        Route::post('/login',[adminLoginController::class, "login"])->name("admin.authenticate");
 
      /*    Route::view('/post','data-post')->name('post')->middleware('can:role,"admin","editor"');
         Route::view('/admin','data-admin')->name('admin')->middleware('can:role,"admin"'); */
@@ -153,7 +154,7 @@ Route::group(['prefix'=>"admin"], function () {
      /*   Authenticate the admins */
   /*   FIN */
 
-    Route::post('logout',[A::class, "logout"])->name('admin.logout');
+    Route::post('logout',[adminLogoutController::class, "logout"])->name('admin.logout');
 
 });
 

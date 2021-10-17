@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('prenom');
-            $table->string('email')->unique();
+            $table->string('email')/* ->unique() */;
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
@@ -25,10 +25,11 @@ class CreateUsersTable extends Migration
 
             $table->string('pays')->nullable(false);
             $table->string('ville')->nullable(false);
-            $table->string('contact')->nullable(false) -> unique();
+            $table->string('contact')->nullable(false) /*  -> unique() */;
             $table->string('type')->nullable(false);
             $table->boolean('statut_activite')->default(true);     
             $table->string('barcode_number')->nullable(false);
+            $table -> string("token") ->nullable();
        
         });
     }

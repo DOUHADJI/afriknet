@@ -5,20 +5,25 @@
 
 <div class="container">
 
-    <div class="alert alert-light mb-5">
-        <p class=" text-xs fw-bold text-center fst-italic">Modifier vos informations  ici<span></span> <span class="bi bi-emoji-smile"></span>
-        </p>
+    @if ($message = Session::get('error'))
+
+
+    <div class="container mt-3">
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
     
-
-        <p class=" text-md fw-bold text-center fst-italic"> <span></span>
-        </p>
-
+        <p> <span class="bi-check-circle-fill mr-1 fa-2x"></span>{{ $message }}</p>
+        
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    
     </div>
+    </div>    
+    
+    @endif
 
-    <div class="card shadow mb-4">
+    <div class="card shadow mb-4 mt-3">
         <div class="card-header py-3">
 
-            <h6 class="m-0 font-weight-bold text-primary">Edit my informations  
+            <h6 class="m-0 font-weight-bold text-primary">Mettre à jour mes informations  
                 
                 <span class="fas fa-user fa-3x ml-2 {{-- @if($client->statut_activite === 1) text-success @else text-danger @endif  --}}"> </span>
         
@@ -102,6 +107,7 @@
 
                         </div>
 
+                        
                         <div class="col">
                             <label for="type">Type</label>
                             <select  name="type" id="type" class="form-control form-control-user @error("type") is-invalid @enderror " >
@@ -121,42 +127,8 @@
                             @enderror
 
                         </div>
-
                 
-
-
-                    </div>
-                
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-
                         <div class="col">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control form-control-user @error("email") is-invalid @enderror " 
-                            id="email"  name="email" value="{{$client->email}}">
-
-                            @error("email")
-                            <div class="invalid-feedback">{{$message}}</div>
-                         @enderror
-
-
-                        </div>
-
-                        
-                        <div class="col">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control form-control-user  @error("password") is-invalid @enderror" 
-                            id="password"  name="password" value="{{$client->password}}">
-
-                            @error("password")
-                            <div class="invalid-feedback">{{$message}}</div>
-                         @enderror
-
-                        </div>
-
-                        <div class="col-3">
 
                             <label for="statut">Statut</label>
 
@@ -188,17 +160,31 @@
 
                         </div>
 
-                        
-
 
                     </div>
                 
                 </div>
 
+             
+
         </div>
 
         <div class="card-footer ">
-                <button class="btn btn-success" type="submit">Modifier</button>
+
+            <div class="col">
+                <label for="password" class="fw-bold text-danger">Confirmer avec votre mot de passe actuel</label>
+                <input type="password" class="form-control form-control-user  @error("password") is-invalid @enderror" 
+                id="password"  name="password" >
+
+                @error("password")
+                <div class="invalid-feedback">{{$message}}</div>
+             @enderror
+
+            </div>
+            <div class="col d-flex justify-content-lg-end mt-2">
+                <button class="btn btn-success " type="submit">Modifier</button>
+
+            </div>
         </div>
 
     </form>
