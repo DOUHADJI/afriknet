@@ -11,12 +11,10 @@ use Illuminate\Support\Facades\Hash;
 class loginController extends Controller
 {
 
-    public function __construct()
+   /*  public function __construct()
     {
-        $this->middleware('guest')->except('logout');
-        $this->middleware('guest:admin')->except('logout');
-        $this->middleware('guest:client')->except('logout');
-    }
+        $this->middleware('guest');
+    } */
 
 
     public function create(){
@@ -45,7 +43,7 @@ class loginController extends Controller
   
     
 
-        if(Auth::attempt($credentials)){
+        if(Auth::attempt($credentials, $request->remember_me)){
 
                 $request -> session() -> regenerate();
 

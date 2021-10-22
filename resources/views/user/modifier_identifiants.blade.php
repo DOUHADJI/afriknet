@@ -25,9 +25,9 @@
     <div class="card shadow mb-4 mt-3">
         <div class="card-header py-3">
 
-            <h6 class="m-0 font-weight-bold text-primary">Modifier mes identifiants  
+            <h6 class="m-0 font-weight-bold text-primary">Modifier mes identifiants de connexion
                 
-                <span class="fas fa-user fa-3x ml-2 {{-- @if($client->statut_activite === 1) text-success @else text-danger @endif  --}}"> </span>
+                <span class="fas fa-user fa-3x ml-2 @if($user->statut_activite === 1) text-success @else text-danger @endif "> </span>
         
             </h6>
 

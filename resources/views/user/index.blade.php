@@ -29,7 +29,7 @@
         ">
             <div class="h-100 p-5" style="background-color: rgba(0, 0, 0, 0.13)">
 
-              <p class=" text-xs fw-bold text-center fst-italic bg-white text-black mx-5 py-3 mb-5">Bienvenue dans votre espace client <span>Afriknet</span> <span class="bi bi-emoji-smile"></span>
+              <p class=" text-xs fw-bold text-center fst-italic bg-white text-black mx-5 py-3 mb-5">Bienvenue dans votre espace client <span>Global <sup>.net</sup></span> <span class="bi bi-emoji-smile"></span>
               </p>
 
              
@@ -168,8 +168,8 @@
   
                           <p class=" text-uppercase fw-bolder text-xs mt-3">Nom : <strong>{{$client->name}}</strong></p>
                           <p class=" text-uppercase fw-bolder text-xs mt-3">Prénom(s) : <strong>{{$client->prenom}}</strong></p>
-                          <p class=" text-uppercase fw-bolder text-xs mt-3">Country : <strong>{{$client->pays}}</strong></p>
-                          <p class=" text-uppercase fw-bolder text-xs mt-3">City : <strong>{{$client->ville}}</strong></p>
+                          <p class=" text-uppercase fw-bolder text-xs mt-3">Pays : <strong>{{$client->pays}}</strong></p>
+                          <p class=" text-uppercase fw-bolder text-xs mt-3">Ville : <strong>{{$client->ville}}</strong></p>
                           <p class=" text-uppercase fw-bolder text-xs mt-3">Contact : <strong>{{$client->contact}}</strong></p>
                           <p class=" text-uppercase fw-bolder text-xs mt-3"> Email : <strong>{{$client->email}}</strong></p>
   
@@ -189,8 +189,8 @@
 
                 <div class="d-flex justify-content-around mt-3 ">
 
-                  <a href="{{ route("user.scrire_forfait") }}" class="btn text-white  " style="background-color: #2f254d">Simulate a package <br> payment</a>
-                  <a href="{{ route("user.scrire_abonnement") }}" class="btn text-white  " style="background-color: #2f254d"">Simulate a subscription <br> payment</a>
+                  <a href="{{ route("user.scrire_forfait") }}" class="btn text-white  " style="background-color: #2f254d">Souscrire à un <br> forfait</a>
+                  <a href="{{ route("user.scrire_abonnement") }}" class="btn text-white  " style="background-color: #2f254d"">Souscrire à un  <br> abonnement</a>
                  </div>
 
                 @endif

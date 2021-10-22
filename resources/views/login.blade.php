@@ -71,12 +71,11 @@
                                                 @enderror
                                         </div>
 
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
-                                            </div>
+                                        <div class="form-group text-center">
+                                            
+                                            <input  type="checkbox" class="form-check-input" id="remember_me" name="remember_me">
+                                            <label class="" for="remember_me">Se rappeler de moi</label>
+                                     
                                         </div>
 
                                         <button type="submit" class="btn btn-primary btn-user btn-block">

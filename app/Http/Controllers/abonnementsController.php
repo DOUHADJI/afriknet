@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+
 use App\Models\abonnements;
 use App\Models\clients;
 use App\Models\requetes_plaintes;
@@ -8,6 +10,11 @@ use Illuminate\Http\Request;
 
 class abonnementsController extends Controller
 {
+   /*  public function __construct()
+    {
+        $this->middleware('auth:admin');
+    } */
+
     /**
      * Display a listing of the resource.
      *

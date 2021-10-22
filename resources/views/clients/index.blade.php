@@ -63,25 +63,25 @@
                                     <small class="container-fluid">
                                         <div class="row">
 
-                                          <div class="col-4">
+                                          <div class="col-lg-6 mb-2">
                           
                                           <a class="btn btn-secondary" href="{{route("clients.edit", $client )}}"><span class="fas fa-edit"></span></a>
                           
                                           </div>
 
-                                          <div class="col-4">
+                                          <div class="col-lg-6 ">
                           
                                             <a class="btn btn-success" href="{{route("clients.show", $client )}}"><span class="fas fa-eye"></span></a>
                             
                                             </div>
                           
                           
-                                          <div class="col-4">
+                                          <div class="col-lg-12 mt-2 text-center" >
                                             <a   href="{{route("clients.showForDeletion", $client)}}" type="button" class="btn btn-danger" {{-- data-bs-toggle="modal" data-bs-target="#staticBackdrop" --}}>
                                                 <span class="fas fa-trash"></span>
                                             </a>
-                                            
                                           </div>
+
                                         </div>
                                            
                                       </small>

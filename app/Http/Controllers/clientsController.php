@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\activation_requests;
 use App\Models\clients;
+use App\Models\liste_des_abonnements;
 use App\Models\type_client;
 use App\Models\User;
 use Illuminate\Auth\Events\Validated;
@@ -13,6 +14,11 @@ use Illuminate\Support\Facades\Hash;
 
 class clientsController extends Controller
 {
+   /*  public function __construct()
+    {
+        $this->middleware('auth:admin');
+    } */
+
     /**
      * Display a listing of the resource.
      *
@@ -103,7 +109,21 @@ class clientsController extends Controller
      */
     public function show(User $client)
     {
-        return view("clients.show", compact('client'));
+        $abonnements = DB::table('liste_des_abonnements')
+                                                    ->where('user_id', $client->id)
+                                                    ->join('abonnements', 'liste_des_abonnements.abonnement_id',  'abonnements.id')
+                                                    ->select('liste_des_abonnements.*', 'abonnements.*')
+                                                    ->get();
+
+        $forfaits = DB::table('liste_des_forfaits')
+                                                    ->where('user_id', $client->id)
+                                                    ->join('forfaits', 'liste_des_forfaits.forfait_id',  'forfaits.id')
+                                                    ->select('liste_des_forfaits.*', 'forfaits.*')
+                                                    ->get();
+
+      /*   dd($abonnements); */
+
+        return view("clients.show", compact('client', 'abonnements', 'forfaits'));
     }
 
     

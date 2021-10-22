@@ -10,5 +10,6 @@ Valider mon compte
 @endcomponent
 
 Thanks,<br>
-{{ config('app.name') }}
+Global <sup>.net</sup>
+
 @endcomponent

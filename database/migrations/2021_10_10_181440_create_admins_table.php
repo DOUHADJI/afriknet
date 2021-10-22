@@ -21,6 +21,7 @@ class CreateAdminsTable extends Migration
             $table->enum('role',['L1','L2','L3'])->default('L1');
             $table->rememberToken();
             $table->timestamps();
+            $table -> string('user_type') ->default('admin');
         });
     }
 

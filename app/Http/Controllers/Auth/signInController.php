@@ -7,6 +7,7 @@ use App\Http\Requests\registerUserRequest;
 use App\Mail\registerMail;
 use App\Models\clients;
 use App\Models\User;
+use App\Notifications\userRegisteredNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Faker;
@@ -78,6 +79,8 @@ class signInController extends Controller
             "email_verified_at" =>now(),
             "token" => Hash::make($user->barcode_number)
         ]);
+
+        $user->notify(new userRegisteredNotification($user));
 
             return view('confirmed_email');
     }

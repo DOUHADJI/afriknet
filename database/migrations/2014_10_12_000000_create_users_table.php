@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration
             $table->boolean('statut_activite')->default(true);     
             $table->string('barcode_number')->nullable(false);
             $table -> string("token") ->nullable();
+            $table -> string('user_type') ->default('user');
        
         });
     }

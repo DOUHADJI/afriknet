@@ -35,7 +35,7 @@ Route::get('/', function () {
     $abonnements = abonnements::get();
     $forfaits = forfaits::get();
     return view('welcome', compact('abonnements', 'forfaits'));
-})->name('welcome');
+})->middleware('guest', 'guest:admin')->name('welcome');
 
 
 
@@ -67,7 +67,7 @@ CHECK IF THE USER IS CURRENTLY CONNECTED
 DEBUT
 */
 
-Route::group(["middleware" => ["auth"]], function(){
+Route::group(["middleware" => [ "adminRoutes" , "auth"  ]], function(){
 
     /* Routes user */
 /* Routes user */
@@ -75,7 +75,7 @@ Route::group(["middleware" => ["auth"]], function(){
 
 /* DEBUT*/
 
-Route::group(['prefix' => 'user_space'], function(){
+Route::group(['prefix' =>'user_space'], function(){
 
     Route::get('/', [userController::class, 'index'])->name('user.index');
 
@@ -83,7 +83,7 @@ Route::group(['prefix' => 'user_space'], function(){
     ;
     Route::get('/help', [userController::class, 'faq'])->name('user.faq');
 
-    Route::get('/modifier_mes_informations/{user}', [userController::class, 'modifier_infos'])->name('user.modifier_infos');
+    Route::get('/modifier_mes_informations/', [userController::class, 'modifier_infos'])->name('user.modifier_infos');
     Route::patch('/modifier_mes_informations/{user}', [userController::class, 'update'])->name('user.update');
 
     Route::get('/modifier_mes_identifiants/', [userController::class, 'modifier_identifiants'])->name('user.modifier_identifiants');
@@ -148,187 +148,204 @@ Route::group(['prefix'=>"admin"], function () {
      /*    Route::view('/post','data-post')->name('post')->middleware('can:role,"admin","editor"');
         Route::view('/admin','data-admin')->name('admin')->middleware('can:role,"admin"'); */
 
+   
     });
 
-
-     /*   Authenticate the admins */
+    /*   Authenticate the admins */
   /*   FIN */
 
-    Route::post('logout',[adminLogoutController::class, "logout"])->name('admin.logout');
-
-});
+    Route::post('logout',[adminLogoutController::class, "logout"])->middleware("auth:admin")->name('admin.logout');
 
 
 
-
-    Route::group(["prefix"=>"dashboard"], function() {
-
-        Route::get("/", [dashboardController::class, "index"])->name('dashboard');
-
-        Route::get('/new_plaintes', [dashboardController::class, 'new_plaintes']) ->name('new_plaintes');
-        Route::get('/new_requetes', [dashboardController::class, 'new_requetes']) ->name('new_requetes');
-
-
-});
-
-/* Admin part routes */
-/* Admin part routes */
-/* Admin part routes */
-
-
-
-
-
-/* 
-Routes des clients
-Routes des clients
-Routes des clients
-DEBUT */
-
-Route::group(['prefix'=>'clients'], function(){
-
-    Route::get("/", [clientsController::class, "index"])->name("clients.index");
-
-    Route::get("/client's_statuts", [clientsController::class, "statuts_index"])->name("clients.statuts");
-    
-    Route::get("/create", [clientsController::class, "create"])->name("clients.create");
-    
-    Route::post("/", [clientsController::class, "store"])->name("clients.store");
-
-    Route::get("/show/{client}", [clientsController::class, "show"])->name("clients.show");
-
-    Route::get("/delete/{client}", [clientsController::class, "showForDeletion"])->name("clients.showForDeletion");
-
-    Route::get("/edit/{client}", [clientsController::class, "edit"])->name("clients.edit");
-    
-    Route::get("/show_statut/{client}", [clientsController::class, "showForchangeStatut"])->name("clients.showForchangeStatut");
-
-    Route::patch("/change_statut/{client}", [clientsController::class, "changeStatut"])->name("clients.changeStatut");
-
-    Route::get("/activate_clients_accounts", [clientsController::class, "activate_account_show"])->name("clients.activate_account_show");
-
-    Route::patch("/activate_clients_accounts", [clientsController::class, "activate_account"])->name("clients.activate_account");
-
-
-
-    Route::patch("/update/{client}", [clientsController::class, "update"])->name("clients.update");
-
-
-    Route::delete("/{client}", [clientsController::class, "destroy"])->name("clients.destroy");
-
-
-
-
-});
-
-/* 
-Routes des clients
-Routes des clients
-Routes des clients
-FIN */
-
-
-
-/* Route des abonnements
-Route des abonnements
-Route des abonnements
-DEBUT */
-
-Route::group(['prefix'=>'abonnements'], function(){
-
-    Route::get("/", [abonnementsController::class, "index"])->name("abonnements.index");
-
-    Route::get("/create", [abonnementsController::class, "create"])->name("abonnements.create");
-
-    Route::post("/", [abonnementsController::class, "store"])->name("abonnements.store");
-
-    Route::get("/delete_abonnement", [abonnementsController::class, "showForDelete"])->name("abonnements.showForDelete");
-
-    Route::delete("/{abonnement}", [abonnementsController::class, "destroy"])->name("abonnements.destroy");
-
-
-});
-
-
-/* Route des abonnements
-Route des abonnements
-Route des abonnements
-FIN */
-
-
-
-
-/* Routes des forfaits
-Routes des forfaits
-Routes des forfaits
-DEBUT */
-
-Route::group(['prefix'=>'forfaits'], function(){
-
-    Route::get("/", [forfaitsController::class, "index"])->name("forfaits.index");
-
-    Route::get("/create", [forfaitsController::class, "create"])->name("forfaits.create");
-
-    Route::post("/", [forfaitsController::class, "store"])->name("forfaits.store");
-
-    Route::get("/delete_a_forfait", [forfaitsController::class, "showForDelete"])->name("forfaits.showForDelete");
-
-    Route::delete("/{forfait}", [forfaitsController::class, "destroy"])->name("forfaits.destroy");
-
-});
-
-/* Routes des forfaits
-Routes des forfaits
-Routes des forfaits
-FIN */
-
-
-
-
-/* Routes des plaintes */
-/* Routes des plaintes */
-/* Routes des plaintes */
+/* Authenticated admins routes */
 
 /* DEBUT */
 
-Route::group(['prefix'=>'plaintes'], function(){
+    Route::group(["middleware" => [    /*  "userRoutes" , */ "auth:admin" ]], function(){
 
-    Route::get("/", [plaintesController::class, "index"])->name("plaintes.index");
 
-    Route::get("/add filter/", [plaintesController::class, "filter_plaintes_statut"])->name("plaintes.filter_statut");
+                    Route::group(["prefix"=>"dashboard"], function() {
 
-    Route::patch("/update/{id}", [plaintesController::class, "update"])->name("plaintes.update");
+                        Route::get("/", [dashboardController::class, "index"])->name('dashboard');
+                
+                        Route::get('/new_plaintes', [dashboardController::class, 'new_plaintes']) ->name('new_plaintes');
+                        Route::get('/new_requetes', [dashboardController::class, 'new_requetes']) ->name('new_requetes');
+
+
+                           /* 
+            Routes des clients
+            Routes des clients
+            Routes des clients
+            DEBUT */
+
+            Route::group(['prefix'=>'clients'], function(){
+
+                Route::get("/", [clientsController::class, "index"])->name("clients.index");
+
+                Route::get("/client's_statuts", [clientsController::class, "statuts_index"])->name("clients.statuts");
+                
+                Route::get("/create", [clientsController::class, "create"])->name("clients.create");
+                
+                Route::post("/", [clientsController::class, "store"])->name("clients.store");
+
+                Route::get("/show/{client}", [clientsController::class, "show"])->name("clients.show");
+
+                Route::get("/delete/{client}", [clientsController::class, "showForDeletion"])->name("clients.showForDeletion");
+
+                Route::get("/edit/{client}", [clientsController::class, "edit"])->name("clients.edit");
+                
+                Route::get("/show_statut/{client}", [clientsController::class, "showForchangeStatut"])->name("clients.showForchangeStatut");
+
+                Route::patch("/change_statut/{client}", [clientsController::class, "changeStatut"])->name("clients.changeStatut");
+
+                Route::get("/activate_clients_accounts", [clientsController::class, "activate_account_show"])->name("clients.activate_account_show");
+
+                Route::patch("/activate_clients_accounts", [clientsController::class, "activate_account"])->name("clients.activate_account");
+
+
+
+                Route::patch("/update/{client}", [clientsController::class, "update"])->name("clients.update");
+
+
+                Route::delete("/{client}", [clientsController::class, "destroy"])->name("clients.destroy");
+
+
+
+
+            });
+
+            /* 
+            Routes des clients
+            Routes des clients
+            Routes des clients
+            FIN */
+
+
+
+            /* Route des abonnements
+            Route des abonnements
+            Route des abonnements
+            DEBUT */
+
+            Route::group(['prefix'=>'abonnements'], function(){
+
+                Route::get("/", [abonnementsController::class, "index"])->name("abonnements.index");
+
+                Route::get("/create", [abonnementsController::class, "create"])->name("abonnements.create");
+
+                Route::post("/", [abonnementsController::class, "store"])->name("abonnements.store");
+
+                Route::get("/delete_abonnement", [abonnementsController::class, "showForDelete"])->name("abonnements.showForDelete");
+
+                Route::delete("/{abonnement}", [abonnementsController::class, "destroy"])->name("abonnements.destroy");
+
+
+            });
+
+
+            /* Route des abonnements
+            Route des abonnements
+            Route des abonnements
+            FIN */
+
+
+
+
+            /* Routes des forfaits
+            Routes des forfaits
+            Routes des forfaits
+            DEBUT */
+
+            Route::group(['prefix'=>'forfaits'], function(){
+
+                Route::get("/", [forfaitsController::class, "index"])->name("forfaits.index");
+
+                Route::get("/create", [forfaitsController::class, "create"])->name("forfaits.create");
+
+                Route::post("/", [forfaitsController::class, "store"])->name("forfaits.store");
+
+                Route::get("/delete_a_forfait", [forfaitsController::class, "showForDelete"])->name("forfaits.showForDelete");
+
+                Route::delete("/{forfait}", [forfaitsController::class, "destroy"])->name("forfaits.destroy");
+
+            });
+
+            /* Routes des forfaits
+            Routes des forfaits
+            Routes des forfaits
+            FIN */
+
+
+
+
+            /* Routes des plaintes */
+            /* Routes des plaintes */
+            /* Routes des plaintes */
+
+            /* DEBUT */
+
+            Route::group(['prefix'=>'plaintes'], function(){
+
+                Route::get("/", [plaintesController::class, "index"])->name("plaintes.index");
+
+                Route::get("/add filter/", [plaintesController::class, "filter_plaintes_statut"])->name("plaintes.filter_statut");
+
+                Route::patch("/update/{id}", [plaintesController::class, "update"])->name("plaintes.update");
+
+            });
+
+            /* Routes des plaintes */
+            /* Routes des plaintes */
+            /* Routes des plaintes */
+
+            /* FIN*/
+
+
+
+            /* Routes des requetes */
+            /* Routes des requetes */
+            /* Routes des requetes */
+
+            /* DEBUT */
+
+                    Route::group(['prefix'=>'requetes'], function(){
+
+                        Route::get("/", [requetesController::class, "index"])->name("requetes.index");
+
+                        Route::get("/add filter/", [requetesController::class, "filter_requetes_statut"])->name("requetes.filter_statut");
+
+                        Route::patch("/update/{id}", [requetesController::class, "update"])->name("requetes.update");
+
+                    });
+
+            /* Routes des requetes */
+            /* Routes des requetes */
+            /* Routes des requetes */
+
+            /* FIN*/
+
+                
+                
+                    });
+
+
+            
+
+                /* Authenticated admins routes */
+
+            /* FIN */
+
+            
+
+            /* Admin part routes */
+            /* Admin part routes */
+            /* Admin part routes */
+
+
+     });
+
+
+         
 
 });
-
-/* Routes des plaintes */
-/* Routes des plaintes */
-/* Routes des plaintes */
-
-/* FIN*/
-
-
-
-/* Routes des requetes */
-/* Routes des requetes */
-/* Routes des requetes */
-
-/* DEBUT */
-
-Route::group(['prefix'=>'requetes'], function(){
-
-    Route::get("/", [requetesController::class, "index"])->name("requetes.index");
-
-    Route::get("/add filter/", [requetesController::class, "filter_requetes_statut"])->name("requetes.filter_statut");
-
-    Route::patch("/update/{id}", [requetesController::class, "update"])->name("requetes.update");
-
-});
-
-/* Routes des requetes */
-/* Routes des requetes */
-/* Routes des requetes */
-
-/* FIN*/
-
-

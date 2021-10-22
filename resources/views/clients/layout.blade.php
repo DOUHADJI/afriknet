@@ -27,8 +27,11 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Clients</h1>
-                    <p class="mb-4"></p>
+                    <div class="d-flex mb-5">
+                        <h1 class="h3  text-gray-800 ">Clients / </h1> 
+                        <p class=" ml-2 text-gray-600">{{-- <span class="fas fa-arrow-right"></span> --}} @yield('pageTitle')</p>
+                    </div>
+                   
 
                     <!-- Create a new client -->
 

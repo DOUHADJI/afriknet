@@ -25,7 +25,7 @@
 
             <h6 class="m-0 font-weight-bold text-primary">Mettre à jour mes informations  
                 
-                <span class="fas fa-user fa-3x ml-2 {{-- @if($client->statut_activite === 1) text-success @else text-danger @endif  --}}"> </span>
+                <span class="fas fa-user fa-3x ml-2 @if($user->statut_activite === 1) text-success @else text-danger @endif "> </span>
         
             </h6>
 
@@ -44,9 +44,9 @@
                     <div class="row">
 
                         <div class="col">
-                            <label for="firstname">FirstName</label>
+                            <label for="firstname">Nom</label>
                             <input type="text" class="form-control form-control-user @error("firstname") is-invalid @enderror " 
-                            id="firstname"  name="firstname" value="{{$client->name}}">
+                            id="firstname"  name="firstname" value="{{$user->name}}">
                             
                             @error("firstname")
                                <div class="invalid-feedback">{{$message}}</div>
@@ -57,9 +57,9 @@
 
                         
                         <div class="col">
-                            <label for="prenom">LastName</label>
+                            <label for="prenom">Prénom(s)</label>
                             <input type="text" class="form-control form-control-user  @error("prenom") is-invalid @enderror " 
-                            id="prenom"  name="prenom" value="{{$client->prenom}}">
+                            id="prenom"  name="prenom" value="{{$user->prenom}}">
                             @error("prenom")
                                 <div class="invalid-feedback">{{$message}}</div>
                             @enderror
@@ -69,7 +69,7 @@
                         <div class="col">
                             <label for="contact">Contact</label>
                             <input type="text" class="form-control form-control-user @error("contact") is-invalid @enderror "
-                             id="contact"  name="contact" value="{{$client->contact}}">
+                             id="contact"  name="contact" value="{{$user->contact}}">
 
                             @error("contact")
                                 <div class="invalid-feedback">{{$message}}</div>
@@ -86,9 +86,9 @@
                     <div class="row">
 
                         <div class="col">
-                            <label for="pays">Country</label>
+                            <label for="pays">Pays</label>
                             <input type="text" class="form-control form-control-user @error("pays") is-invalid @enderror "
-                            id="pays"  name="pays" value="{{$client->pays}}">
+                            id="pays"  name="pays" value="{{$user->pays}}">
 
                             @error("pays")
                                 <div class="invalid-feedback">{{$message}}</div>
@@ -97,9 +97,9 @@
 
                         
                         <div class="col">
-                            <label for="ville">City</label>
+                            <label for="ville">Ville</label>
                             <input type="text" class="form-control form-control-user @error("ville") is-invalid @enderror "
-                             id="ville"  name="ville" value="{{$client->ville}}">
+                             id="ville"  name="ville" value="{{$user->ville}}">
 
                             @error("ville")
                             <div class="invalid-feedback">{{$message}}</div>
@@ -113,10 +113,10 @@
                             <select  name="type" id="type" class="form-control form-control-user @error("type") is-invalid @enderror " >
 
                                 <option value="0">--choix--</option>
-                                <option value="Individu" @if($client->type =="Individu")
+                                <option value="Individu" @if($user->type =="Individu")
                                     selected
                                 @endif>Individu</option>
-                                <option value="Entreprise" @if($client->type == "Entreprise")
+                                <option value="Entreprise" @if($user->type == "Entreprise")
                                     selected
                                 @endif>Entreprise</option>
 
@@ -134,7 +134,7 @@
 
                             <div class="form-check">
 
-                                <input disabled class="form-check-input" type="radio" name="statut" id="statut1" value="1" @if($client->statut_activite===1)
+                                <input disabled class="form-check-input" type="radio" name="statut" id="statut1" value="1" @if($user->statut_activite===1)
                                     checked
                                 @endif>
                                 <label class="form-check-label" for="statut1">
@@ -142,7 +142,7 @@
                                 </label>
                               </div>
                               <div class="form-check">
-                                <input disabled class="form-check-input" type="radio" name="statut" id="statut2" value="0" @if($client->statut_activite !==1)
+                                <input disabled class="form-check-input" type="radio" name="statut" id="statut2" value="0" @if($user->statut_activite !==1)
                                 checked
                             @endif>
                                 <label class="form-check-label" for="statut2">

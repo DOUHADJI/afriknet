@@ -23,6 +23,12 @@ use Illuminate\Support\Facades\Hash;
 
 class userController extends Controller
 {
+   /*  public function __construct()
+    {
+        $this->middleware('auth');
+      
+    }
+ */
     /**
      * Display a listing of the resource.
      *
@@ -114,11 +120,11 @@ class userController extends Controller
 
 
 
-    public function modifier_infos(User $user){
+    public function modifier_infos(){
 
-        $client = Auth::user();
+        $user = Auth::user();
         
-        return view('user.modifier_infos', compact('client', 'user'));
+        return view('user.modifier_infos', compact('user'));
     }
 
 
@@ -252,17 +258,22 @@ class userController extends Controller
 
         if(Auth::attempt($credentials)) {
            
-            $user->update([
+            if(auth()->user()->id === $user->id && !is_null(auth()->user()->token)){
+                
+                $user->update([
 
-                "name" => $request -> firstname,
-                "prenom" => $request -> prenom,
-                "pays" => $request -> pays,
-                "ville" => $request -> ville,
-                "contact" => $request -> contact,
-                "type" => $request -> type,
-            ]);
-
-            return redirect() -> route('user.index')->with("success", "Informations updated successfully");
+                    "name" => $request -> firstname,
+                    "prenom" => $request -> prenom,
+                    "pays" => $request -> pays,
+                    "ville" => $request -> ville,
+                    "contact" => $request -> contact,
+                    "type" => $request -> type,
+                ]);
+    
+                return redirect() -> route('user.index')->with("success", "Informations updated successfully");
+            }
+           
+            return redirect() -> back()->with("error", "Oups!!! Il semblerait que nous ayons rencontré un souci");
 
             
         } else {

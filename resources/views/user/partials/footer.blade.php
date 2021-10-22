@@ -1,14 +1,14 @@
 
 
- <div class="text-white bg-dark p-3">
+ <div class="text-white  p-3" style="background-color: #212020">
 
-    <div class="row">
+   {{--  <div class="row">
 
         <div class="col d-flex">
             <div class="subNavInFooter position-relative">
                 <p class="fst-italic fw-bold ml-2">Global .net</p>   
 
-                <div class="container position-absolute  " style="bottom: 2px">
+                <div class="container position-absolute  " style="bottom: 5px">
 
                     <div class="row ">
         
@@ -16,7 +16,7 @@
                         <div class="col-lg-6 col-md-6    d-flex align-items-end " style="background-color:rgba(134, 132, 132, 0.671);">
         
                             <div class="opacity-100">
-                                <p class="text-white fw-bold  text-uppercase opacity-100" >Vivez <br> l'internet <br> autrement  !!!</p>
+                                <p class="text-white fw-bold  text-uppercase opacity-100 text-xs" >Vivez <br> l'internet <br> autrement  !!!</p>
         
                                 <hr class="text-white p-1 opacity-100">
                             </div>
@@ -28,9 +28,23 @@
             </div>
     </div>
 
-</div>
+ 
 
-    <div class="text-center mt-5">@Copyright 2021 - all rights reserved</div>
+</div> --}}
+  
+
+    <div class="text-center  text-xs fw-lighter mt-5"> 
+    - DOUHADJI AMEVI GREGOIRE -  
+    </div>
+
+      <div class="my-2 text-center">
+        
+         <a href="https://github.com/DOUHADJI/afriknet" target="blank"><span class="bi bi-github mx-2 "> </span></a>
+        <a href="https://www.linkedin.com/in/amevi-gregoire-douhadji-5b43281ab" target="blank"><span class="bi bi-linkedin mx-2"> </span></a>
+
+    </div>
+
+    <div class="text-center text-xs fw-lighter ">@Copyright 2021 - all rights reserved</div>
 </div>
 
  <!-- Bootstrap core JavaScript-->

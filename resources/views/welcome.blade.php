@@ -88,7 +88,7 @@
                     <div class="">
                     
                         <nav class=" text-white   ">
-                                <span class="fs-3 fw-bolder fst-italic  p-1 shadow">Global</span><span class=" p-1 fs-3 shadow fw-bold fst-italic">.net</span>
+                                <span class="fs-5 fw-bolder fst-italic  p-1 ">Global</span><sup class=" p-1 fs-5  fw-bold fst-italic">.net</sup>
                         </nav>
 
                     </div>
@@ -142,9 +142,9 @@
                         <div class="col-lg-6 col-md-6 p-5 ml-5   d-flex align-items-end " style="background-color:rgba(134, 132, 132, 0.671);">
 
                             <div class="opacity-100">
-                                <p class="text-white fw-bold fs-2 text-uppercase opacity-100" >Vivez <br> l'internet <br> autrement  !!!</p>
+                                <p class="text-white fw-light fs-1 text-uppercase opacity-100" >Vivez <br> l'internet <br> autrement  !!!</p>
 
-                                <hr class="text-white p-1 opacity-100">
+                                <hr class="text-white  opacity-100">
                             </div>
                             
 
@@ -291,8 +291,8 @@
 
                                 @foreach ($abonnements as $abonnement )
                                     <div class="col ">
-                                        <div class=" p-4 border border-4 border-secondary mt-4">
-                                            <div class="fst-italic fw-bold text-secondary">
+                                        <div class=" p-4 border border-4 border-secondary mt-4 ">
+                                            <div class="fst-italic fw-bold text-secondary mb-3">
                                                 {{$abonnement->nom}}
                                             </div>
 
@@ -301,7 +301,7 @@
                                             </div>
 
                                             <div class="fst-italic fw-bold d-flex">
-                                                <span> Price: <span class="fw-bold">{{$abonnement->price}} F CFA </span></span>
+                                                <span> Prix: <span class="fw-bold">{{$abonnement->price}} F CFA </span></span>
                                             </div>
 
                                             <div class="d-flex flex-row-reverse">
@@ -322,7 +322,7 @@
                             @foreach ($forfaits as $forfait )
                                 <div class="col ">
                                     <div class=" p-4 border border-4 border-secondary mt-4">
-                                        <div class="fst-italic fw-bold text-secondary">
+                                        <div class="fst-italic fw-bold text-secondary mb-3">
                                             {{$forfait->nom}}
                                         </div>
 
@@ -331,7 +331,7 @@
                                         </div>
 
                                         <div class="fst-italic fw-bold d-flex">
-                                            <span> Price: <span class="fw-bold">{{$forfait->price}} F CFA </span></span>
+                                            <span> Prix : <span class="fw-bold">{{$forfait->price}} F CFA </span></span>
                                         </div>
 
                                         <div class="d-flex flex-row-reverse">

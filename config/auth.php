@@ -50,6 +50,8 @@ return [
             'provider' => 'admins',
         ],
 
+    
+
         'client' => [
             'driver' => 'session',
             'provider' => 'clients',
@@ -94,15 +96,6 @@ return [
             'model' => App\Models\Admin::class,
         ],
 
-        'clients' => [
-            'driver' => 'eloquent',
-            'model' => clients::class,
-            
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
-    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -120,6 +113,7 @@ return [
     */
 
     'passwords' => [
+        
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',
