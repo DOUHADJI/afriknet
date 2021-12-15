@@ -33,10 +33,10 @@
     
                                 
                                 <div class="col">
-                                    <label for="volume">Data volume</label>
-                                    <input type="number" class="form-control form-control-user  @error("volume") is-invalid @enderror " 
-                                    id="volume"  name="volume" value="{{old("volume")}}">
-                                    @error("volume")
+                                    <label for="debit">Data debit</label>
+                                    <input type="number" class="form-control form-control-user  @error("debit") is-invalid @enderror " 
+                                    id="debit"  name="debit" value="{{old("debit")}}">
+                                    @error("debit")
                                         <div class="invalid-feedback">{{$message}}</div>
                                     @enderror
     
@@ -45,9 +45,20 @@
                                 <div class="col">
                                     <label for="validite">Validite</label>
                                     <input type="number" class="form-control form-control-user @error("validite") is-invalid @enderror "
-                                     id="volume"  name="validite" value="{{old("validite")}}">
+                                     id="validite"  name="validite" value="{{old("validite")}}">
     
                                     @error("validite")
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                    @enderror
+    
+                                </div>
+
+                                <div class="col">
+                                    <label for="Prix">Validite</label>
+                                    <input type="number" class="form-control form-control-user @error("price") is-invalid @enderror "
+                                     id="price"  name="price" value="{{old("price")}}">
+    
+                                    @error("price")
                                         <div class="invalid-feedback">{{$message}}</div>
                                     @enderror
     

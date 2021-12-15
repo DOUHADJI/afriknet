@@ -50,6 +50,7 @@ class ForfaitsController extends Controller
                 "name" => ["required"],
                 "volume"=> ["required"],
                 "validite"=> ["required"],
+                "price" => ["required"]
         ]);
 
         /* dd($request); */
@@ -58,8 +59,9 @@ class ForfaitsController extends Controller
 
                 "nom" => $request->name,
                 "volume" => $request->volume,
-                "validite" => $request ->validite
-
+                "validite" => $request ->validite,
+                "price" => $request->price
+ 
         ]);
 
         return redirect() -> route('forfaits.index') -> with('success', 'forfaits created successfully');

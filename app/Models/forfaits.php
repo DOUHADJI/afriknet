@@ -10,7 +10,7 @@ class forfaits extends Model
     use HasFactory;
 
     protected $fillable = [
-        "nom", "volume", "validite"
+        "nom", "volume", "validite", "price"
     ];
 
 }
