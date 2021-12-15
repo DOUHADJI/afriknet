@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PlainteStatutUpdatedEvent;
 use App\Models\clients;
 use App\Models\requetes_plaintes;
 use Illuminate\Http\Request;
@@ -140,6 +141,9 @@ class plaintesController extends Controller
             "statut" => $request->statut,
         ]);
 
+        $event = new PlainteStatutUpdatedEvent($plainte);
+
+        event($event);
  
 
         return redirect()->back();

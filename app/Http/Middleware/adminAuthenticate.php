@@ -3,10 +3,12 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Request;
+use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Arr;
+use phpDocumentor\Reflection\Types\Parent_;
 
-class adminAuthenticate
+class adminAuthenticate extends Middleware
 {
     /**
      * Handle an incoming request.
@@ -15,35 +17,35 @@ class adminAuthenticate
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+
+    protected $guards;
+
+
+    public function handle($request, Closure $next, ...$guards)
+    {
+        $this->guards = $guards;
+
+        return parent::handle($request, $next, ...$guards);
+    }
+
+
+    public function redirectTo( $request)
     {
         if (! $request->expectsJson()){
 
-      
+            if (Arr::first($this->guards) === 'admin') {
+                
+                    return route('admin.login');
+            
+               }
+
+               return route('login');
 
           
         }
 
-        if(Auth::guard('admin')->user()){
+        return next($request);
+       
 
-            /* dd("yes I am a admin"); */
-
-            dd('Admin middleware');
-
-
-            abort(404);
-                
-                return  view('errors.404');
-        }
-        else {
-
-            dd('we are going to admin login');
-
-
-                return route('admin.login');
-
-        }
-
-        return $next($request);
     }
 }

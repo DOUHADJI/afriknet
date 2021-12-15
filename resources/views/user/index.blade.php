@@ -27,14 +27,29 @@
         background-attachment: fixed;
         
         ">
-            <div class="h-100 p-5" style="background-color: rgba(0, 0, 0, 0.13)">
+            <div class="h-100 px-5 pb-5" style="background-color: rgba(0, 0, 0, 0.13)">
 
-              <p class=" text-xs fw-bold text-center fst-italic bg-white text-black mx-5 py-3 mb-5">Bienvenue dans votre espace client <span>Global <sup>.net</sup></span> <span class="bi bi-emoji-smile"></span>
+              <p class=" text-xs fw-bold text-center fst-italic bg-gray-700 text-white mx-2 py-3 ">Bienvenue dans votre espace client <span>Global <sup>.net</sup></span> <span class="bi bi-emoji-smile"></span>
               </p>
 
              
 
-                <div class="mt-5 py-5" 
+              <div class="d-flex justify-content-end " style="height: 90px">
+
+                @if ($message = Session::get('success'))
+                <div class="alert  border-none alert-dismissible fade show  text-xs fw-bold text-center fst-italic text-white  " style="background-color: rgba(97, 97, 97, 0.315)">
+                  <p> <span class="bi-check-circle-fill mr-1 fa-2x"></span>{{ $message }}</p>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+
+              </div>
+            
+              
+
+             
+
+                <div class=" py-5" 
 
                 @if(auth()->user()->statut_activite == '0')
 
@@ -144,7 +159,7 @@
 
                              
 
-                              @if ($message = Session::get('success'))
+                           {{--    @if ($message = Session::get('success'))
 
 
                               <div class="container">
@@ -158,6 +173,7 @@
                               </div>    
                               
                               @endif
+                               --}}
   
                       </div>
   

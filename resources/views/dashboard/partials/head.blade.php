@@ -23,7 +23,8 @@
 
     <!-- Custom styles for this template-->
     <link href="{{URL::asset('/template_resources/css/sb-admin-2.min.css')}}" rel="stylesheet">
-
+    
+    <script src="{{ asset('js/app.js') }}"></script>
     
 
 

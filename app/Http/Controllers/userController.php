@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PlainteStatutUpdatedEvent;
 use App\Mail\registerMail;
 use App\Models\abonnements;
 use App\Models\activation_requests;
@@ -23,12 +24,15 @@ use Illuminate\Support\Facades\Hash;
 
 class userController extends Controller
 {
-   /*  public function __construct()
+
+
+  /*   public function __construct()
     {
-        $this->middleware('auth');
+
+        PlainteStatutUpdatedEvent::dispatch();
       
-    }
- */
+    } */
+
     /**
      * Display a listing of the resource.
      *
@@ -63,12 +67,12 @@ class userController extends Controller
                                                ->select('liste_des_forfaits.*','forfaits.*')
                                                 /* -> orderBy("updated_at", "asc") */ ->first();
 
-      $plainte_courante = requetes_plaintes::where("user_id", "=", auth()->user()->id)->where("type", "=", "plainte")->orderBy("created_at", "desc") -> first();
 
       $request_existance = activation_requests::where('user_id', '=', Auth::user()->id)->where("request_statut", "=", 0)->orderBy("created_at", "desc") ->first();
 
+      $plainte_courante = requetes_plaintes::where("user_id", "=", auth()->user()->id)->where("type", "=", "plainte")->orderBy("created_at", "desc") -> first();
 
-/* dd($last_souscription); */
+
 
 
         return view ('user.index', compact('client', 'souscriptions', 'last_souscription', 'last_forfait' , 'plainte_courante', 'request_existance'));
@@ -145,7 +149,7 @@ class userController extends Controller
 
         ]);
 
-        return redirect() -> back() -> with("success", "Votre souscription au forfait  $forfait->nom   a bien effectuée");
+        return redirect() -> back() -> with("success", "Votre souscription au forfait  $forfait->nom a été bien effectuée");
     }
 
 

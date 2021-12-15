@@ -49,7 +49,7 @@ class loginController extends Controller
 
                 if(Hash::check( auth()->user()->barcode_number, auth()->user()->token))
                 {
-                    return redirect()-> intended('user_space') ->with('success', 'You are logged in successfully');
+                    return redirect()-> intended('user_space') ->with('success', 'Vous êtes connecté ');
 
                 }
 

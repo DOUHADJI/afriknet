@@ -19,7 +19,7 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Global .net (admin loggin)</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Global .net</h1>
                                     </div>
 
                                     @if ($message = Session::get('error'))
@@ -54,13 +54,7 @@
                                                 @enderror
                                         </div>
 
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
-                                            </div>
-                                        </div>
+                                     
 
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login

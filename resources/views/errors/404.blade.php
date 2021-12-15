@@ -44,7 +44,7 @@
 
 
                         <p class=" mt-5 fw-lighter fs-3 text-white ">Oups !!! Il semblerait que nous ayons rencontré un problème</p>
-                        <p class=" mt-5 fw-lighter fs-3 text-white">La page que vous tentez de joindre n'existe pas </p>
+                        <p class=" mt-5 fw-lighter fs-3 text-white">Page non retrouvée </p>
 
 
                         

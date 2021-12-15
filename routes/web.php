@@ -67,7 +67,7 @@ CHECK IF THE USER IS CURRENTLY CONNECTED
 DEBUT
 */
 
-Route::group(["middleware" => [ "adminRoutes" , "auth"  ]], function(){
+Route::group(["middleware" => ["auth_admin" /*  "auth"  */ ]], function(){
 
     /* Routes user */
 /* Routes user */
@@ -140,7 +140,7 @@ Route::group(['prefix'=>"admin"], function () {
   /*   Authenticate the admins */
   /*   DEBUT */
 
-    Route::group(['middleware' =>["guest:admin"]] ,function(){
+    Route::group(['middleware' =>["guest:admin" , "guest"]] ,function(){
  
         Route::get('/login',[adminLoginController::class, "index"])->name('admin.login');
         Route::post('/login',[adminLoginController::class, "login"])->name("admin.authenticate");
@@ -162,7 +162,7 @@ Route::group(['prefix'=>"admin"], function () {
 
 /* DEBUT */
 
-    Route::group(["middleware" => [    /*  "userRoutes" , */ "auth:admin" ]], function(){
+    Route::group(["middleware" => [ /*  "auth:admin" */  'auth_admin:admin']], function(){
 
 
                     Route::group(["prefix"=>"dashboard"], function() {

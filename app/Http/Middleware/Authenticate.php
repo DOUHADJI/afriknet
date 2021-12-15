@@ -49,7 +49,7 @@ class Authenticate extends Middleware
                  
                 return route('login');
             }
-
+            
             abort (404);
             return  view('errors.404') /* route('login') */  ;
 
