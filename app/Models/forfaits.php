@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class forfaits extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "nom", "volume", "validite"
+    ];
+
 }
