@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminLogoutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\LoginController;
-use App\Http\Controllers\User\LogOutController;
+use App\Http\Controllers\User\LogoutController;
 use App\Http\Controllers\User\SigninController;
 use App\Http\Controllers\User\ClientsController;
 use App\Http\Controllers\User\DashboardController;
@@ -51,7 +51,7 @@ Route::group(["prefix" => "auth"], function () {
 
     Route::get("/confirm_account/{user}/{token}", [SigninController::class, "confirm_account"]) -> name('confirmation_notice');
 
-    Route::post("/logout",[ LogOutController::class, 'logout'])->name("auth.logout")->middleware("auth");
+    Route::post("/logout",[ LogoutController::class, 'logout'])->name("auth.logout")->middleware("auth");
 
 
 });
