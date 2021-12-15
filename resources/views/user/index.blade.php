@@ -112,8 +112,8 @@
 
                               <div class="d-flex justify-content-around mt-3 mb-3">
 
-                                <a href="{{ route("user.formuler_requete") }}" class="btn px-5 text-white" style="background-color: #2f254dbb">Formuler une <br> requête</a>
-                                <a href="{{ route("user.formuler_plainte") }}" class="btn text-white px-5" style="background-color: #fc08008c">Formuler une <br> plainte</a>
+                                <a href="{{ route("user.formuler_requete") }}" class="btn  text-white" style="background-color: #2f254dbb">Formuler une <br> requête</a>
+                                <a href="{{ route("user.formuler_plainte") }}" class="btn text-white " style="background-color: #fc08008c">Formuler une <br> plainte</a>
                                </div>
 
                                @endif
