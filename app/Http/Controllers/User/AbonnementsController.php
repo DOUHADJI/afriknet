@@ -43,7 +43,7 @@ class AbonnementsController extends Controller
         $request -> validate([
 
                 "name" => ["required"],
-                "volume"=> ["required"],
+                "debit"=> ["required"],
                 "validite"=> ["required"],
                 "price" => ["required"]
 
@@ -54,7 +54,7 @@ class AbonnementsController extends Controller
         abonnements::create([
 
                 "nom" => $request->name,
-                "volume" => $request->volume,
+                "debit" => $request->debit,
                 "validite" => $request ->validite,
                 "price" => $request->price
 
