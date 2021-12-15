@@ -11,7 +11,7 @@ class abonnements extends Model
     use HasFactory;
 
     protected $fillable = [
-        "nom", "volume", "validite", "price"
+        "nom", "debit", "validite", "price"
     ];
 
    
