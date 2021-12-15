@@ -283,7 +283,7 @@
            
         
 
-
+    <div class="container">
         <div class="row  p-5" >
 
                 <div class="col m-3 pt-3  shadow pb-5 pr-5 pl-5">
@@ -347,7 +347,7 @@
                 </div>
 
         </div>
-
+    </div>
 
        @include("user.partials.footer")
 

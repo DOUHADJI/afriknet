@@ -1,6 +1,6 @@
 
 
- <div class="text-white  p-3" style="background-color: #212020">
+ <div class="text-white  p-3" style="background-color: #212020; width:100%">
 
    {{--  <div class="row">
 
