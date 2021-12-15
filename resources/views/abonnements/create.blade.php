@@ -43,7 +43,7 @@
                                 </div>
     
                                 <div class="col">
-                                    <label for="validite">Validite</label>
+                                    <label for="validite">Prix</label>
                                     <input type="number" class="form-control form-control-user @error("validite") is-invalid @enderror "
                                      id="validite"  name="validite" value="{{old("validite")}}">
     

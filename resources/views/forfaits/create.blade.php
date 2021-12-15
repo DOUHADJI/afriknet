@@ -54,7 +54,7 @@
                                 </div>
 
                                 <div class="col">
-                                    <label for="Prix">Validite</label>
+                                    <label for="Prix">Prix</label>
                                     <input type="number" class="form-control form-control-user @error("price") is-invalid @enderror "
                                      id="price"  name="price" value="{{old("price")}}">
     
