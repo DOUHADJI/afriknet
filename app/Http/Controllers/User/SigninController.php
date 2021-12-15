@@ -1,22 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\registerUserRequest;
 use App\Mail\registerMail;
-use App\Models\clients;
 use App\Models\User;
 use App\Notifications\userRegisteredNotification;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Faker;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
-class SignInController extends Controller
+class SigninController extends Controller
 {
     public function create () {
 
@@ -84,4 +79,5 @@ class SignInController extends Controller
 
             return view('confirmed_email');
     }
+
 }

@@ -1,18 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use App\Events\PlainteStatutUpdatedEvent;
+use App\Http\Controllers\Controller;
 use App\Mail\registerMail;
 use App\Models\abonnements;
 use App\Models\activation_requests;
-use App\Models\clients;
 use App\Models\forfaits;
 use App\Models\liste_des_abonnements;
 use App\Models\liste_des_forfaits;
 use App\Models\requetes_plaintes;
 use App\Models\User;
-use Database\Factories\abonnementsFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -432,3 +430,4 @@ class UserController extends Controller
         //
     }
 }
+

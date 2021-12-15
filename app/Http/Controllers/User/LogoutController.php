@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
-class LogOutController extends Controller
+class LogoutController extends Controller
 {
     public function logout (Request $request)
     {
@@ -18,4 +18,5 @@ class LogOutController extends Controller
         
         return redirect()->route("login");
     }
+
 }

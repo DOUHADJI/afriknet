@@ -1,20 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-
-use App\Models\abonnements;
-use App\Models\clients;
-use App\Models\requetes_plaintes;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\abonnements;
+
 
 class AbonnementsController extends Controller
 {
-   /*  public function __construct()
-    {
-        $this->middleware('auth:admin');
-    } */
-
+    
     /**
      * Display a listing of the resource.
      *
@@ -65,17 +60,6 @@ class AbonnementsController extends Controller
         return redirect() -> route('abonnements.index') -> with('success', 'Abonnements created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
       /**
      * Display the specified resource.
      *
@@ -87,29 +71,6 @@ class AbonnementsController extends Controller
         $abonnements = abonnements::get();
         
         return view("abonnements.delete", compact("abonnements"));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
@@ -128,4 +89,5 @@ class AbonnementsController extends Controller
         return redirect() -> route('abonnements.showForDelete') -> with('success', 'Abonnements deleted successfully');
 
     }
+
 }

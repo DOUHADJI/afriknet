@@ -1,22 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Hash;
+
 
 class LoginController extends Controller
 {
-
-   /*  public function __construct()
-    {
-        $this->middleware('guest');
-    } */
-
-
+    
     public function create(){
 
         return view ('login');
@@ -67,9 +61,5 @@ class LoginController extends Controller
         return redirect()->back()->with("error", "Mot de passe ou email incorrecte");
 
     }
-
-
-  
-
 
 }

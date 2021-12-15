@@ -1,18 +1,18 @@
 <?php
 
-use App\Http\Controllers\AbonnementsController;
-use App\Http\Controllers\Auth\Admin\AdminLoginController;
-use App\Http\Controllers\Auth\Admin\AdminLogoutController;
+use App\Http\Controllers\User\AbonnementsController;
+use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\Admin\AdminLogoutController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\LogOutController;
-use App\Http\Controllers\Auth\SignInController;
-use App\Http\Controllers\ClientsController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ForfaitsController;
-use App\Http\Controllers\PlaintesController;
-use App\Http\Controllers\RequetesController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\User\LoginController;
+use App\Http\Controllers\User\LogOutController;
+use App\Http\Controllers\User\SignInController;
+use App\Http\Controllers\User\ClientsController;
+use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\User\ForfaitsController;
+use App\Http\Controllers\User\PlaintesController;
+use App\Http\Controllers\User\RequetesController;
+use App\Http\Controllers\User\UserController;
 use App\Models\abonnements;
 use App\Models\forfaits;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;

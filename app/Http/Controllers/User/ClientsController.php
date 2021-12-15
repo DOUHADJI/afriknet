@@ -1,13 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Models\activation_requests;
-use App\Models\clients;
-use App\Models\liste_des_abonnements;
-use App\Models\type_client;
 use App\Models\User;
-use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -310,3 +307,4 @@ class ClientsController extends Controller
             ->with('success', 'Client deleted successfully');
     }
 }
+

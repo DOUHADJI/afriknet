@@ -1,20 +1,27 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
+use App\Models\abonnements;
 use App\Models\clients;
+use App\Models\forfaits;
 use App\Models\requetes_plaintes;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class RequetesController extends Controller
+class DashboardController extends Controller
 {
    /*  public function __construct()
     {
+        
         $this->middleware('auth:admin');
+
+
     } */
 
-        
     /**
      * Display a listing of the resource.
      *
@@ -22,44 +29,39 @@ class RequetesController extends Controller
      */
     public function index()
     {
-    
+        $abonnements = abonnements::get();
+        $forfaits = forfaits::get();
+        $clients = User::get();
 
-        $requetes = DB::table("requetes_plaintes")
-        ->where("type", "=", "requete")
-        ->orderBy('id', 'asc')
-        ->get();
+ 
 
-        return view ("requetes.index", compact("requetes"));
+        $clients_array = User::get()->groupBy(function($val){
+            return Carbon::parse($val->created_at)->format('M');
+        }) -> toArray();
+
+        $months = DB::table('users') -> select('created_at') ->get();
+
+      /*   dd($clients_array, $months); */
+        
+        return view('dashboard.index', compact(
+
+            'abonnements', 
+            'forfaits',  
+            'clients'     
+        ));
     }
 
 
-      /**
-     * Display a listing of the resource.
-     * 
-     * @param  \Illuminate\Http\Request  $request
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function filter_requetes_statut(Request $request)
+    public function new_plaintes (Request $request)
     {
-       
+ 
+          return redirect()->route('plaintes.filter_statut', ['statut' => 'reçu']);
+    }
 
-        $statut_requete = request()->input('statut');
-
-      /*   dd($statut_requete); */
-
-        $requetes = DB::table("requetes_plaintes")
-        ->where("type", "=", "requete")
-        ->where("statut" ,"=", $statut_requete)
-        ->orderBy('id', 'asc')
-        ->get();
-
-      /*   $requetes = requetes_requetes::when($statut_requete, function($query) use ($statut_requete) {
-                $query->where("statut", $statut_requete);
-        } )->get(); */
-
-
-          return view ("requetes.add_filter", compact("requetes", "statut_requete"));
+    public function new_requetes (Request $request)
+    {
+ 
+          return redirect()->route('requetes.filter_statut', ['statut' => 'reçu']);
     }
 
     /**
@@ -114,22 +116,7 @@ class RequetesController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-      
-        
-        $request->validate([
-            "statut" =>"required",
-        ]);
-
-        $requete = requetes_plaintes::where("id", '=', $id)->first();
-
-        $requete -> update([
-            "statut" => $request->statut,
-        ]);
-
- 
-
-        return redirect()->back();
+        //
     }
 
     /**
@@ -143,3 +130,4 @@ class RequetesController extends Controller
         //
     }
 }
+

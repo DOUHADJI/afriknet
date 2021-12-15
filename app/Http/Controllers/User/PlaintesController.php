@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Events\PlainteStatutUpdatedEvent;
-use App\Models\clients;
 use App\Models\requetes_plaintes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
