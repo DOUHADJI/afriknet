@@ -54,7 +54,7 @@ Route::group(["prefix" => "auth"], function () {
 
     Route::get("/confirm_account/{user}/{token}", [signInController::class, "confirm_account"]) -> name('confirmation_notice');
 
-    Route::post("/logout", logOutController::class)->name("auth.logout")->middleware("auth");
+    Route::post("/logout",[ logOutController::class, 'logout'])->name("auth.logout")->middleware("auth");
 
 
 });
