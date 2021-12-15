@@ -75,7 +75,7 @@
                           @if(auth()->user()->statut_activite == '0')
 
                               <p class="text-uppercase fw-bolder fs-6 mt-3 mb-5    px-1 text-center">
-                                Votre compte est actulllement inactif <br>
+                                Votre compte est actuellement inactif <br>
                                 <br>
                                 Veuillez vous rendre dans une de nos agences pour ré-activer votre compte ou cliquer sur le bouton ci-dessous pour une demande d'activation en ligne. Merci.
                               </p>
