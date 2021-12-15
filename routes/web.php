@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\AbonnementsController;
-use App\Http\Controllers\auth\Admin\AdminLoginController;
-use App\Http\Controllers\auth\Admin\AdminLogoutController;
+use App\Http\Controllers\Auth\Admin\AdminLoginController;
+use App\Http\Controllers\Auth\Admin\AdminLogoutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogOutController;
