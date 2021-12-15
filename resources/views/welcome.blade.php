@@ -26,6 +26,7 @@
         .nav_div{
             background-image: url('template_resources/img/02.jpg');
             background-repeat: no-repeat;
+            background-position: center center;
             height:85vh; 
             -webkit-background-size: cover;
             -moz-background-size: cover;
@@ -36,6 +37,7 @@
         .subNavInFooter{
             background-image: url('template_resources/img/02.jpg');
             background-repeat: no-repeat;
+            background-position: center center;
             height:150px;
             width: 400px; 
             -webkit-background-size: cover;
@@ -139,10 +141,10 @@
                     <div class="row  ">
 
             
-                        <div class="col-lg-6 col-md-6 p-5 ml-5   d-flex align-items-end " style="background-color:rgba(134, 132, 132, 0.671);">
+                        <div class="col-lg-6 col-md-6 pl-5 pt-5 pb-5 ml-2 mr-2  d-flex align-items-end " style="background-color:rgba(134, 132, 132, 0.671); width:70vw">
 
                             <div class="opacity-100">
-                                <p class="text-white fw-light fs-1 text-uppercase opacity-100" >Vivez <br> l'internet <br> autrement  !!!</p>
+                                <p class="text-white fw-light fs-2 text-uppercase opacity-100" >Vivez <br> l'internet <br> autrement  !!!</p>
 
                                 <hr class="text-white  opacity-100">
                             </div>
@@ -282,12 +284,12 @@
         
 
 
-        <div class="d-flex  p-5" >
+        <div class="row  p-5" >
 
                 <div class="col m-3 pt-3  shadow pb-5 pr-5 pl-5">
                     <p class="text-secondary text-center fst-italic fw-bold   "><span class="bi bi-emoji-laughing"></span> Decouvrez nos offres d'abonnements !!!</p>
 
-                    <div class=" row row-cols-2">
+                    <div class=" row row-cols-lg-2 row-cols-md-2">
 
                                 @foreach ($abonnements as $abonnement )
                                     <div class="col ">
@@ -317,7 +319,7 @@
                 <div class="col shadow m-3 pt-3 pb-5 pr-5 pl-5" >
                     <p class="text-secondary text-center fst-italic fw-bold "><span class="bi bi-emoji-laughing"></span> Decouvrez nos offres de forfaits !!!</p>
 
-                        <div class="row row-cols-2 ">
+                        <div class="row row-cols-lg-2 row-cols-md-2 ">
                             
                             @foreach ($forfaits as $forfait )
                                 <div class="col ">
