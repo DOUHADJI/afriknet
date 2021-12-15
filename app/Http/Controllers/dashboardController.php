@@ -11,7 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class dashboardController extends Controller
+class DashboardController extends Controller
 {
    /*  public function __construct()
     {

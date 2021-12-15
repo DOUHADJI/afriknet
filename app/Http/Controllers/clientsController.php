@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class clientsController extends Controller
+class ClientsController extends Controller
 {
    /*  public function __construct()
     {

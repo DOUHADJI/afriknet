@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Hash;
 
 
 
-class userController extends Controller
+class UserController extends Controller
 {
 
 

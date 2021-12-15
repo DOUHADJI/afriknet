@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\auth\admin;
+namespace App\Http\Controllers\auth\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class adminSignInController extends Controller
+class AdminSignInController extends Controller
 {
     //
 }

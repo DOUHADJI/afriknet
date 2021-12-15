@@ -8,7 +8,7 @@ use App\Models\clients;
 use App\Models\requetes_plaintes;
 use Illuminate\Http\Request;
 
-class abonnementsController extends Controller
+class AbonnementsController extends Controller
 {
    /*  public function __construct()
     {

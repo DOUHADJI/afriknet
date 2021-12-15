@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\auth\admin;
+namespace App\Http\Controllers\auth\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class adminLogoutController extends Controller
+class AdminLogoutController extends Controller
 {
     
 

@@ -7,7 +7,7 @@ use App\Models\requetes_plaintes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class requetesController extends Controller
+class RequetesController extends Controller
 {
    /*  public function __construct()
     {

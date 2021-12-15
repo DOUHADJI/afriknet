@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
-class forfaitsController extends Controller
+class ForfaitsController extends Controller
 {
    /*  public function __construct()
     {

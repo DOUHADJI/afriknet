@@ -1,21 +1,18 @@
 <?php
 
+use App\Http\Controllers\AbonnementsController;
+use App\Http\Controllers\auth\Admin\AdminLoginController;
+use App\Http\Controllers\auth\Admin\AdminLogoutController;
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\dashboardController;
-use App\Http\Controllers\clientsController;
-use App\Http\Controllers\abonnementsController;
-use App\Http\Controllers\auth\admin\adminLoginController;
-use App\Http\Controllers\auth\admin\adminLogoutController;
-use App\Http\Controllers\auth\loginController;
-use App\Http\Controllers\auth\logOutController;
-use App\Http\Controllers\auth\signInController;
-use App\Http\Controllers\forfaitsController;
-
-use App\Http\Controllers\plaintesController;
-use App\Http\Controllers\requetesController;
-
-use App\Http\Controllers\userController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogOutController;
+use App\Http\Controllers\Auth\SignInController;
+use App\Http\Controllers\ClientsController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ForfaitsController;
+use App\Http\Controllers\PlaintesController;
+use App\Http\Controllers\RequetesController;
+use App\Http\Controllers\UserController;
 use App\Models\abonnements;
 use App\Models\forfaits;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -43,18 +40,18 @@ Route::group(["prefix" => "auth"], function () {
     
     Route::group(["middleware" => ["guest"]], function () {
 
-        Route::get("/signin", [signInController::class, "create"])->name("register");
-        Route::post("/signin", [signInController::class, "register"]);
+        Route::get("/signin", [SignInController::class, "create"])->name("register");
+        Route::post("/signin", [SignInController::class, "register"]);
 
-        Route::get("/login", [loginController::class, "create"])->name("login");
-        Route::post("/login", [loginController::class, "authenticate"]);
+        Route::get("/login", [LoginController::class, "create"])->name("login");
+        Route::post("/login", [LoginController::class, "authenticate"]);
 
         
     });
 
-    Route::get("/confirm_account/{user}/{token}", [signInController::class, "confirm_account"]) -> name('confirmation_notice');
+    Route::get("/confirm_account/{user}/{token}", [SignInController::class, "confirm_account"]) -> name('confirmation_notice');
 
-    Route::post("/logout",[ logOutController::class, 'logout'])->name("auth.logout")->middleware("auth");
+    Route::post("/logout",[ LogOutController::class, 'logout'])->name("auth.logout")->middleware("auth");
 
 
 });
@@ -77,30 +74,30 @@ Route::group(["middleware" => ["auth_admin" /*  "auth"  */ ]], function(){
 
 Route::group(['prefix' =>'user_space'], function(){
 
-    Route::get('/', [userController::class, 'index'])->name('user.index');
+    Route::get('/', [UserController::class, 'index'])->name('user.index');
 
-    Route::get('/messages', [userController::class, 'writte_us'])->name('user.writte')
+    Route::get('/messages', [UserController::class, 'writte_us'])->name('user.writte')
     ;
-    Route::get('/help', [userController::class, 'faq'])->name('user.faq');
+    Route::get('/help', [UserController::class, 'faq'])->name('user.faq');
 
-    Route::get('/modifier_mes_informations/', [userController::class, 'modifier_infos'])->name('user.modifier_infos');
-    Route::patch('/modifier_mes_informations/{user}', [userController::class, 'update'])->name('user.update');
+    Route::get('/modifier_mes_informations/', [UserController::class, 'modifier_infos'])->name('user.modifier_infos');
+    Route::patch('/modifier_mes_informations/{user}', [UserController::class, 'update'])->name('user.update');
 
-    Route::get('/modifier_mes_identifiants/', [userController::class, 'modifier_identifiants'])->name('user.modifier_identifiants');
-    Route::patch('/modifier_mes_identifiants/{user}', [userController::class, 'update_identifiants'])->name('user.update_identifiants');
+    Route::get('/modifier_mes_identifiants/', [UserController::class, 'modifier_identifiants'])->name('user.modifier_identifiants');
+    Route::patch('/modifier_mes_identifiants/{user}', [UserController::class, 'update_identifiants'])->name('user.update_identifiants');
 
 
 
-    Route::get('/souscrire_à_un_forfait', [userController::class, 'scrire_forfait'])->name('user.scrire_forfait');
-    Route::get('/souscrire_à_un_abonnement', [userController::class, 'scrire_abonnement'])->name('user.scrire_abonnement');
+    Route::get('/souscrire_à_un_forfait', [UserController::class, 'scrire_forfait'])->name('user.scrire_forfait');
+    Route::get('/souscrire_à_un_abonnement', [UserController::class, 'scrire_abonnement'])->name('user.scrire_abonnement');
 
-    Route::get('/formuler_requete', [userController::class, 'formuler_requete_Show'])->name('user.formuler_requete');
-    Route::post('/formuler_requete', [userController::class, 'formuler_requete'])->name('user.formuler_requete');
+    Route::get('/formuler_requete', [UserController::class, 'formuler_requete_Show'])->name('user.formuler_requete');
+    Route::post('/formuler_requete', [UserController::class, 'formuler_requete'])->name('user.formuler_requete');
 
-    Route::get('/formuler_plainte', [userController::class, 'formuler_plainte_Show'])->name('user.formuler_plainte');
-    Route::post('/formuler_plainte', [userController::class, 'formuler_plainte'])->name('user.formuler_plainte');
+    Route::get('/formuler_plainte', [UserController::class, 'formuler_plainte_Show'])->name('user.formuler_plainte');
+    Route::post('/formuler_plainte', [UserController::class, 'formuler_plainte'])->name('user.formuler_plainte');
 
-    Route::get('/account_activation_request', [userController::class, 'activation_request']) -> name('user.activation_request');
+    Route::get('/account_activation_request', [UserController::class, 'activation_request']) -> name('user.activation_request');
 
 
     
@@ -142,8 +139,8 @@ Route::group(['prefix'=>"admin"], function () {
 
     Route::group(['middleware' =>["guest:admin" , "guest"]] ,function(){
  
-        Route::get('/login',[adminLoginController::class, "index"])->name('admin.login');
-        Route::post('/login',[adminLoginController::class, "login"])->name("admin.authenticate");
+        Route::get('/login',[AdminLoginController::class, "index"])->name('admin.login');
+        Route::post('/login',[AdminLoginController::class, "login"])->name("admin.authenticate");
 
      /*    Route::view('/post','data-post')->name('post')->middleware('can:role,"admin","editor"');
         Route::view('/admin','data-admin')->name('admin')->middleware('can:role,"admin"'); */
@@ -154,7 +151,7 @@ Route::group(['prefix'=>"admin"], function () {
     /*   Authenticate the admins */
   /*   FIN */
 
-    Route::post('logout',[adminLogoutController::class, "logout"])->middleware("auth:admin")->name('admin.logout');
+    Route::post('logout',[AdminLogoutController::class, "logout"])->middleware("auth:admin")->name('admin.logout');
 
 
 
@@ -167,10 +164,10 @@ Route::group(['prefix'=>"admin"], function () {
 
                     Route::group(["prefix"=>"dashboard"], function() {
 
-                        Route::get("/", [dashboardController::class, "index"])->name('dashboard');
+                        Route::get("/", [DashboardController::class, "index"])->name('dashboard');
                 
-                        Route::get('/new_plaintes', [dashboardController::class, 'new_plaintes']) ->name('new_plaintes');
-                        Route::get('/new_requetes', [dashboardController::class, 'new_requetes']) ->name('new_requetes');
+                        Route::get('/new_plaintes', [DashboardController::class, 'new_plaintes']) ->name('new_plaintes');
+                        Route::get('/new_requetes', [DashboardController::class, 'new_requetes']) ->name('new_requetes');
 
 
                            /* 
@@ -181,34 +178,34 @@ Route::group(['prefix'=>"admin"], function () {
 
             Route::group(['prefix'=>'clients'], function(){
 
-                Route::get("/", [clientsController::class, "index"])->name("clients.index");
+                Route::get("/", [ClientsController::class, "index"])->name("clients.index");
 
-                Route::get("/client's_statuts", [clientsController::class, "statuts_index"])->name("clients.statuts");
+                Route::get("/client's_statuts", [ClientsController::class, "statuts_index"])->name("clients.statuts");
                 
-                Route::get("/create", [clientsController::class, "create"])->name("clients.create");
+                Route::get("/create", [ClientsController::class, "create"])->name("clients.create");
                 
-                Route::post("/", [clientsController::class, "store"])->name("clients.store");
+                Route::post("/", [ClientsController::class, "store"])->name("clients.store");
 
-                Route::get("/show/{client}", [clientsController::class, "show"])->name("clients.show");
+                Route::get("/show/{client}", [ClientsController::class, "show"])->name("clients.show");
 
-                Route::get("/delete/{client}", [clientsController::class, "showForDeletion"])->name("clients.showForDeletion");
+                Route::get("/delete/{client}", [ClientsController::class, "showForDeletion"])->name("clients.showForDeletion");
 
-                Route::get("/edit/{client}", [clientsController::class, "edit"])->name("clients.edit");
+                Route::get("/edit/{client}", [ClientsController::class, "edit"])->name("clients.edit");
                 
-                Route::get("/show_statut/{client}", [clientsController::class, "showForchangeStatut"])->name("clients.showForchangeStatut");
+                Route::get("/show_statut/{client}", [ClientsController::class, "showForchangeStatut"])->name("clients.showForchangeStatut");
 
-                Route::patch("/change_statut/{client}", [clientsController::class, "changeStatut"])->name("clients.changeStatut");
+                Route::patch("/change_statut/{client}", [ClientsController::class, "changeStatut"])->name("clients.changeStatut");
 
-                Route::get("/activate_clients_accounts", [clientsController::class, "activate_account_show"])->name("clients.activate_account_show");
+                Route::get("/activate_clients_accounts", [ClientsController::class, "activate_account_show"])->name("clients.activate_account_show");
 
-                Route::patch("/activate_clients_accounts", [clientsController::class, "activate_account"])->name("clients.activate_account");
-
-
-
-                Route::patch("/update/{client}", [clientsController::class, "update"])->name("clients.update");
+                Route::patch("/activate_clients_accounts", [ClientsController::class, "activate_account"])->name("clients.activate_account");
 
 
-                Route::delete("/{client}", [clientsController::class, "destroy"])->name("clients.destroy");
+
+                Route::patch("/update/{client}", [ClientsController::class, "update"])->name("clients.update");
+
+
+                Route::delete("/{client}", [ClientsController::class, "destroy"])->name("clients.destroy");
 
 
 
@@ -230,15 +227,15 @@ Route::group(['prefix'=>"admin"], function () {
 
             Route::group(['prefix'=>'abonnements'], function(){
 
-                Route::get("/", [abonnementsController::class, "index"])->name("abonnements.index");
+                Route::get("/", [AbonnementsController::class, "index"])->name("abonnements.index");
 
-                Route::get("/create", [abonnementsController::class, "create"])->name("abonnements.create");
+                Route::get("/create", [AbonnementsController::class, "create"])->name("abonnements.create");
 
-                Route::post("/", [abonnementsController::class, "store"])->name("abonnements.store");
+                Route::post("/", [AbonnementsController::class, "store"])->name("abonnements.store");
 
-                Route::get("/delete_abonnement", [abonnementsController::class, "showForDelete"])->name("abonnements.showForDelete");
+                Route::get("/delete_abonnement", [AbonnementsController::class, "showForDelete"])->name("abonnements.showForDelete");
 
-                Route::delete("/{abonnement}", [abonnementsController::class, "destroy"])->name("abonnements.destroy");
+                Route::delete("/{abonnement}", [AbonnementsController::class, "destroy"])->name("abonnements.destroy");
 
 
             });
@@ -259,15 +256,15 @@ Route::group(['prefix'=>"admin"], function () {
 
             Route::group(['prefix'=>'forfaits'], function(){
 
-                Route::get("/", [forfaitsController::class, "index"])->name("forfaits.index");
+                Route::get("/", [ForfaitsController::class, "index"])->name("forfaits.index");
 
-                Route::get("/create", [forfaitsController::class, "create"])->name("forfaits.create");
+                Route::get("/create", [ForfaitsController::class, "create"])->name("forfaits.create");
 
-                Route::post("/", [forfaitsController::class, "store"])->name("forfaits.store");
+                Route::post("/", [ForfaitsController::class, "store"])->name("forfaits.store");
 
-                Route::get("/delete_a_forfait", [forfaitsController::class, "showForDelete"])->name("forfaits.showForDelete");
+                Route::get("/delete_a_forfait", [ForfaitsController::class, "showForDelete"])->name("forfaits.showForDelete");
 
-                Route::delete("/{forfait}", [forfaitsController::class, "destroy"])->name("forfaits.destroy");
+                Route::delete("/{forfait}", [ForfaitsController::class, "destroy"])->name("forfaits.destroy");
 
             });
 
@@ -287,11 +284,11 @@ Route::group(['prefix'=>"admin"], function () {
 
             Route::group(['prefix'=>'plaintes'], function(){
 
-                Route::get("/", [plaintesController::class, "index"])->name("plaintes.index");
+                Route::get("/", [PlaintesController::class, "index"])->name("plaintes.index");
 
-                Route::get("/add filter/", [plaintesController::class, "filter_plaintes_statut"])->name("plaintes.filter_statut");
+                Route::get("/add filter/", [PlaintesController::class, "filter_plaintes_statut"])->name("plaintes.filter_statut");
 
-                Route::patch("/update/{id}", [plaintesController::class, "update"])->name("plaintes.update");
+                Route::patch("/update/{id}", [PlaintesController::class, "update"])->name("plaintes.update");
 
             });
 
@@ -311,11 +308,11 @@ Route::group(['prefix'=>"admin"], function () {
 
                     Route::group(['prefix'=>'requetes'], function(){
 
-                        Route::get("/", [requetesController::class, "index"])->name("requetes.index");
+                        Route::get("/", [RequetesController::class, "index"])->name("requetes.index");
 
-                        Route::get("/add filter/", [requetesController::class, "filter_requetes_statut"])->name("requetes.filter_statut");
+                        Route::get("/add filter/", [RequetesController::class, "filter_requetes_statut"])->name("requetes.filter_statut");
 
-                        Route::patch("/update/{id}", [requetesController::class, "update"])->name("requetes.update");
+                        Route::patch("/update/{id}", [RequetesController::class, "update"])->name("requetes.update");
 
                     });
 
