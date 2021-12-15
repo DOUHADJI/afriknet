@@ -61,6 +61,7 @@
         .middlePageBrand{
             background-image: url('template_resources/img/07.jpg');
             background-repeat: no-repeat;
+            background-position: center center;
             height:100px;
             -webkit-background-size: cover;
             -moz-background-size: cover;
