@@ -36,7 +36,7 @@
 
     <div class="main-div">
         <div class="sub_main_div h-100 d-flex justify-content-center p-5 ">
-                <div class="p-5 border my-5 w-100 text-white " style="background-color: rgba(199, 63, 63, 0.295)">
+                <div class="p-5 border my-5 w-50-lg text-white " style="background-color: rgba(199, 63, 63, 0.295)">
                         <p class="text-white fs-3 fw-light">Global .net</p>
                         <hr class="bg-light">
                         <p class="text-center fs-3 text-white fw-light text-white ">Erreur | 404</p>
