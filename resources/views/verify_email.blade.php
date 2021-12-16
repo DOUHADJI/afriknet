@@ -21,7 +21,8 @@
         .main-div{
             background-image: url({{ asset ('template_resources/img/11.jpg') }});
             background-repeat: no-repeat;
-            height:100vh; 
+            background-position : center center;
+            
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;

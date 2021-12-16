@@ -43,7 +43,7 @@
                 <div class="form-group">
                     <div class="row">
 
-                        <div class="col">
+                        <div class="col-lg-4 col-md-4">
                             <label for="firstname">Nom</label>
                             <input type="text" class="form-control form-control-user @error("firstname") is-invalid @enderror " 
                             id="firstname"  name="firstname" value="{{$user->name}}">
@@ -56,7 +56,7 @@
                         </div>
 
                         
-                        <div class="col">
+                        <div class="col-lg-4 col-md-4">
                             <label for="prenom">Prénom(s)</label>
                             <input type="text" class="form-control form-control-user  @error("prenom") is-invalid @enderror " 
                             id="prenom"  name="prenom" value="{{$user->prenom}}">
@@ -66,7 +66,7 @@
 
                         </div>
 
-                        <div class="col">
+                        <div class="col-lg-4 col-md-4">
                             <label for="contact">Contact</label>
                             <input type="text" class="form-control form-control-user @error("contact") is-invalid @enderror "
                              id="contact"  name="contact" value="{{$user->contact}}">
@@ -85,7 +85,7 @@
                 <div class="form-group">
                     <div class="row">
 
-                        <div class="col">
+                        <div class="col-lg-4 col-md-4 ">
                             <label for="pays">Pays</label>
                             <input type="text" class="form-control form-control-user @error("pays") is-invalid @enderror "
                             id="pays"  name="pays" value="{{$user->pays}}">
@@ -96,7 +96,7 @@
                         </div>
 
                         
-                        <div class="col">
+                        <div class="col-lg-4 col-md-4">
                             <label for="ville">Ville</label>
                             <input type="text" class="form-control form-control-user @error("ville") is-invalid @enderror "
                              id="ville"  name="ville" value="{{$user->ville}}">
@@ -108,7 +108,7 @@
                         </div>
 
                         
-                        <div class="col">
+                        <div class="col-lg-4 col-md-4 col-sm-6">
                             <label for="type">Type</label>
                             <select  name="type" id="type" class="form-control form-control-user @error("type") is-invalid @enderror " >
 
@@ -128,7 +128,7 @@
 
                         </div>
                 
-                        <div class="col">
+                        <div class="col-lg-4 col-md-4 col-sm-6">
 
                             <label for="statut">Statut</label>
 

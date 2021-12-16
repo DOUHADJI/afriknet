@@ -21,7 +21,7 @@
         .main-div{
             background-image: url({{ asset ('template_resources/img/11.jpg') }});
             background-repeat: no-repeat;
-            height:100vh; 
+            background-position: center center;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -47,8 +47,8 @@
 
                         <a href="{{ route('login') }}" class="btn btn-light btn-icon-split ">
 
-                            <span class="icon text-gray-600">
-                                <i class="fas fa-arrow-right"></i>
+                            <span class="icon text-gray-600 ">
+                                {{-- <i class="fas fa-arrow-right "></i> --}}
                             </span>
                             <span class="text">Se connecter</span>
                         </a>
