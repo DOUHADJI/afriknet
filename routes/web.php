@@ -49,7 +49,7 @@ Route::group(["prefix" => "auth"], function () {
         
     });
 
-    Route::get("/confirm_account/{user}/{token}", [SigninController::class, "confirm_account"]) -> name('confirmation_notice');
+    Route::get("/confirm-account/{user}/{token}", [SigninController::class, "confirm_account"]) -> name('confirmation_notice');
 
     Route::post("/logout",[ LogoutController::class, 'logout'])->name("auth.logout")->middleware("auth");
 
@@ -72,7 +72,7 @@ Route::group(["middleware" => ["auth_admin" /*  "auth"  */ ]], function(){
 
 /* DEBUT*/
 
-Route::group(['prefix' =>'user_space'], function(){
+Route::group(['prefix' =>'user-space'], function(){
 
     Route::get('/', [UserController::class, 'index'])->name('user.index');
 
@@ -80,24 +80,24 @@ Route::group(['prefix' =>'user_space'], function(){
     ;
     Route::get('/help', [UserController::class, 'faq'])->name('user.faq');
 
-    Route::get('/modifier_mes_informations/', [UserController::class, 'modifier_infos'])->name('user.modifier_infos');
-    Route::patch('/modifier_mes_informations/{user}', [UserController::class, 'update'])->name('user.update');
+    Route::get('/modifier-mes-informations/', [UserController::class, 'modifier_infos'])->name('user.modifier_infos');
+    Route::patch('/modifier-mes-informations/{user}', [UserController::class, 'update'])->name('user.update');
 
-    Route::get('/modifier_mes_identifiants/', [UserController::class, 'modifier_identifiants'])->name('user.modifier_identifiants');
-    Route::patch('/modifier_mes_identifiants/{user}', [UserController::class, 'update_identifiants'])->name('user.update_identifiants');
+    Route::get('/modifier-mes-identifiants/', [UserController::class, 'modifier_identifiants'])->name('user.modifier_identifiants');
+    Route::patch('/modifier-mes-identifiants/{user}', [UserController::class, 'update_identifiants'])->name('user.update_identifiants');
 
 
 
-    Route::get('/souscrire_à_un_forfait', [UserController::class, 'scrire_forfait'])->name('user.scrire_forfait');
-    Route::get('/souscrire_à_un_abonnement', [UserController::class, 'scrire_abonnement'])->name('user.scrire_abonnement');
+    Route::get('/souscrire-à-un-forfait', [UserController::class, 'scrire_forfait'])->name('user.scrire_forfait');
+    Route::get('/souscrire-à-un-abonnement', [UserController::class, 'scrire_abonnement'])->name('user.scrire_abonnement');
 
-    Route::get('/formuler_requete', [UserController::class, 'formuler_requete_Show'])->name('user.formuler_requete');
-    Route::post('/formuler_requete', [UserController::class, 'formuler_requete'])->name('user.formuler_requete');
+    Route::get('/formuler-requete', [UserController::class, 'formuler_requete_Show'])->name('user.formuler_requete');
+    Route::post('/formuler-requete', [UserController::class, 'formuler_requete'])->name('user.formuler_requete');
 
-    Route::get('/formuler_plainte', [UserController::class, 'formuler_plainte_Show'])->name('user.formuler_plainte');
-    Route::post('/formuler_plainte', [UserController::class, 'formuler_plainte'])->name('user.formuler_plainte');
+    Route::get('/formuler-plainte', [UserController::class, 'formuler_plainte_Show'])->name('user.formuler-plainte');
+    Route::post('/formuler-plainte', [UserController::class, 'formuler_plainte'])->name('user.formuler_plainte');
 
-    Route::get('/account_activation_request', [UserController::class, 'activation_request']) -> name('user.activation_request');
+    Route::get('/account-activation-request', [UserController::class, 'activation_request']) -> name('user.activation_request');
 
 
     
@@ -166,8 +166,8 @@ Route::group(['prefix'=>"admin"], function () {
 
                         Route::get("/", [DashboardController::class, "index"])->name('dashboard');
                 
-                        Route::get('/new_plaintes', [DashboardController::class, 'new_plaintes']) ->name('new_plaintes');
-                        Route::get('/new_requetes', [DashboardController::class, 'new_requetes']) ->name('new_requetes');
+                        Route::get('/new-plaintes', [DashboardController::class, 'new_plaintes']) ->name('new_plaintes');
+                        Route::get('/new-requetes', [DashboardController::class, 'new_requetes']) ->name('new_requetes');
 
 
                            /* 
@@ -180,7 +180,7 @@ Route::group(['prefix'=>"admin"], function () {
 
                 Route::get("/", [ClientsController::class, "index"])->name("clients.index");
 
-                Route::get("/client's_statuts", [ClientsController::class, "statuts_index"])->name("clients.statuts");
+                Route::get("/client's-statuts", [ClientsController::class, "statuts_index"])->name("clients.statuts");
                 
                 Route::get("/create", [ClientsController::class, "create"])->name("clients.create");
                 
@@ -192,13 +192,13 @@ Route::group(['prefix'=>"admin"], function () {
 
                 Route::get("/edit/{client}", [ClientsController::class, "edit"])->name("clients.edit");
                 
-                Route::get("/show_statut/{client}", [ClientsController::class, "showForchangeStatut"])->name("clients.showForchangeStatut");
+                Route::get("/show-statut/{client}", [ClientsController::class, "showForchangeStatut"])->name("clients.showForchangeStatut");
 
-                Route::patch("/change_statut/{client}", [ClientsController::class, "changeStatut"])->name("clients.changeStatut");
+                Route::patch("/change-statut/{client}", [ClientsController::class, "changeStatut"])->name("clients.changeStatut");
 
-                Route::get("/activate_clients_accounts", [ClientsController::class, "activate_account_show"])->name("clients.activate_account_show");
+                Route::get("/activate-clients-accounts", [ClientsController::class, "activate_account_show"])->name("clients.activate_account_show");
 
-                Route::patch("/activate_clients_accounts", [ClientsController::class, "activate_account"])->name("clients.activate_account");
+                Route::patch("/activate-clients-accounts", [ClientsController::class, "activate_account"])->name("clients.activate_account");
 
 
 
@@ -233,7 +233,7 @@ Route::group(['prefix'=>"admin"], function () {
 
                 Route::post("/", [AbonnementsController::class, "store"])->name("abonnements.store");
 
-                Route::get("/delete_abonnement", [AbonnementsController::class, "showForDelete"])->name("abonnements.showForDelete");
+                Route::get("/delete-abonnement", [AbonnementsController::class, "showForDelete"])->name("abonnements.showForDelete");
 
                 Route::delete("/{abonnement}", [AbonnementsController::class, "destroy"])->name("abonnements.destroy");
 
@@ -262,7 +262,7 @@ Route::group(['prefix'=>"admin"], function () {
 
                 Route::post("/", [ForfaitsController::class, "store"])->name("forfaits.store");
 
-                Route::get("/delete_a_forfait", [ForfaitsController::class, "showForDelete"])->name("forfaits.showForDelete");
+                Route::get("/delete-a-forfait", [ForfaitsController::class, "showForDelete"])->name("forfaits.showForDelete");
 
                 Route::delete("/{forfait}", [ForfaitsController::class, "destroy"])->name("forfaits.destroy");
 
