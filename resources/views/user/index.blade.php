@@ -17,7 +17,7 @@
         <div class="  text-white" 
 
         style="
-        background-image: url({{ asset('template_resources/img/11.jpg') }});
+        background-image: url({{ asset('template_resources/img/12.jpg') }});
         background-repeat: no-repeat;
         background-position:center center; 
         background-size: cover;

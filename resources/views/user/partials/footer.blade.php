@@ -32,7 +32,6 @@
 
 </div> --}}
   
-
     <div class="text-center  text-xs fw-lighter mt-5"> 
     - DOUHADJI AMEVI GREGOIRE -  
     </div>
