@@ -28,8 +28,8 @@
 
                     <!-- Page Heading -->
                     <div class="d-flex mb-5">
-                        <h1 class="h3  text-gray-800 ">Clients / </h1> 
-                        <p class=" ml-2 text-gray-600">{{-- <span class="fas fa-arrow-right"></span> --}} @yield('pageTitle')</p>
+                        <p class="fs-4 text-gray-600 ">Clients  </p> 
+                        <p class=" ml-2 text-gray-600  "><span class="fas fa-arrow-right"></span> @yield('pageTitle')</p>
                     </div>
                    
 

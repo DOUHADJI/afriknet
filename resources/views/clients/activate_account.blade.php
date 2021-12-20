@@ -1,5 +1,8 @@
 @extends('clients.layout')
 
+@section("pageTitle")
+    Demandes d'activation
+@endsection
 
 @section('content')
 

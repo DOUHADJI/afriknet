@@ -1,6 +1,10 @@
 @extends('clients.layout')
 
 
+@section("pageTitle")
+    Liste des clients
+@endsection
+
 @section('content')
 
     <!-- DataTales clients -->

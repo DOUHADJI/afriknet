@@ -1,5 +1,8 @@
 @extends('clients.layout')
 
+@section("pageTitle")
+    Editer le client
+@endsection
 
 @section('content')
     

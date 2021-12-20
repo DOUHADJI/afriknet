@@ -1,5 +1,9 @@
 @extends('clients.layout')
 
+@section("pageTitle")
+    Ajouter nouveau client
+@endsection
+
 
 @section('content')
     

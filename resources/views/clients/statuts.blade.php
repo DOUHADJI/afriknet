@@ -1,5 +1,9 @@
 @extends('clients.layout')
 
+@section("pageTitle")
+    statuts 
+@endsection
+
 
 @section('content')
 

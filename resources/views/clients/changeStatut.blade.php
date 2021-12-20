@@ -1,6 +1,10 @@
 @extends('clients.layout')
 
 
+@section("pageTitle")
+    Modifier le statut du client
+@endsection
+
 @section('content')
     
 

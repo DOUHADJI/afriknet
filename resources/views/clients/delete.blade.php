@@ -1,5 +1,9 @@
 @extends('clients.layout')
 
+@section("pageTitle")
+    Supprimer le client
+@endsection
+
 
 @section('content')
     
