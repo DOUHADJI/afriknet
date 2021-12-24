@@ -42,4 +42,25 @@ class User extends Authenticatable /* implements MustVerifyEmail */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+    public function listeDesAbonnements() {
+
+        return $this -> belongsToMany(ListeDesAbonnement::class,  'User_liste_des_abonnement');
+    }
+
+
+
+    public function listeDesForfaits () {
+
+        return $this -> belongsToMany(ListeDesForfait::class, 'liste_des_forfait_forfait');
+    }
+
+
+    public function requetesplaintes() {
+
+        return $this -> belongsToMany(RequetesPlainte::class, 'user_requete_plainte');
+    }
+
 }

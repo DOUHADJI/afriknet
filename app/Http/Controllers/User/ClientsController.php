@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\activation_requests;
+use App\Models\ActivationRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -261,7 +261,7 @@ class ClientsController extends Controller
 
     $client = User::where("id", "=", $request->user_id) ->first();
 
-    $activation_request = activation_requests::where("user_id", "=", $request->user_id)->where("request_statut", "=", 0)->first();
+    $activation_request = ActivationRequest::where("user_id", "=", $request->user_id)->where("request_statut", "=", 0)->first();
 
    /*  dd($client); */
 

@@ -4,9 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class abonnements extends Model
+class Abonnement extends Model
 {
     use HasFactory;
 
@@ -14,5 +13,8 @@ class abonnements extends Model
         "nom", "debit", "validite", "price"
     ];
 
-   
+    public function listeDesAbonnements () {
+
+        return $this -> belongsToMany(ListeDesAbonnement::class, 'liste_des_abonnement_abonnement');
+    }
 }

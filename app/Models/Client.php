@@ -4,11 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class clients extends Authenticatable
+class Client extends Model
 {
     use HasFactory;
 
@@ -31,6 +29,5 @@ class clients extends Authenticatable
 
             return $this -> hasMany(requetes_plaintes::class, 'client_id');
     }
-
 
 }

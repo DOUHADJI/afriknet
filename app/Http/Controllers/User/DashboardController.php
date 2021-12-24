@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\abonnements;
-use App\Models\clients;
-use App\Models\forfaits;
-use App\Models\requetes_plaintes;
+use App\Models\Abonnement;
+use App\Models\Forfait;
+use App\Models\RequetesPlainte;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -29,8 +28,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $abonnements = abonnements::get();
-        $forfaits = forfaits::get();
+        $abonnements = Abonnement::get();
+        $forfaits = Forfait::get();
         $clients = User::get();
 
  
@@ -41,13 +40,31 @@ class DashboardController extends Controller
 
         $months = DB::table('users') -> select('created_at') ->get();
 
+        $new_plaintes = RequetesPlainte::where('statut', 'reçu') ->where('type', 'plainte') ->orderBy('id', 'desc')->get() -> take(3);
+
+        $new_requetes = RequetesPlainte::where('statut', 'reçu') ->where('type', 'requete') ->orderBy('id', 'desc')->get() -> take(3);
+
+        $users= User::get();
+
+  $inactive_users =  DB::table('users')
+                         ->where("statut_activite", "=", 0)
+                         ->join("activation_requests", "users.id", "=",  "activation_requests.user_id")
+                         -> where("request_statut", "=", 0)
+                         ->select('users.*')
+                         ->get();
+
       /*   dd($clients_array, $months); */
         
         return view('dashboard.index', compact(
 
             'abonnements', 
             'forfaits',  
-            'clients'     
+            'clients' ,
+            'new_plaintes' ,
+            'new_requetes',
+            'users',
+            'inactive_users'
+
         ));
     }
 
@@ -64,70 +81,5 @@ class DashboardController extends Controller
           return redirect()->route('requetes.filter_statut', ['statut' => 'reçu']);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
 

@@ -1,16 +1,16 @@
 
 
   @php
-  use App\Models\requetes_plaintes;
+  use App\Models\RequetesPlainte;
   use App\Models\User;
   
 
 
 
 
-  $new_plaintes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'plainte') ->orderBy('id', 'desc')->get() -> take(3);
+  $new_plaintes = RequetesPlainte::where('statut', 'reçu') ->where('type', 'plainte') ->orderBy('id', 'desc')->get() -> take(3);
 
-  $new_requetes = requetes_plaintes::where('statut', 'reçu') ->where('type', 'requete') ->orderBy('id', 'desc')->get() -> take(3);
+  $new_requetes = RequetesPlainte::where('statut', 'reçu') ->where('type', 'requete') ->orderBy('id', 'desc')->get() -> take(3);
 
   $users= User::get();
 

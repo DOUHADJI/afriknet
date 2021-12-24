@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Forfait;
 use App\Models\forfaits;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,7 +23,7 @@ class ForfaitsController extends Controller
      */
     public function index()
     {
-        $forfaits = forfaits::get();
+        $forfaits = Forfait::get();
 
         return view("forfaits.index", compact('forfaits'));
     }
@@ -55,7 +56,7 @@ class ForfaitsController extends Controller
 
         /* dd($request); */
 
-        forfaits::create([
+        Forfait::create([
 
                 "nom" => $request->name,
                 "volume" => $request->volume,
@@ -67,17 +68,6 @@ class ForfaitsController extends Controller
         return redirect() -> route('forfaits.index') -> with('success', 'forfaits created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
       /**
      * Display the specified resource.
      *
@@ -86,33 +76,11 @@ class ForfaitsController extends Controller
      */
     public function showForDelete()
     {
-        $forfaits = forfaits::get();
+        $forfaits = Forfait::get();
         
         return view("forfaits.delete", compact("forfaits"));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+ 
 
     /**
      * Remove the specified resource from storage.
@@ -120,7 +88,7 @@ class ForfaitsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(forfaits $forfait)
+    public function destroy(Forfait $forfait)
     {
         
 

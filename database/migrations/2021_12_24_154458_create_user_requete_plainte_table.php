@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRequetesPlaintesTable extends Migration
+class CreateUserRequetePlainteTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateRequetesPlaintesTable extends Migration
      */
     public function up()
     {
-        Schema::create('requetes_plaintes', function (Blueprint $table) {
-
+        Schema::create('user_requete_plainte', function (Blueprint $table) {
+            
             $table->id();
-            $table->string('type')->nullable(false);
-            $table->string('motif')->nullable(false);
-            $table->mediumText('message')->nullable(false);
-            $table->string('statut');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table -> unsignedBigInteger('requete_plainte_id');
+            $table->foreign('user_id')->references('id')->on('users') -> onDelete('cascade');
+            $table->foreign('requete_plainte_id')->references('id')->on('requetes_plaintes')-> onDelete('cascade');
             $table->timestamps();
             
         });
@@ -34,6 +32,6 @@ class CreateRequetesPlaintesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requetes_plaintes');
+        Schema::dropIfExists('user_requete_plainte');
     }
 }

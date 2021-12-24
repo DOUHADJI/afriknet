@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class requetes_plaintes extends Model
+class RequetesPlainte extends Model
 {
     use HasFactory;
 
@@ -14,8 +14,9 @@ class requetes_plaintes extends Model
         "statut", "motif", "type", "user_id", "message"
     ];
 
-    public function client()
+    public function users()
     {
-        return $this->belongsTo(clients::class);
+        return $this->belongsTo(clients::class, 'user_requete_plainte');
     }
+
 }

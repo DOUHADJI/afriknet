@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\abonnements;
+use App\Models\Abonnement;
 
 
 class AbonnementsController extends Controller
@@ -17,7 +17,7 @@ class AbonnementsController extends Controller
      */
     public function index()
     {
-        $abonnements = abonnements::get();
+        $abonnements = Abonnement::get();
         
         return view("abonnements.index", compact('abonnements'));
     }
@@ -51,7 +51,7 @@ class AbonnementsController extends Controller
 
         /* dd($request); */
 
-        abonnements::create([
+        Abonnement::create([
 
                 "nom" => $request->name,
                 "debit" => $request->debit,
@@ -71,7 +71,7 @@ class AbonnementsController extends Controller
      */
     public function showForDelete()
     {
-        $abonnements = abonnements::get();
+        $abonnements = Abonnement::get();
         
         return view("abonnements.delete", compact("abonnements"));
     }
@@ -82,7 +82,7 @@ class AbonnementsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(abonnements $abonnement)
+    public function destroy(Abonnement $abonnement)
     {
        
        /*  dd($abonnement); */

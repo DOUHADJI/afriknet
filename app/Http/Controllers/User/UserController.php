@@ -4,12 +4,12 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Mail\registerMail;
-use App\Models\abonnements;
-use App\Models\activation_requests;
-use App\Models\forfaits;
-use App\Models\liste_des_abonnements;
-use App\Models\liste_des_forfaits;
-use App\Models\requetes_plaintes;
+use App\Models\Abonnement;
+use App\Models\ActivationRequest;
+use App\Models\Forfait;
+use App\Models\ListeDesAbonnement;
+use App\Models\ListeDesForfait;
+use App\Models\RequetesPlainte;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,32 +43,32 @@ class UserController extends Controller
 
 
         $souscriptions = DB::table('users')
-            -> where ("user_id", "=", $client->id)
-            ->join('liste_des_abonnements', 'users.id', '=', 'liste_des_abonnements.user_id')
-          /*   ->join('liste_des_forfaits', 'users.id', '=', 'liste_des_forfaits.user_id') */
-            ->join('abonnements', 'abonnements.id', '=', 'liste_des_abonnements.abonnement_id')
-           /*  ->join('forfaits', 'forfaits.id', '=', 'liste_des_forfaits.forfait_id') */
-            ->select('users.*', 'liste_des_abonnements.*','abonnements.*',/*  'liste_des_forfaits.*', 'forfaits.*' */ )
-            ->get();
+                                            -> where ("user_id", "=", $client->id)
+                                            ->join('liste_des_abonnements', 'users.id', '=', 'liste_des_abonnements.user_id')
+                                            ->join('abonnements', 'abonnements.id', '=', 'liste_des_abonnements.abonnement_id')
+                                            ->select('users.*', 'liste_des_abonnements.*','abonnements.*' )
+                                            ->get();
+
+           
 
          $last_souscription = DB::table('liste_des_abonnements')
                                                 ->where("fini_le", ">", now())
                                                 -> where ("user_id", "=", auth()->user()->id)
                                                 ->join('abonnements', 'abonnements.id', '=', 'liste_des_abonnements.abonnement_id')
-                                               ->select('liste_des_abonnements.*','abonnements.*')
-                                                /* -> orderBy("updated_at", "asc") */ ->first();
+                                                ->select('liste_des_abonnements.*','abonnements.*')
+                                                ->first();
                                                 
    $last_forfait = DB::table('liste_des_forfaits')
                                                 ->where("fini_le", ">", now())
                                                 -> where ("user_id", "=", auth()->user()->id)
                                                 ->join('forfaits', 'forfaits.id', '=', 'liste_des_forfaits.forfait_id')
-                                               ->select('liste_des_forfaits.*','forfaits.*')
-                                                /* -> orderBy("updated_at", "asc") */ ->first();
+                                                ->select('liste_des_forfaits.*','forfaits.*')
+                                                ->first();
 
 
-      $request_existance = activation_requests::where('user_id', '=', Auth::user()->id)->where("request_statut", "=", 0)->orderBy("created_at", "desc") ->first();
+      $request_existance = ActivationRequest::where('user_id', '=', Auth::user()->id)->where("request_statut", "=", 0)->orderBy("created_at", "desc") ->first();
 
-      $plainte_courante = requetes_plaintes::where("user_id", "=", auth()->user()->id)->where("type", "=", "plainte")->orderBy("created_at", "desc") -> first();
+      $plainte_courante = RequetesPlainte::where("user_id", "=", auth()->user()->id)->where("type", "=", "plainte")->orderBy("created_at", "desc") -> first();
 
 
 
@@ -80,7 +80,7 @@ class UserController extends Controller
 
     public function activation_request() {
 
-        $request_existance = activation_requests::where('user_id', '=', Auth::user()->id)->where("request_statut", "=", 0)->orderBy("created_at", "desc") ->first();
+        $request_existance = ActivationRequest::where('user_id', '=', Auth::user()->id)->where("request_statut", "=", 0)->orderBy("created_at", "desc") ->first();
        
         /* dd($request_existance); */
 
@@ -93,7 +93,7 @@ class UserController extends Controller
         }
         else
         {
-            activation_requests::create([
+            ActivationRequest::create([
 
                 "user_id" => Auth::user()->id,
                 "request_statut" => 0,
@@ -136,9 +136,9 @@ class UserController extends Controller
 
     public function scrire_forfait (){
 
-        $forfait = forfaits::inRandomOrder()->first();
+        $forfait = Forfait::inRandomOrder()->first();
 
-        liste_des_forfaits::create([
+        ListeDesForfait::create([
 
                     "souscri_le" => now(),
                     "fini_le" => now() ->addDays($forfait->validite),
@@ -153,9 +153,9 @@ class UserController extends Controller
 
     public function scrire_abonnement (){
 
-        $abonnement = abonnements::inRandomOrder()->first();
+        $abonnement = Abonnement::inRandomOrder()->first();
 
-        liste_des_abonnements::create([
+        ListeDesAbonnement::create([
 
                     "souscri_le" => now(),
                     "fini_le" => now() ->addDays($abonnement->validite),
@@ -183,7 +183,7 @@ class UserController extends Controller
 
         ]);
 
-        requetes_plaintes::create([
+        RequetesPlainte::create([
 
             "type" => $request -> type,
             "motif" => $request->motif,
@@ -213,7 +213,7 @@ class UserController extends Controller
 
         ]);
 
-        requetes_plaintes::create([
+        RequetesPlainte::create([
 
             "type" => $request -> type,
             "motif" => $request->motif,
@@ -419,15 +419,7 @@ class UserController extends Controller
 
 
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+  
+
 }
 

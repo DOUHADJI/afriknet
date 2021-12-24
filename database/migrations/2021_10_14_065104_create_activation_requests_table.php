@@ -14,16 +14,12 @@ class CreateActivationRequestsTable extends Migration
     public function up()
     {
         Schema::create('activation_requests', function (Blueprint $table) {
+
             $table->id();
-
-            $table->bigInteger('user_id') ->unsigned()->nullable(false);
-
             $table ->boolean("request_statut")->nullable(false);
-
+            $table->bigInteger('user_id') ->unsigned()->nullable(false);
             $table->foreign('user_id')->references('id')->on('users');
-
             $table->timestamps();
-
 
         });
     }

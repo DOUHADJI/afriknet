@@ -13,9 +13,8 @@ use App\Http\Controllers\User\ForfaitsController;
 use App\Http\Controllers\User\PlaintesController;
 use App\Http\Controllers\User\RequetesController;
 use App\Http\Controllers\User\UserController;
-use App\Models\abonnements;
-use App\Models\forfaits;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Models\Abonnement;
+use App\Models\Forfait;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +28,8 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 */
 
 Route::get('/', function () {
-    $abonnements = abonnements::get();
-    $forfaits = forfaits::get();
+    $abonnements = Abonnement::get();
+    $forfaits = Forfait::get();
     return view('welcome', compact('abonnements', 'forfaits'));
 })->middleware('guest', 'guest:admin')->name('welcome');
 
