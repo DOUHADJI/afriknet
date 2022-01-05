@@ -13,7 +13,6 @@ use App\Models\RequetesPlainte;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
@@ -24,26 +23,12 @@ class UserController extends Controller
 {
 
 
-  /*   public function __construct()
-    {
-
-        PlainteStatutUpdatedEvent::dispatch();
-      
-    } */
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $client = DB::table("users") -> where ("email", "=", auth()->user()->email)->first();
+        $client =User::where ("email", Auth::user()->email)->first();
 
 
-
-        $souscriptions = DB::table('users')
-                                            -> where ("user_id", "=", $client->id)
+        $souscriptions =User::where ("user_id", $client->id)
                                             ->join('liste_des_abonnements', 'users.id', '=', 'liste_des_abonnements.user_id')
                                             ->join('abonnements', 'abonnements.id', '=', 'liste_des_abonnements.abonnement_id')
                                             ->select('users.*', 'liste_des_abonnements.*','abonnements.*' )
@@ -51,24 +36,22 @@ class UserController extends Controller
 
            
 
-         $last_souscription = DB::table('liste_des_abonnements')
-                                                ->where("fini_le", ">", now())
-                                                -> where ("user_id", "=", auth()->user()->id)
+        $last_souscription = ListeDesAbonnement::where("fini_le", ">", now())
+                                                -> where ("user_id", "=", Auth::user()->id)
                                                 ->join('abonnements', 'abonnements.id', '=', 'liste_des_abonnements.abonnement_id')
                                                 ->select('liste_des_abonnements.*','abonnements.*')
                                                 ->first();
                                                 
-   $last_forfait = DB::table('liste_des_forfaits')
-                                                ->where("fini_le", ">", now())
-                                                -> where ("user_id", "=", auth()->user()->id)
+        $last_forfait = ListeDesForfait::where("fini_le", ">", now())
+                                                -> where ("user_id", "=", Auth::user()->id)
                                                 ->join('forfaits', 'forfaits.id', '=', 'liste_des_forfaits.forfait_id')
                                                 ->select('liste_des_forfaits.*','forfaits.*')
                                                 ->first();
 
 
-      $request_existance = ActivationRequest::where('user_id', '=', Auth::user()->id)->where("request_statut", "=", 0)->orderBy("created_at", "desc") ->first();
+      $request_existance = ActivationRequest::where('user_id', Auth::user()->id)->where("request_statut", "=", 0)->orderBy("created_at", "desc") ->first();
 
-      $plainte_courante = RequetesPlainte::where("user_id", "=", auth()->user()->id)->where("type", "=", "plainte")->orderBy("created_at", "desc") -> first();
+      $plainte_courante = RequetesPlainte::where("user_id", Auth::user()->id)->where("type", "=", "plainte")->orderBy("created_at", "desc") -> first();
 
 
 
@@ -80,9 +63,8 @@ class UserController extends Controller
 
     public function activation_request() {
 
-        $request_existance = ActivationRequest::where('user_id', '=', Auth::user()->id)->where("request_statut", "=", 0)->orderBy("created_at", "desc") ->first();
+        $request_existance = ActivationRequest::where('user_id', '=',  Auth::user()->id)->where("request_statut", "=", 0)->orderBy("created_at", "desc") ->first();
        
-        /* dd($request_existance); */
 
         if ( $request_existance !=null )
 
@@ -95,7 +77,7 @@ class UserController extends Controller
         {
             ActivationRequest::create([
 
-                "user_id" => Auth::user()->id,
+                "user_id" =>  Auth::user()->id,
                 "request_statut" => 0,
             ]);
 
@@ -104,13 +86,6 @@ class UserController extends Controller
             
         }       
 
-    }
-
-
-    public function writte_us(){
-        
-    
-        return view('user.writte_us');
     }
 
 
@@ -124,7 +99,7 @@ class UserController extends Controller
 
     public function modifier_infos(){
 
-        $user = Auth::user();
+        $user =  Auth::user();
         
         return view('user.modifier_infos', compact('user'));
     }
@@ -143,7 +118,7 @@ class UserController extends Controller
                     "souscri_le" => now(),
                     "fini_le" => now() ->addDays($forfait->validite),
                     "forfait_id"=> $forfait->id,
-                    "user_id" => Auth::user()->id,
+                    "user_id" =>  Auth::user()->id,
 
         ]);
 
@@ -160,7 +135,7 @@ class UserController extends Controller
                     "souscri_le" => now(),
                     "fini_le" => now() ->addDays($abonnement->validite),
                     "abonnement_id"=> $abonnement->id,
-                    "user_id" => Auth::user()->id,
+                    "user_id" =>  Auth::user()->id,
 
         ]);
 
@@ -189,7 +164,7 @@ class UserController extends Controller
             "motif" => $request->motif,
             "message"=> $request -> message,
              "statut" => "reçu",
-             "user_id" => Auth::user()-> id
+             "user_id" =>  Auth::user()-> id
 
         ]);
 
@@ -219,7 +194,7 @@ class UserController extends Controller
             "motif" => $request->motif,
             "message"=> $request -> message,
              "statut" => "reçu",
-             "user_id" => Auth::user()-> id
+             "user_id" =>  Auth::user()-> id
 
         ]);
 
@@ -258,9 +233,9 @@ class UserController extends Controller
 
         
 
-        if(Auth::attempt($credentials)) {
+        if( Auth::attempt($credentials)) {
            
-            if(auth()->user()->id === $user->id && !is_null(auth()->user()->token)){
+            if( auth()->user()->id === $user->id && !is_null( auth()->user()->token)){
                 
                 $user->update([
 
@@ -289,7 +264,7 @@ class UserController extends Controller
 
     public function modifier_identifiants(){
 
-        $user = Auth::user();
+        $user =  Auth::user();
         return view("user.modifier_identifiants" , compact('user') );
     }
 
@@ -310,7 +285,7 @@ class UserController extends Controller
 
 
 
-        if(Auth::attempt($credentials)){
+        if( Auth::attempt($credentials)){
             
             if(is_null($request->new_email)){
 
@@ -335,7 +310,7 @@ class UserController extends Controller
                                 
                         ]);
 
-                        Auth::logout();
+                         Auth::logout();
 
                         $request->session()->invalidate();
                 
@@ -366,7 +341,7 @@ class UserController extends Controller
                         "token" => Str::random(50),
                     ]);
 
-                    Auth::logout();
+                     Auth::logout();
 
                     $request->session()->invalidate();
             
@@ -396,7 +371,7 @@ class UserController extends Controller
 
                         ]);
 
-                        Auth::logout();
+                         Auth::logout();
 
                         $request->session()->invalidate();
                 

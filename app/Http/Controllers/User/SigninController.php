@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
 
 class SigninController extends Controller
 {
+
     public function create () {
 
         return view('register');
@@ -21,7 +22,8 @@ class SigninController extends Controller
     public function register (registerUserRequest $request) {
 
         function generateBarcodeNumber() {
-            $number = mt_rand(10000000, 9999999999); // better than rand()
+
+            $number = mt_rand(10000000, 9999999999); 
         
             // call the same function if the barcode exists already
             if (barcodeNumberExists($number)) {
@@ -42,7 +44,7 @@ class SigninController extends Controller
 
         $token = Str::random(50);
 
-      $user =  User::create([
+        $user =  User::create([
 
             "name" =>$request->name,
             "prenom" => $request->prenoms,

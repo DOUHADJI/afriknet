@@ -63,7 +63,7 @@
                                 <div class="text-xs  text-primary text-uppercase mb-1">
                                     Abonnement : <b class="h5 font-weight-bold ">{{$abonnement->nom}}</b></div>
                                 <div class=" mb-0 font-weight-bold text-gray-800">Volume :
-                                     <b class="h5 font-weight-bold ">{{$abonnement->volume}}Go <span>   </span>
+                                     <b class="h5 font-weight-bold ">{{$abonnement->debit}}Go <span>   </span>
                                        <span class="text-xs  text-success text-uppercase mb-1">validité :</span> {{$abonnement->validite}}</b>
                                        <span class="text-xs  text-success  mb-1">jours</span>
                                     </div>

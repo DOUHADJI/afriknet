@@ -1,28 +1,4 @@
 
-
-  @php
-  use App\Models\RequetesPlainte;
-  use App\Models\User;
-  
-
-
-
-
-  $new_plaintes = RequetesPlainte::where('statut', 'reçu') ->where('type', 'plainte') ->orderBy('id', 'desc')->get() -> take(3);
-
-  $new_requetes = RequetesPlainte::where('statut', 'reçu') ->where('type', 'requete') ->orderBy('id', 'desc')->get() -> take(3);
-
-  $users= User::get();
-
-  $inactive_users =  DB::table('users')
-                         ->where("statut_activite", "=", 0)
-                         ->join("activation_requests", "users.id", "=",  "activation_requests.user_id")
-                         -> where("request_statut", "=", 0)
-                         ->select('users.*')
-                         ->get();
-
-@endphp
-
  <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
     <!-- Sidebar Toggle (Topbar) -->

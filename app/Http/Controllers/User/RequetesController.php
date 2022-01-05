@@ -9,72 +9,31 @@ use Illuminate\Support\Facades\DB;
 
 class RequetesController extends Controller
 {
-   /*  public function __construct()
-    {
-        $this->middleware('auth:admin');
-    } */
+   
 
-        
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-    
-
-        $requetes = DB::table("requetes_plaintes")
-        ->where("type", "=", "requete")
-        ->orderBy('id', 'asc')
-        ->get();
+        $requetes = RequetesPlainte::where("type", "=", "requete") ->orderBy('id', 'asc') ->get();
 
         return view ("requetes.index", compact("requetes"));
     }
 
 
-      /**
-     * Display a listing of the resource.
-     * 
-     * @param  \Illuminate\Http\Request  $request
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function filter_requetes_statut(Request $request)
     {
-       
-
         $statut_requete = request()->input('statut');
+        $requetes = RequetesPlainte:: where("type", "requete")->where("statut" , $statut_requete)->orderBy('id', 'asc')->get();
 
-      /*   dd($statut_requete); */
-
-        $requetes = DB::table("requetes_plaintes")
-        ->where("type", "=", "requete")
-        ->where("statut" ,"=", $statut_requete)
-        ->orderBy('id', 'asc')
-        ->get();
-
-      /*   $requetes = requetes_requetes::when($statut_requete, function($query) use ($statut_requete) {
-                $query->where("statut", $statut_requete);
-        } )->get(); */
-
-
-          return view ("requetes.add_filter", compact("requetes", "statut_requete"));
+        return view ("requetes.add_filter", compact("requetes", "statut_requete"));
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request, $id)
-    {
-
-      
-        
+    {   
         $request->validate([
             "statut" =>"required",
         ]);
@@ -85,7 +44,6 @@ class RequetesController extends Controller
             "statut" => $request->statut,
         ]);
 
- 
 
         return redirect()->back();
     }
